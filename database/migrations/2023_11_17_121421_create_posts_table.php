@@ -16,10 +16,14 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
 
-            $table->foreignId('user_id')->index()->constrained()->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained(
+                table: 'users',
+                column: 'id',
+                indexName: 'posts_user_id'
+            )->cascadeOnDelete();
 
-            $table->text('title');
-            $table->longText('description');
+            $table->string('title');
+            $table->text('description');
             $table->boolean('is_anonymous');
         });
     }

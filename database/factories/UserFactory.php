@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Gender;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -30,7 +31,10 @@ class UserFactory extends Factory
             'last_name' => fake()->lastName(),
             'age' => fake()->numberBetween(15, 45),
             'birthday' => fake()->date(),
-            'gender' => fake()->randomElement(['m','f'])
+            'gender_id' => function () {
+                $existingGenderIds = Gender::pluck('id')->toArray();
+                return $this->faker->randomElement($existingGenderIds);
+            }
         ];
     }
 

@@ -5,7 +5,6 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -13,6 +12,7 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
+
 
     /**
      * The attributes that are mass assignable.
@@ -22,12 +22,12 @@ class User extends Authenticatable
     protected $fillable = [
         'first_name',
         'last_name',
+        'gender_id',
         'email',
         'password',
         'age',
         'birthday',
         'profile_picture_path',
-        'gender',
     ];
 
     /**
@@ -50,19 +50,23 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function posts() : HasMany {
+    public function posts(): HasMany
+    {
         return $this->hasMany(Post::class);
     }
 
-    public function likeComments() : HasMany{
+    public function likeComments(): HasMany
+    {
         return $this->hasMany(LikeComment::class);
     }
 
-    public function likePost() : HasMany{
+    public function likePost(): HasMany
+    {
         return $this->hasMany(LikePost::class);
     }
 
-    public function comments() : HasMany{
+    public function comments(): HasMany
+    {
         return $this->hasMany(Comment::class);
     }
 }

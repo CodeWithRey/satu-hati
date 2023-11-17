@@ -17,8 +17,17 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
 
-            $table->foreignId('user_id')->index()->constrained()->cascadeOnDelete();
-            $table->foreignId('post_id')->index()->constrained()->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained(
+                table: 'users',
+                column: 'id',
+                indexName: 'like_posts_user_id'
+            )->cascadeOnDelete();
+
+            $table->foreignId('post_id')->constrained(
+                table: 'posts',
+                column: 'id',
+                indexName: 'like_posts_post_id'
+            )->cascadeOnDelete();
         });
     }
 

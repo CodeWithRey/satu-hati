@@ -17,10 +17,19 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
 
-            $table->foreignId('user_id')->index()->constrained()->cascadeOnDelete();
-            $table->foreignId('post_id')->index()->constrained()->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained(
+                table: 'users',
+                column: 'id',
+                indexName: 'comments_user_id',
+            )->cascadeOnDelete();
 
-            $table->longText('body');
+            $table->foreignId('post_id')->constrained(
+                table: 'posts',
+                column: 'id',
+                indexName: 'comments_post_id'
+            )->cascadeOnDelete();
+
+            $table->text('body');
             $table->boolean('is_expert');
         });
     }
