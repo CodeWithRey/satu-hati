@@ -10,17 +10,20 @@ class LikePost extends Model
 {
     use HasFactory;
 
+    protected $table = 'like_posts';
+
     protected $fillable = [
         'user_id',
         'post_id',
     ];
 
-    public function user() : BelongsTo {
+    public function user(): BelongsTo
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function post() : BelongsTo {
+    public function post(): BelongsTo
+    {
         return $this->belongsTo(Post::class);
     }
-
 }

@@ -11,21 +11,26 @@ class Comment extends Model
 {
     use HasFactory;
 
+    protected $table = 'comments';
+
     protected $fillable = [
         'body',
         'post_id',
         'user_id',
     ];
 
-    public function user() : BelongsTo {
+    public function user(): BelongsTo
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function post() : BelongsTo {
+    public function post(): BelongsTo
+    {
         return $this->belongsTo(Post::class);
     }
 
-    public function likes() : HasMany {
+    public function likes(): HasMany
+    {
         return $this->hasMany(LikeComment::class);
     }
 }
