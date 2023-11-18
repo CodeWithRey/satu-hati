@@ -15,17 +15,19 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->timestamps();
-
+            $table->string('title');
+            $table->text('description');
+            $table->boolean('is_anonymous');
             $table->foreignUuid('user_id')->constrained(
                 table: 'users',
                 column: 'id',
                 indexName: 'posts_user_id'
             )->cascadeOnDelete();
+            $table->timestamps();
 
-            $table->string('title');
-            $table->text('description');
-            $table->boolean('is_anonymous');
+
+
+
         });
     }
 
