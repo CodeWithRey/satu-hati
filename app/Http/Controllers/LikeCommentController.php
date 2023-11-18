@@ -4,55 +4,27 @@ namespace App\Http\Controllers;
 
 use App\Models\LikeComment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LikeCommentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
-    }
+        $userId = Auth::id();
+        $commentId = $request->route()->parameter('commentId');
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(LikeComment $likeComment)
-    {
-        //
-    }
+        LikeComment::create([
+            'user_id' => $userId,
+            'comment_id' => $commentId,
+        ]);
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(LikeComment $likeComment)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, LikeComment $likeComment)
-    {
-        //
+        return response()->json([
+            'status' => 'OK',
+            'message' => 'Like Comment has been created successfully',
+        ]);
     }
 
     /**
@@ -60,6 +32,10 @@ class LikeCommentController extends Controller
      */
     public function destroy(LikeComment $likeComment)
     {
-        //
+        $likeComment->delete();
+        return response()->json([
+            'status' => 'OK',
+            'message' => 'Like Comment has been deleted successfully',
+        ]);
     }
 }

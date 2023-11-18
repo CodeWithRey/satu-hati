@@ -4,47 +4,29 @@ namespace App\Http\Controllers;
 
 use App\Models\Comment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
-    }
+        $validatedData = $request->validate([
+            'body' => 'required',
+        ]);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Comment $comment)
-    {
-        //
-    }
+        $userId = Auth::id();
+        $postId = $request->route()->parameter('postId');
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Comment $comment)
-    {
-        //
+        Comment::create([
+            'body' => $validatedData['body'],
+            'user_id' => $userId,
+            'post_id' => $postId,
+        ]);
+
+        return redirect()->route('pages')->with('success', 'Comment has been created successfully !');
     }
 
     /**
@@ -52,7 +34,21 @@ class CommentController extends Controller
      */
     public function update(Request $request, Comment $comment)
     {
-        //
+        $validatedData = $request->validate([
+            'body' => 'required',
+        ]);
+
+        $userId = Auth::id();
+        $postId = $request->route()->parameter('postId');
+
+
+        $comment->fill([
+            'body' => $validatedData['body'],
+            'user_id' => $userId,
+            'post_id' => $postId,
+        ])->save();
+
+        return redirect()->route('pages')->with('success', 'Comment has been updated successfully !');
     }
 
     /**
@@ -60,6 +56,7 @@ class CommentController extends Controller
      */
     public function destroy(Comment $comment)
     {
-        //
+        $comment->delete();
+        return redirect()->route('pages')->with('success','Comment has been deleted successfully');
     }
 }

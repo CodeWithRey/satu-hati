@@ -13,14 +13,12 @@ class Post extends Model
     use HasFactory;
     public $incrementing = false;
     protected $keyType = 'string';
-
     protected $table = 'posts';
 
     protected $fillable = [
         'user_id',
         'title',
         'description',
-        'is_expert',
     ];
 
     public function user(): BelongsTo
