@@ -53,6 +53,7 @@ class RegisteredUserController extends Controller
             'profile_picture_path' => $request->profile_picture_path,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'role_id' => 1,
         ]);
 
         dd($user);
