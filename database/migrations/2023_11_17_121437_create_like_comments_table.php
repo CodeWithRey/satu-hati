@@ -15,19 +15,17 @@ return new class extends Migration
     {
         Schema::create('like_comments', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
-
-            $table->foreignId('user_id')->constrained(
+            $table->foreignUuid('user_id')->constrained(
                 table: 'users',
                 column: 'id',
                 indexName: 'like_comments_user_id',
             )->cascadeOnDelete();
-
             $table->foreignId('comment_id')->constrained(
                 table: 'comments',
                 column: 'id',
                 indexName: 'like_comments_comment_id',
             )->cascadeOnDelete();
+            $table->timestamps();
         });
     }
 

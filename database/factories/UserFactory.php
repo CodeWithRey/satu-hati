@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Gender;
+use App\Models\Role;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -33,7 +34,11 @@ class UserFactory extends Factory
             'gender_id' => function () {
                 $existingGenderIds = Gender::pluck('id')->toArray();
                 return $this->faker->randomElement($existingGenderIds);
-            }
+            },
+            'role_id' => function () {
+                $existingRoleIds = Role::pluck('id')->toArray();
+                return $this->faker->randomElement($existingRoleIds);
+            },
         ];
     }
 
