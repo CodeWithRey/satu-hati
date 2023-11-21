@@ -14,7 +14,7 @@ class PostController extends Controller
      */
     public function index()
     {
-
+        
     }
 
     /**
@@ -22,7 +22,7 @@ class PostController extends Controller
      */
     public function create()
     {
-
+        
     }
 
     /**
@@ -48,7 +48,7 @@ class PostController extends Controller
             foreach($request->file('images') as $imageFile){
                 $path = $imageFile->store('/posts', 'public');
                 $post->images()->create([
-                    'path' => $path,
+                    'path' => 'storage/' . $path,
                 ]);
             }
         }
