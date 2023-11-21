@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Image;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,9 +14,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::orderBy('created_at', 'desc');
-        dd($posts);
-        return view('pages', compact('posts'));
+
     }
 
     /**
@@ -23,7 +22,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -31,21 +30,30 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
+        $request->validate([
             'title' => 'required',
             'description' => 'required',
+            'images.*' => 'required|image|max:2048',
         ]);
-
+        
         $userId = Auth::id();
 
-
-        Post::create([
-            'title' => $validatedData['title'],
-            'description' => $validatedData['description'],
+        $post = Post::create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'is_anonymous' => $request->has('is_anonymous'),
             'user_id' => $userId,
         ]);
+        if ($request->hasFile('images')) {
+            foreach($request->file('images') as $imageFile){
+                $path = $imageFile->store('/posts', 'public');
+                $post->images()->create([
+                    'path' => $path,
+                ]);
+            }
+        }
 
-        return redirect()->route('pages')->with('success', 'Post has been created successfully !');
+        return redirect()->route('post.view')->with('success', 'Post has been created successfully !');
     }
 
     /**

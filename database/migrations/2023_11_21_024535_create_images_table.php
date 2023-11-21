@@ -1,9 +1,7 @@
 <?php
 
-use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -13,15 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('posts', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->string('title');
-            $table->text('description');
-            $table->boolean('is_anonymous');
-            $table->foreignUuid('user_id')->constrained(
-                table: 'users',
+        Schema::create('images', function (Blueprint $table) {
+            $table->id();
+            $table->string('path');
+            $table->foreignUuid('post_id')->constrained(
+                table: 'posts',
                 column: 'id',
-                indexName: 'posts_user_id'
+                indexName: 'images_post_id'
             )->cascadeOnDelete();
             $table->timestamps();
         });
@@ -32,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('images');
     }
 };
