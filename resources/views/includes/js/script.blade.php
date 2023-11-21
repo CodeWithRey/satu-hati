@@ -1,1 +1,1 @@
-<script src="{{ asset('js/flowbite.min.js') }}"></script>
+<script src="{{ asset('assets/js/flowbite.min.js') }}"></script>
