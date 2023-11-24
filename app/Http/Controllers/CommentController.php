@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Comment;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
@@ -15,17 +14,10 @@ class CommentController extends Controller
     {
         $validatedData = $request->validate([
             'body' => 'required',
+            'post_id' => 'required',
+            'user_id' => 'required',
         ]);
-
-        $userId = Auth::id();
-        $postId = $request->route()->parameter('postId');
-
-        Comment::create([
-            'body' => $validatedData['body'],
-            'user_id' => $userId,
-            'post_id' => $postId,
-        ]);
-
+        Comment::create($validatedData);
         return redirect()->route('pages')->with('success', 'Comment has been created successfully !');
     }
 
@@ -37,16 +29,8 @@ class CommentController extends Controller
         $validatedData = $request->validate([
             'body' => 'required',
         ]);
-
-        $userId = Auth::id();
-        $postId = $request->route()->parameter('postId');
-
-
-        $comment->fill([
-            'body' => $validatedData['body'],
-            'user_id' => $userId,
-            'post_id' => $postId,
-        ])->save();
+        
+        $comment->fill($validatedData)->save();
 
         return redirect()->route('pages')->with('success', 'Comment has been updated successfully !');
     }

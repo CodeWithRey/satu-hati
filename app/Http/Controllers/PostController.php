@@ -34,16 +34,11 @@ class PostController extends Controller
             'title' => 'required',
             'description' => 'required',
             'images.*' => 'required|image|max:2048',
+            'user_id' => 'required',
         ]);
-        
-        $userId = Auth::id();
 
-        $post = Post::create([
-            'title' => $request->title,
-            'description' => $request->description,
-            'is_anonymous' => $request->has('is_anonymous'),
-            'user_id' => $userId,
-        ]);
+        
+        $post = Post::create($request->all());
         if ($request->hasFile('images')) {
             foreach($request->file('images') as $imageFile){
                 $path = $imageFile->store('/posts', 'public');
@@ -82,14 +77,7 @@ class PostController extends Controller
             'description' => 'required',
         ]);
 
-        $userId = Auth::id();
-
-
-        $post->fill([
-            'title' => $validatedData['title'],
-            'description' => $validatedData['description'],
-            'user_id' => $userId,
-        ])->save();
+        $post->fill($validatedData)->save();
 
         return redirect()->route('pages')->with('success', 'Post has been updated successfully !');
     }
