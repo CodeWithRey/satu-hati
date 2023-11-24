@@ -13,9 +13,13 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::orderBy('created_at', 'desc');
-        dd($posts);
-        return view('pages', compact('posts'));
+        $posts =
+            Post::with('user')
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+
+        return view('dashboard', compact('posts'));
     }
 
     /**
@@ -39,13 +43,15 @@ class PostController extends Controller
         $userId = Auth::id();
 
 
-        Post::create([
+        $post = Post::create([
             'title' => $validatedData['title'],
             'description' => $validatedData['description'],
             'user_id' => $userId,
         ]);
 
-        return redirect()->route('pages')->with('success', 'Post has been created successfully !');
+        // dd($post);
+
+        return redirect()->route('post.index')->with('success', 'Post has been created successfully !');
     }
 
     /**
@@ -92,6 +98,6 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         $post->delete();
-        return redirect()->route('pages')->with('success','Post has been deleted successfully');
+        return redirect()->back()->with('success', 'Post has been deleted successfully');
     }
 }
