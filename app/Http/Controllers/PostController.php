@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Image;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -27,7 +28,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -35,23 +36,25 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
+        $request->validate([
             'title' => 'required',
             'description' => 'required',
+            'images.*' => 'required|image|max:2048',
+            'user_id' => 'required',
         ]);
 
-        $userId = Auth::id();
+        
+        $post = Post::create($request->all());
+        if ($request->hasFile('images')) {
+            foreach($request->file('images') as $imageFile){
+                $path = $imageFile->store('/posts', 'public');
+                $post->images()->create([
+                    'path' => 'storage/' . $path,
+                ]);
+            }
+        }
 
-
-        $post = Post::create([
-            'title' => $validatedData['title'],
-            'description' => $validatedData['description'],
-            'user_id' => $userId,
-        ]);
-
-        // dd($post);
-
-        return redirect()->route('post.index')->with('success', 'Post has been created successfully !');
+        return redirect()->route('pages')->with('success', 'Post has been created successfully !');
     }
 
     /**
@@ -80,14 +83,7 @@ class PostController extends Controller
             'description' => 'required',
         ]);
 
-        $userId = Auth::id();
-
-
-        $post->fill([
-            'title' => $validatedData['title'],
-            'description' => $validatedData['description'],
-            'user_id' => $userId,
-        ])->save();
+        $post->fill($validatedData)->save();
 
         return redirect()->route('pages')->with('success', 'Post has been updated successfully !');
     }
