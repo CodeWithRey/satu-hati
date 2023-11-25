@@ -16,6 +16,7 @@ class PostController extends Controller
     {
         $posts =
             Post::with('user')
+            ->with('images')
             ->orderBy('created_at', 'desc')
             ->get();
 
@@ -28,7 +29,6 @@ class PostController extends Controller
      */
     public function create()
     {
-        
     }
 
     /**
@@ -36,25 +36,30 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validatedData = $request->validate([
             'title' => 'required',
             'description' => 'required',
-            'images.*' => 'required|image|max:2048',
+            'images' => 'required|image|max:2048',
             'user_id' => 'required',
         ]);
 
-        
-        $post = Post::create($request->all());
+        $isAnonymous = $request->has('is_anonymous') ? 1 : 0;
+        $validatedData['is_anonymous'] = $isAnonymous;
+
+        $post = Post::create($validatedData);
+        $postId = $post->id;
+
+
         if ($request->hasFile('images')) {
-            foreach($request->file('images') as $imageFile){
-                $path = $imageFile->store('/posts', 'public');
-                $post->images()->create([
-                    'path' => 'storage/' . $path,
-                ]);
-            }
+            $path = $request->file('images')->store('/posts', 'public');
+            $post->images()->create([
+                'path' => 'storage/' . $path,
+                'post_id' => $postId,
+            ]);
         }
 
-        return redirect()->route('pages')->with('success', 'Post has been created successfully !');
+
+        return redirect()->back()->with('success', 'Post has been created successfully !');
     }
 
     /**
