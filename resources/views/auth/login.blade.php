@@ -1,47 +1,47 @@
-<x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+@extends('layout.auth-layout')
+@section('content')
 
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
+<div class="bg-white min-h-screen min-w-screen grid lg:grid-cols-2 grid-cols-1">
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+        <div class="mr-8 flex items-center justify-center lg:flex hidden">
+            <img src="{{ asset('assets/images/girl.png') }}" alt="girl-photo" class="w-full object-cover rounded-full">
         </div>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+        <div class="bg-yellow p-10 rounded shadow-md flex flex-col justify-center ">
+           
+            <span class="mx-auto">logo</span>
+        
+            <form method="POST" action="{{ route('login') }}" class="bg-white p-8 rounded-lg w-11/12 mx-auto">
+                @csrf
 
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
+                <h1 class="text-xl font-bold mb-4 flex items-center justify-center">Form Login</h1>
+                <!-- Isian Form -->
+                <div class="mb-4">
+                    <label for="email" class="block text-sm font-semibold text-gray-600">Email</label>
+                    <input type="email" id="email" name="email" class="w-full px-4 py-2 border rounded-md">
+                </div>
 
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                <div class="mb-4">
+                    <label for="password" class="block text-sm font-semibold text-gray-600">Password</label>
+                    <input type="password" id="password" name="password" class="w-full px-4 py-2 border rounded-md">
+                </div>
+
+                <!-- Tombol Login -->
+                <button type="submit" class="bg-red-500 w-full text-white px-10 py-2 rounded-md">Login</button>
+           
+                
+            </form>
+            <div class="text-center mb-1" ><br>
+                <p class="small mb-0">Belum punya akun? <a href="{{ route('register') }}" class="text-blue-800" >Buat akun</a></p>
+            </div>
+
+              
         </div>
+    </div>
 
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
-                <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
-            </label>
-        </div>
+</div>
 
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
+@endsection
 
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+@push('scripts')
+@endpush
