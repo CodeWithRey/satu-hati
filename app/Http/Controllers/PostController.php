@@ -2,19 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Image;
 use App\Models\Post;
+use App\Traits\ImageHandling;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
+    use ImageHandling;
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        
+        $posts =
+            Post::with('user')
+            ->with('comments')
+            ->with('images')
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+
+        return view('dashboard', compact('posts'));
     }
 
     /**
@@ -22,7 +30,6 @@ class PostController extends Controller
      */
     public function create()
     {
-        
     }
 
     /**
@@ -33,22 +40,24 @@ class PostController extends Controller
         $request->validate([
             'title' => 'required',
             'description' => 'required',
-            'images.*' => 'required|image|max:2048',
+            'images.*' => 'sometimes|image|max:2048',
             'user_id' => 'required',
         ]);
 
-        
         $post = Post::create($request->all());
+
+
         if ($request->hasFile('images')) {
-            foreach($request->file('images') as $imageFile){
-                $path = $imageFile->store('/posts', 'public');
+            foreach ($request->file('images') as $imagefile) {
+                $path = 'posts';
                 $post->images()->create([
-                    'path' => 'storage/' . $path,
+                    'path' => $this->uploadImage($imagefile, $path),
                 ]);
             }
         }
 
-        return redirect()->route('post.view')->with('success', 'Post has been created successfully !');
+
+        return redirect()->back()->with('success', 'Post has been created successfully !');
     }
 
     /**
@@ -87,7 +96,13 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        $post->images->each(function ($image) {
+            $image->checkImages($image->path);
+            $image->delete();
+        });
+
         $post->delete();
-        return redirect()->route('pages')->with('success','Post has been deleted successfully');
+
+        return redirect()->back()->with('success', 'Post has been deleted successfully');
     }
 }

@@ -19,4 +19,14 @@ class Image extends Model
     {
         return $this->belongsTo(Post::class);
     }
+
+    public function checkImages($url)
+    {
+        $imagePath = public_path($url);
+        if ($imagePath) {
+            if (file_exists($imagePath)) {
+                return unlink($imagePath);
+            }
+        }
+    }
 }

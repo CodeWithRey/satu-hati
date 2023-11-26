@@ -42,6 +42,7 @@ class Post extends Model
         return $this->hasMany(Image::class);
     }
 
+
     public static function boot()
     {
         parent::boot();
