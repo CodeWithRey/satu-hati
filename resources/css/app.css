@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.bg-landing{
+  background-image: url(/public/assets/images/bg.png);
+  background-size: cover;
+}
+
+.bg-landing2{
+  background-image: url(/public/assets/images/bg2.png);
+  background-size: cover;
+}
+
+*{
+  /* border: 1px solid red; */
+}

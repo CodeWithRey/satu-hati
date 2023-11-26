@@ -18,6 +18,11 @@ use Illuminate\Support\Facades\Route;
 //     return view('auth.register');
 // });
 
+Route::get('/home', function () {
+    return view('pages.home');
+});
+
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
