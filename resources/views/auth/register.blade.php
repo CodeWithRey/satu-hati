@@ -5,13 +5,13 @@
 <div class="bg-white min-h-screen min-w-screen grid lg:grid-cols-2 grid-cols-1">
 
         <div class="mr-8 flex items-center justify-center lg:flex hidden">
-            <img src="{{ asset('assets/images/girl.png') }}" alt="girl-photo" class="w-full object-cover rounded-full">
+            <img src="{{ asset('assets/images/logo-sh.png') }}" alt="logo-satuhati" class="w-full object-cover rounded-full">
         </div>
 
         <div class="bg-yellow p-10 rounded shadow-md flex flex-col justify-center ">
            
-            <span class="mx-auto">logo</span>
-        
+            <span class="mx-auto"></span>
+     
             <form method="POST" action="{{ route('register') }}" class="bg-white p-8 rounded-lg w-11/12 mx-auto">
                 @csrf
 
