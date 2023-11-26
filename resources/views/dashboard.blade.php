@@ -1,3 +1,11 @@
+{{-- @php
+    foreach ($posts as $post) {
+        echo '<pre>';
+        print_r($post->toArray());
+        echo '</pre>';
+    }
+@endphp --}}
+
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
@@ -33,7 +41,8 @@
                                 for="file_input">Upload file</label>
                             <input
                                 class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                                name="images" aria-describedby="file_input_help" id="file_input" type="file">
+                                name="images[]" multiple aria-describedby="file_input_help" id="file_input"
+                                type="file">
                             <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG, JPG
                                 or GIF (MAX. 800x400px).</p>
                         </div>
@@ -57,12 +66,6 @@
     </form>
 
     @foreach ($posts as $post)
-        @php
-            $maxLength = 20;
-            $encryptUser = encrypt($post->first_name . ' ' . $post->last_name);
-            $shortenedEncryptUser = substr($encryptUser, 0, $maxLength);
-        @endphp
-
         <div class="thread-discussion max-w-7xl mx-auto py-2 sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 flex flex-col gap-4">
@@ -72,7 +75,7 @@
                         <div class="flex flex-col gap-1">
                             <span class="my-auto text-sm font-bold text-black">{{ $post->title }}</span>
                             @if ($post->is_anonymous == 1)
-                                <span class="my-auto text-[14px] font-light text-black">{{ $shortenedEncryptUser }}
+                                <span class="my-auto text-[14px] font-light text-black">Anonymous
                                     - {{ $post->created_at }}</span>
                             @elseif ($post->is_anonymous == 0)
                                 <span
@@ -85,9 +88,6 @@
                         @if (file_exists(public_path($image->path)))
                             <img class="w-64 h-64 object-cover mx-auto rounded-xl" src="{{ $image->path }}"
                                 alt="default">
-                        @else
-                            <img class="w-64 h-64 object-cover mx-auto rounded-xl"
-                                src="{{ asset('assets/img/default-img.jpg') }}" alt="default">
                         @endif
                     @endforeach
                     <p class="py-4 text-[14px] font-light text-black">{{ $post->description }}</p>
@@ -97,8 +97,8 @@
                             @method('DELETE')
                             <button type="submit"
                                 class="w-20 text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete</button>
-                            <a class="reply-link cursor-pointer font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                                data-post-id="">Reply</a>
+                            <a href="{{ route('reply.comment', $post->id) }}"
+                                class="reply-link cursor-pointer font-medium text-blue-600 dark:text-blue-500 hover:underline">Reply</a>
                         </form>
                     </div>
                 </div>

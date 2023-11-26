@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Image;
 use App\Models\Post;
+use App\Traits\ImageHandling;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
+    use ImageHandling;
     /**
      * Display a listing of the resource.
      */
@@ -16,6 +16,7 @@ class PostController extends Controller
     {
         $posts =
             Post::with('user')
+            ->with('comments')
             ->with('images')
             ->orderBy('created_at', 'desc')
             ->get();
@@ -36,26 +37,23 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
+        $request->validate([
             'title' => 'required',
             'description' => 'required',
-            'images' => 'required|image|max:2048',
+            'images.*' => 'sometimes|image|max:2048',
             'user_id' => 'required',
         ]);
 
-        $isAnonymous = $request->has('is_anonymous') ? 1 : 0;
-        $validatedData['is_anonymous'] = $isAnonymous;
-
-        $post = Post::create($validatedData);
-        $postId = $post->id;
+        $post = Post::create($request->all());
 
 
         if ($request->hasFile('images')) {
-            $path = $request->file('images')->store('/posts', 'public');
-            $post->images()->create([
-                'path' => 'storage/' . $path,
-                'post_id' => $postId,
-            ]);
+            foreach ($request->file('images') as $imagefile) {
+                $path = 'posts';
+                $post->images()->create([
+                    'path' => $this->uploadImage($imagefile, $path),
+                ]);
+            }
         }
 
 
@@ -98,7 +96,13 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        $post->images->each(function ($image) {
+            $image->checkImages($image->path);
+            $image->delete();
+        });
+
         $post->delete();
+
         return redirect()->back()->with('success', 'Post has been deleted successfully');
     }
 }
