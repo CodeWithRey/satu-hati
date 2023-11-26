@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.bg-landing-forum{
+    background-image: url(/public/assets/images/bg-forum.png);
+  }
