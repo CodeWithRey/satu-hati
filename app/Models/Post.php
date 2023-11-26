@@ -19,6 +19,7 @@ class Post extends Model
         'user_id',
         'title',
         'description',
+        'is_anonymous',
     ];
 
     public function user(): BelongsTo
@@ -35,6 +36,12 @@ class Post extends Model
     {
         return $this->hasMany(LikePost::class);
     }
+
+    public function images(): HasMany
+    {
+        return $this->hasMany(Image::class);
+    }
+
 
     public static function boot()
     {

@@ -1,6 +1,16 @@
+/* Normal Font */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+    font-family: "Poppins", sans-serif;
+}
+
+.bg-landing-forum {
+    background-image: url(/public/assets/images/bg-forum.png);
+}
 
 .bg-landing{
   background-image: url(/public/assets/images/bg.png);
@@ -10,8 +20,4 @@
 .bg-landing2{
   background-image: url(/public/assets/images/bg2.png);
   background-size: cover;
-}
-
-*{
-  /* border: 1px solid red; */
 }

@@ -17,17 +17,13 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->string('title');
             $table->text('description');
-            $table->boolean('is_anonymous');
+            $table->boolean('is_anonymous')->default(0);
             $table->foreignUuid('user_id')->constrained(
                 table: 'users',
                 column: 'id',
                 indexName: 'posts_user_id'
             )->cascadeOnDelete();
             $table->timestamps();
-
-
-
-
         });
     }
 
