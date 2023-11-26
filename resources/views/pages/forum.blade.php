@@ -20,7 +20,7 @@
     </div>
 
     <section class="bg-white py-8 mx-auto">
-        <div class="container mx-auto">
+        <div class="w-11/12 mx-auto">
             <!-- Tombol New Post -->
             <!-- Tombol New Post dengan modal toggle -->
             <button data-modal-target="crud-modal" data-modal-toggle="crud-modal"
