@@ -16,13 +16,24 @@ use App\Http\Controllers\ProfileController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('pages.home');
-// });
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/home', function () {
+    return view('pages.home');
+});
+
+
+Route::get('/home', function () {
+    return view('pages.home');
+});
+
+
+Route::get('/forum', function () {
+    return view('pages.forum');
+});
+
+Route::get('/detailforum', function () {
+    return view('pages.detailforum');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

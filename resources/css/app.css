@@ -7,3 +7,17 @@
 * {
     font-family: "Poppins", sans-serif;
 }
+
+.bg-landing-forum {
+    background-image: url(/public/assets/images/bg-forum.png);
+}
+
+.bg-landing{
+  background-image: url(/public/assets/images/bg.png);
+  background-size: cover;
+}
+
+.bg-landing2{
+  background-image: url(/public/assets/images/bg2.png);
+  background-size: cover;
+}
