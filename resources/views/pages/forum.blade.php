@@ -108,8 +108,8 @@
                                     <input id="default-checkbox" type="checkbox" value=""
                                         class="w-4 h-4 text-[#CB6A10] bg-gray-100 border-gray-300 rounded focus:ring-[#CB6A10] dark:focus:ring-[#CB6A10] dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                     <label for="default-checkbox"
-                                        class="ml-2 text-sm font-normal italic dark:text-gray-300 overflow-hidden whitespace-nowrap overflow-ellipsis">
-                                        Centang kotak ini jika Anda ingin posting secara anonim tanpa mengungkapkan
+                                        class="ml-2 text-sm font-normal italic dark:text-gray-300 overflow-visible whitespace-nowrap overflow-ellipsis">
+                                        Centang jika Anda ingin posting secara anonim tanpa mengungkapkan
                                         identitas Anda.
                                     </label>
                                 </div>
