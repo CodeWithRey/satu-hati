@@ -22,7 +22,7 @@ class PostController extends Controller
             ->get();
 
 
-        return view('dashboard', compact('posts'));
+        return view('pages.forum', compact('posts'));
     }
 
     /**

@@ -17,22 +17,8 @@ use App\Http\Controllers\ProfileController;
 */
 
 
-Route::get('/home', function () {
-    return view('pages.home');
-});
+Route::middleware('guest')->group(function () {
 
-
-Route::get('/home', function () {
-    return view('pages.home');
-});
-
-
-Route::get('/forum', function () {
-    return view('pages.forum');
-});
-
-Route::get('/detailforum', function () {
-    return view('pages.detailforum');
 });
 
 Route::middleware('auth')->group(function () {
@@ -44,5 +30,16 @@ Route::middleware('auth')->group(function () {
 
     Route::get('comments/{postId}', [CommentController::class, 'create'])->name('reply.comment');
 });
+
+
+Route::get('/', function () {
+    return view('pages.home');
+})->name('home');
+
+Route::get('/forum', [PostController::class, 'index'])->name('forum');
+
+Route::get('/forum/{postId}', function () {
+    return view('pages.detailforum');
+})->name('detail_forum');
 
 require __DIR__ . '/auth.php';

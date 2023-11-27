@@ -9,10 +9,10 @@
                 <h1 class="py-1 mb-4 text-5xl font-extrabold tracking-tight leading-none text-orange-600  md:text-5xl lg:text-6xl text-left">SatuHati</h1>
                 <p class="mb-4 text-3xl font-semibold text-black text-left">“Bersama Lawan Pelecehan Seksual, Kita Adalah Suara Perubahan dan Cahaya Keadilan”</p>
                 <div class="py-7 flex flex-col space-y-4 sm:flex-row sm:justify-left sm:space-y-0">
-                    <a href="#" class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-orange-700 hover:bg-orange-800 focus:ring-4 focus:ring-orange-300 dark:focus:ring-orange-900">
-                        Diskusi ...<i class="fa-solid fa-comments"></i>
+                    <a href="{{ route('forum') }}" class="inline-flex gap-2 justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-orange-700 hover:bg-orange-800 focus:ring-4 focus:ring-orange-300 dark:focus:ring-orange-900 transition duration-300">
+                        Forum Curhat<i class="fa-solid fa-comments"></i>
                     </a>
-                    <a href="#" class="inline-flex justify-center hover:text-gray-900 items-center py-3 px-5 sm:ms-4 text-base font-medium text-center text-black rounded-lg border border-black hover:bg-orange-300 focus:ring-4 focus:ring-gray-400">
+                    <a href="#" class="inline-flex gap-2 justify-center hover:text-gray-900 items-center py-3 px-5 sm:ms-4 text-base font-medium text-center text-black rounded-lg border border-black hover:bg-orange-300 focus:ring-4 focus:ring-gray-400 transition duration-300">
                         Pengaduan <i class="fa-solid fa-phone-volume"></i>
                     </a>  
                 </div>
