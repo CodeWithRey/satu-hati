@@ -12,9 +12,13 @@ export default {
 
     theme: {
         extend: {
-            fontFamily: {
-                sans: ["Figtree", ...defaultTheme.fontFamily.sans],
+            colors: {
+                'yellow': '#FFD28F',
             },
+                fontFamily: {
+                    sans: ["Figtree", ...defaultTheme.fontFamily.sans],
+                },
+            
         },
     },
 
