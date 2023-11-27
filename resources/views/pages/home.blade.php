@@ -27,14 +27,53 @@
             <svg class="w-8 h-8 text-gray-400 dark:text-gray-600 mb-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 14">
                 <path d="M6 0H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3H2a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3h-1a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Z"/>
             </svg>
-            <p class="text-red-700 font-bold"> REMINDER</p>
+            <p class="text-red-600 font-bold text-3xl">REMINDER</p>
                 <p><br> "Kamu bukanlah kesalahan! <br>
                 Kamu kuat, kamu berharga, dan aku di sini untuk mendukungmu."</p>
         </blockquote>
         </div>
     </section>
     <section>
-        
+        <div class="flex items-center p-16">
+            <div class="w-2/3 px-8">
+                <span class="text-3xl font-bold text-black">Pelecehan Seksual</span>
+                <span class="text-3xl font-bold text-orange-600 mb-4">Secara Verbal</span>
+                <p class="text-gray-600 text-xl mb-4 px-0 py-6">Melibatkan penggunaan kata-kata atau komunikasi lisan yang tidak pantas dengan unsur seksual. Ini termasuk komentar atau lelucon yang tidak diinginkan, merendahkan, dan menciptakan rasa tidak aman.</p>
+            </div>
+            <div class="w-1/2">
+                <img class="h-auto w-auto mr-4" src="{{ asset('assets/images/verbal.png') }}" alt="">
+            </div>
+          </div>
+          <div class="flex items-center p-16">
+            <div class="w-1/2 px-16">
+                <img class="h-auto max-w-lg ms-auto" src="{{ asset('assets/images/fisik.png') }}" alt="">
+            </div>
+            <div class="w-2/3 px-8">
+                <span class="text-3xl font-bold text-black">Pelecehan Seksual</span>
+                <span class="text-3xl font-bold text-orange-600 mb-4">Secara Fisik</span>
+                <p class="text-gray-600 text-xl mb-4 px-0 py-6">Melibatkan kontak fisik yang tidak diinginkan dan bersifat seksual terhadap seseorang tanpa persetujuan mereka. Ini dapat mencakup berbagai jenis tindakan yang merugikan dan tidak etis, seperti sentuhan yang tidak senonoh, pemaksaan seksual, atau penyerangan fisik dengan unsur seksual.</p>
+            </div>
+          </div>
+          <div class="flex items-center p-16">
+            <div class="w-2/3 px-8">
+                <span class="text-3xl font-bold text-black">Pelecehan Seksual</span>
+                <span class="text-3xl font-bold text-orange-600 mb-4">Secara Non Fisik</span>
+                <p class="text-gray-600 text-xl mb-4 px-0 py-6">Melibatkan aspek-aspek non-fisik, seperti kata-kata, gambar, atau tindakan yang bersifat seksual dan dapat mengganggu atau merugikan seseorang. Ini mencakup berbagai bentuk perilaku yang merendahkan martabat atau membuat seseorang merasa tidak aman, tanpa melibatkan kontak fisik langsung.</p>
+            </div>
+            <div class="w-1/2">
+                <img class="h-auto w-auto mr-4" src="{{ asset('assets/images/non-fisik.png') }}" alt="">
+            </div>
+          </div>
+          <div class="flex items-center p-16">
+            <div class="w-1/2">
+                <img class="h-auto w-auto mr-4" src="{{ asset('assets/images/daring.png') }}" alt="">
+            </div>
+            <div class="w-2/3 px-8">
+                <span class="text-3xl font-bold text-black">Pelecehan Seksual</span>
+                <span class="text-3xl font-bold text-orange-600 mb-4">Secara Daring</span>
+                <p class="text-gray-600 text-xl mb-4 px-0 py-6">Melibatkan penggunaan platform online untuk menyampaikan pesan, gambar, atau tindakan yang tidak diinginkan dan bersifat seksual, merugikan dan mengganggu kesejahteraan individu yang terkena dampak.</p>
+            </div>
+          </div>
     </section>
     <section class="p-16 bg-landing2">
         <div class="flex flex-col items-center justify-center h-full pb-4">
@@ -57,7 +96,7 @@
     
         <div class="flex flex-col justify-start max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
             <a href="#">
-                <img class="rounded-t-lg h-72 w-auto mx-auto " src="{{ asset('assets/images/kesehatan.png') }}" alt="" />
+                <img class="rounded-t-lg h-72 w-auto mx-auto" src="{{ asset('assets/images/kesehatan.png') }}" alt="" />
             </a>
             <div class="p-5 text-center">
                 <a href="#">
@@ -70,7 +109,7 @@
 
         <div class="flex flex-col justify-start max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
             <a href="#">
-                <img class="rounded-t-lg h-72 w-auto mx-auto " src="{{ asset('assets/images/rumah.png') }}" alt="" />
+                <img class=" rounded-t-lg h-72 w-auto mx-auto " src="{{ asset('assets/images/rumah.png') }}" alt="" />
             </a>
             <div class="p-5 text-center">
                 <a href="#">
