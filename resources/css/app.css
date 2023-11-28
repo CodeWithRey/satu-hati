@@ -23,6 +23,11 @@
     background-size: cover;
 }
 
+.bg-about{
+  background-image: url(/public/assets/images/bg-about2.png);
+  background-size: cover;
+}
+
 @layer components {
     .navbar-link-active {
         @apply text-white bg-orange-700 md:bg-transparent md:text-orange-700 md:dark:text-orange-500;
