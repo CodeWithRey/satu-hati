@@ -3,7 +3,8 @@
 use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserManagement;
+use App\Http\Controllers\UserManagementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,15 +19,12 @@ use App\Http\Controllers\ProfileController;
 
 
 Route::middleware('guest')->group(function () {
-
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::resource('/post', PostController::class);
     Route::resource('/comment', CommentController::class);
+    Route::resource('/profile', UserManagementController::class);
 
     Route::get('comments/{postId}', [CommentController::class, 'create'])->name('reply.comment');
 });
@@ -35,6 +33,10 @@ Route::middleware('auth')->group(function () {
 Route::get('/', function () {
     return view('pages.home');
 })->name('home');
+
+Route::get("/edit-profile", function () {
+    return view("pages.editprofile");
+});
 
 Route::get('/forum', [PostController::class, 'index'])->name('forum');
 
