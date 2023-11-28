@@ -2,8 +2,7 @@
 <nav class="fixed top-0 w-full z-20 bg-white border-gray-200 dark:bg-gray-900 floating-shadow-lg">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
-            <img  src="{{ asset('assets/images/logo-sh.png') }}"
-                class="h-10" alt="Flowbite Logo" />
+            <img src="{{ asset('assets/images/logo-sh.png') }}" class="h-10" alt="Flowbite Logo" />
             <span class="self-center text-2xl whitespace-nowrap text-orange-600 font-bold">SatuHati</span>
         </a>
         <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
@@ -82,7 +81,7 @@
                         Diskusi</a>
                 </li>
                 <li>
-                    <a href="#"
+                    <a href="{{ route('about') }}"
                         class="block py-2 px-3 rounded {{ Route::is('about') ? 'navbar-link-active' : 'navbar-link-inactive' }}">About
                         Us</a>
                 </li>
