@@ -1,5 +1,5 @@
 {{-- Navbar --}}
-<nav class="bg-white border-gray-200 dark:bg-gray-900 shadow-lg">
+<nav class="fixed top-0 w-full z-20 bg-white border-gray-200 dark:bg-gray-900 floating-shadow-lg">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
             <img  src="{{ asset('assets/images/logo-sh.png') }}"
@@ -59,7 +59,7 @@
             @guest
                 <div class="lg:grid hidden grid-cols-2 gap-4">
                     <a href="{{ route('register') }}"
-                        class="flex items-center justify-center bg-transparent hover:bg-orange-600 transition duration-300 text-orange-700 hover:text-white border-orange-700 hover:border-orange-600 border-2 py-2 px-5 font-bold rounded shadow-lg">
+                        class="flex items-center justify-center bg-transparent hover:bg-orange-700 transition duration-300 text-orange-700 hover:text-white border-orange-700 hover:border-orange-700 border-2 py-2 px-5 font-bold rounded shadow-lg">
                         Register
                     </a>
                     <a href="{{ route('login') }}"
