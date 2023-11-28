@@ -38,7 +38,7 @@
             <div class="flex flex-col gap-6 p-16 place-content-center">
                 <h2 class="text-start text-3xl font-bold text-black place-content-center">Pelecehan Seksual <span
                         class="text-3xl font-bold text-orange-600">Secara Verbal</span></h2>
-                <img class="md:hidden object-contain block h-auto w-auto" src="{{ asset('assets/images/verbal.png') }}" alt="">
+                <img class="md:hidden object-contain block w-fit" src="{{ asset('assets/images/verbal.png') }}" alt="">
                 <p class="text-start text-gray-600 text-xl ">Melibatkan penggunaan kata-kata atau komunikasi lisan
                     yang tidak pantas dengan unsur seksual. Ini termasuk komentar atau lelucon yang tidak diinginkan,
                     merendahkan, dan menciptakan rasa tidak aman.</p>
@@ -62,7 +62,7 @@
             <div class="flex flex-col gap-6 p-16 place-content-center">
                 <h2 class="text-start text-3xl font-bold text-black place-content-center">Pelecehan Seksual <span
                         class="text-3xl font-bold text-orange-600">Secara Non Fisik</span></h2>
-                <img class="md:hidden object-contain block h-auto w-auto" src="{{ asset('assets/images/non-fisik.png') }}" alt="">
+                <img class="md:hidden object-contain block w-fit" src="{{ asset('assets/images/non-fisik.png') }}" alt="">
                 <p class="text-start text-gray-600 text-xl ">Melibatkan aspek-aspek non-fisik, seperti kata-kata, gambar, atau tindakan yang 
                     bersifat seksual dan dapat mengganggu atau merugikan seseorang. Ini mencakup berbagai bentuk perilaku yang 
                     merendahkan martabat atau membuat seseorang merasa tidak aman, tanpa melibatkan kontak fisik langsung.</p>
@@ -76,34 +76,13 @@
             <div class="flex flex-col gap-6 p-16 place-content-center">
                 <h2 class="text-start text-3xl font-bold text-black place-content-center">Pelecehan Seksual <span
                         class="text-3xl font-bold text-orange-600">Secara Daring</span></h2>
-                <img class="md:hidden object-contain block h-auto w-auto" src="{{ asset('assets/images/daring.png') }}" alt="">
+                <img class="md:hidden object-contain block w-fit" src="{{ asset('assets/images/daring.png') }}" alt="">
                 <p class="text-start text-gray-600 text-xl">Melibatkan penggunaan platform online untuk menyampaikan pesan, 
                     gambar, atau tindakan yang tidak diinginkan dan bersifat seksual, merugikan dan mengganggu kesejahteraan 
                     individu yang terkena dampak.</p>
             </div>
         </div>
 
-        {{-- Hasil yang tidak responsive --}}
-          {{-- <div class="flex items-center p-16">
-            <div class="w-2/3 px-8">
-                <span class="text-3xl font-bold text-black">Pelecehan Seksual</span>
-                <span class="text-3xl font-bold text-orange-600 mb-4">Secara Non Fisik</span>
-                <p class="text-gray-600 text-xl mb-4 px-0 py-6">Melibatkan aspek-aspek non-fisik, seperti kata-kata, gambar, atau tindakan yang bersifat seksual dan dapat mengganggu atau merugikan seseorang. Ini mencakup berbagai bentuk perilaku yang merendahkan martabat atau membuat seseorang merasa tidak aman, tanpa melibatkan kontak fisik langsung.</p>
-            </div>
-            <div class="w-1/2">
-                <img class="h-auto w-auto mr-4" src="{{ asset('assets/images/non-fisik.png') }}" alt="">
-            </div>
-          </div>
-          <div class="flex items-center p-16">
-            <div class="w-1/2">
-                <img class="h-auto w-auto mr-4" src="{{ asset('assets/images/daring.png') }}" alt="">
-            </div>
-            <div class="w-2/3 px-8">
-                <span class="text-3xl font-bold text-black">Pelecehan Seksual</span>
-                <span class="text-3xl font-bold text-orange-600 mb-4">Secara Daring</span>
-                <p class="text-gray-600 text-xl mb-4 px-0 py-6">Melibatkan penggunaan platform online untuk menyampaikan pesan, gambar, atau tindakan yang tidak diinginkan dan bersifat seksual, merugikan dan mengganggu kesejahteraan individu yang terkena dampak.</p>
-            </div>
-          </div> --}}
     </section>
     <section class="p-16 bg-landing2">
         <div class="flex flex-col items-center justify-center h-full pb-4">
