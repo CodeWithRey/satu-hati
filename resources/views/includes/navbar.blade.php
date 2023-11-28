@@ -2,7 +2,7 @@
 <nav class="bg-white border-gray-200 dark:bg-gray-900">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
-            <img src="https://media.istockphoto.com/id/1477563516/id/vektor/memeluk-lengan-dalam-bentuk-ikon-hati-tangan-dipeluk-atau-latar-belakang-pelukan-peduli.jpg?s=612x612&w=0&k=20&c=pm08dr5zVGTu2s6ur85t3paaMS5IKZHHslWggeGmRcQ="
+            <img  src="{{ asset('assets/images/logo-sh.png') }}"
                 class="h-10" alt="Flowbite Logo" />
             <span class="self-center text-2xl whitespace-nowrap text-orange-600 font-bold">SatuHati</span>
         </a>

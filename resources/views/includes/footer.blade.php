@@ -5,7 +5,7 @@
   <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
       <div class="md:flex md:justify-center">
         <div class="mb-6 md:mb-0 flex items-center">
-            <img class="h-16 me-3" src="https://media.istockphoto.com/id/1477563516/id/vektor/memeluk-lengan-dalam-bentuk-ikon-hati-tangan-dipeluk-atau-latar-belakang-pelukan-peduli.jpg?s=612x612&w=0&k=20&c=pm08dr5zVGTu2s6ur85t3paaMS5IKZHHslWggeGmRcQ=" alt="FlowBite Logo" />
+            <img class="h-16 me-3" src="{{ asset('assets/images/logo-sh.png') }}" alt="SatuHati Logo" />
             <div class="flex flex-col">
                 <p class=" text-2xl font-bold whitespace-nowrap  text-orange-600">SatuHati</p>
                 <p class="  text-gray-500 dark:text-gray-400 font-normal w-3/2 ">SatuHati merupakan aplikasi untuk korban pelecehan seksual dengan visi “Bersama Lawan Pelecehan Seksual, Kita Adalah Suara Perubahan dan Cahaya Keadilan”</p> 
