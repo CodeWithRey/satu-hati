@@ -154,13 +154,31 @@
                     <p class="text-gray-600 mb-4">Deskripsi Postingan Lorem ipsum dolor sit amet, consectetur adipiscing
                         elit...</p>
                     <!-- Tombol Like dan Jumlah Like -->
+                    <style>
+                        .like-button {
+                            transition: color 0.2s ease;
+                            /* Efek transisi untuk perubahan warna */
+                        }
+
+                        .like-button.clicked {
+                            color: #CB6A10;
+                            /* Warna yang diinginkan saat tombol diklik */
+                        }
+                    </style>
+
                     <div class="flex items-center text-gray-500 mb-2">
-                        <button class="mr-2">
-                            <i class="fas fa-thumbs-up"></i>
+                        <button class="like-button mr-2" onclick="toggleLike(this)">
+                            <i class="fas fa-thumbs-up text-xl"></i>
                         </button>
-                        <span class="mr-2">10 Likes</span>
-                        <span class="mr-2"><i class="fas fa-comment"></i> 5 Komentar</span>
+                        <span class="mr-5">10 Likes</span>
+                        <span class="mr-5"><i class="fas fa-comment text-xl"></i> 5 Komentar</span>
                     </div>
+
+                    <script>
+                        function toggleLike(button) {
+                            button.classList.toggle('clicked');
+                        }
+                    </script>
                     <!-- Tombol Balas -->
                     <div>
                         <button class="text-gray-600">
@@ -182,14 +200,37 @@
                     <p class="text-gray-600 mb-4">Deskripsi Postingan Lorem ipsum dolor sit amet, consectetur
                         adipiscing
                         elit...</p>
-                    <!-- Tombol Like dan Jumlah Like -->
+                    <!-- Ikon Gambar -->
                     <div class="flex items-center text-gray-500 mb-2">
-                        <button class="mr-2">
-                            <i class="fas fa-thumbs-up"></i>
-                        </button>
-                        <span class="mr-2">10 Likes</span>
-                        <span class="mr-2"><i class="fas fa-comment"></i> 5 Komentar</span>
+                        <i class="fas fa-image mr-2 text-xl"></i>
+                        <span class="mr-2">Gambar Terlampir</span>
                     </div>
+                    <!-- Tombol Like dan Jumlah Like -->
+                    <style>
+                        .like-button {
+                            transition: color 0.2s ease;
+                            /* Efek transisi untuk perubahan warna */
+                        }
+
+                        .like-button.clicked {
+                            color: #CB6A10;
+                            /* Warna yang diinginkan saat tombol diklik */
+                        }
+                    </style>
+
+                    <div class="flex items-center text-gray-500 mb-2">
+                        <button class="like-button mr-2" onclick="toggleLike(this)">
+                            <i class="fas fa-thumbs-up text-xl"></i>
+                        </button>
+                        <span class="mr-5">10 Likes</span>
+                        <span class="mr-5"><i class="fas fa-comment text-xl"></i> 5 Komentar</span>
+                    </div>
+
+                    <script>
+                        function toggleLike(button) {
+                            button.classList.toggle('clicked');
+                        }
+                    </script>
                     <!-- Tombol Balas -->
                     <div>
                         <button class="text-gray-600">
@@ -197,36 +238,6 @@
                         </button>
                     </div>
                 </div>
-
-                <div class="bg-white p-4 rounded-md shadow-md w-full">
-                    <!-- Foto Profile dan Nickname -->
-                    <div class="flex items-center mb-4">
-                        <img src="path/to/profile-picture.jpg" alt="Profile Picture"
-                            class="w-8 h-8 rounded-full mr-2">
-                        <span class="text-black font-semibold">Nickname User</span>
-                    </div>
-                    <!-- Judul Postingan -->
-                    <h2 class="text-lg font-semibold mb-2">Judul Postingan</h2>
-                    <!-- Deskripsi Postingan -->
-                    <p class="text-gray-600 mb-4">Deskripsi Postingan Lorem ipsum dolor sit amet, consectetur
-                        adipiscing
-                        elit...</p>
-                    <!-- Tombol Like dan Jumlah Like -->
-                    <div class="flex items-center text-gray-500 mb-2">
-                        <button class="mr-2">
-                            <i class="fas fa-thumbs-up"></i>
-                        </button>
-                        <span class="mr-2">10 Likes</span>
-                        <span class="mr-2"><i class="fas fa-comment"></i> 5 Komentar</span>
-                    </div>
-                    <!-- Tombol Balas -->
-                    <div>
-                        <button class="text-gray-600">
-                            Balas
-                        </button>
-                    </div>
-                </div>
-
 
 
                 <!-- Card Komentar (Tambahkan lebih banyak card sesuai kebutuhan) -->
