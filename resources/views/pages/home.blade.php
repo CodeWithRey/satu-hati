@@ -3,21 +3,28 @@
 
 {{-- area konten yang ada pada layout default --}}
 @section('content')
-    <section class="bg-center bg-no-repeat min-h-[100vh] bg-cover bg-landing bg-gray-50 bg-blend-multiply relative flex items-center justify-center">
-        <div class="  px-4 mx-auto max-w-screen-xl text-center grid md:grid-cols-2 grid-cols-1 place-items-center h-full">
+    <section
+        class="bg-center bg-no-repeat min-h-[100vh] bg-cover bg-landing bg-blend-multiply relative flex items-center justify-center">
+        <div class=" px-4 mx-auto max-w-screen-xl text-center grid md:grid-cols-2 grid-cols-1 place-items-center h-full">
             <div class="">
-                <h1 class="py-1 mb-4 text-5xl font-extrabold tracking-tight leading-none text-orange-600  md:text-5xl lg:text-6xl text-left">SatuHati</h1>
-                <p class="mb-4 text-3xl font-semibold text-black text-left">“Bersama Lawan Pelecehan Seksual, Kita Adalah Suara Perubahan dan Cahaya Keadilan”</p>
+                <h1
+                    class="py-1 mb-4 text-4xl font-extrabold tracking-tight leading-none text-orange-600  md:text-5xl lg:text-6xl text-left">
+                    SatuHati</h1>
+                <p class="mb-4 text-2xl font-semibold text-black text-left">“Bersama Lawan Pelecehan Seksual, Kita Adalah
+                    Suara Perubahan dan Cahaya Keadilan”</p>
                 <div class="py-7 flex flex-col space-y-4 sm:flex-row sm:justify-left sm:space-y-0">
-                    <a href="{{ route('forum') }}" class="inline-flex gap-2 justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-orange-700 hover:bg-orange-800 focus:ring-4 focus:ring-orange-300 dark:focus:ring-orange-900 transition duration-300">
+                    <a href="{{ route('forum') }}"
+                        class="inline-flex font- gap-2 justify-center items-center py-3 px-5 text-base font-bold text-center text-white rounded-lg bg-orange-700 hover:bg-orange-600 focus:ring-4 focus:ring-orange-300 dark:focus:ring-orange-900 transition duration-300">
                         Forum Curhat<i class="fa-solid fa-comments"></i>
                     </a>
-                    <a href="#" class="inline-flex gap-2 justify-center hover:text-gray-900 items-center py-3 px-5 sm:ms-4 text-base font-medium text-center text-black rounded-lg border border-black hover:bg-orange-300 focus:ring-4 focus:ring-gray-400 transition duration-300">
+                    <a href="#"
+                        class="inline-flex font- gap-2 justify-center hover:text-white hover:bg-orange-700 items-center py-3 px-5 sm:ms-4 text-base font-bold text-center text-orange-700 rounded-lg border-2 border-orange-700 focus:ring-4 focus:ring-gray-400 transition duration-300">
                         Pengaduan <i class="fa-solid fa-phone-volume"></i>
-                    </a>  
+                    </a>
                 </div>
             </div>
-            <img src="{{ asset('assets/images/tangan.png') }}" alt="" class="md:block hidden absolute right-0 h-full top-0">
+            <img src="{{ asset('assets/images/tangan.png') }}" alt=""
+                class="md:block hidden absolute right-0 h-full top-0">
             <img src="{{ asset('assets/images/orang.png') }}" alt="" class="md:block hidden">
         </div>
     </section>
@@ -36,9 +43,9 @@
     <section>
         <div class="grid md:grid-cols-2 grid-cols-1 p-4 place-items-stretch">
             <div class="flex flex-col gap-6 p-16 place-content-center">
-                <h2 class="text-start text-3xl font-bold text-black place-content-center">Pelecehan Seksual <span
+                <h2 class="md:text-start text-center text-3xl font-bold text-black place-content-center">Pelecehan Seksual <span
                         class="text-3xl font-bold text-orange-600">Secara Verbal</span></h2>
-                <img class="md:hidden object-contain block w-96" src="{{ asset('assets/images/verbal.png') }}" alt="">
+                <img class="md:hidden object-contain block w-96 mx-auto" src="{{ asset('assets/images/verbal.png') }}" alt="">
                 <p class="text-start text-gray-600 text-xl ">Melibatkan penggunaan kata-kata atau komunikasi lisan
                     yang tidak pantas dengan unsur seksual. Ini termasuk komentar atau lelucon yang tidak diinginkan,
                     merendahkan, dan menciptakan rasa tidak aman.</p>
@@ -48,9 +55,9 @@
         <div class="grid md:grid-cols-2 grid-cols-1 p-4 place-items-stretch">
             <img class=" md:block hidden object-contain w-72 mx-auto place-items-center" src="{{ asset('assets/images/fisik.png') }}" alt="">
             <div class="flex flex-col gap-6 p-16 place-content-center">
-                <h2 class="text-start text-3xl font-bold text-black place-content-center">Pelecehan Seksual <span
+                <h2 class="md:text-start text-center text-3xl font-bold text-black place-content-center">Pelecehan Seksual <span
                         class="text-3xl font-bold text-orange-600">Secara Fisik</span></h2>
-                <img class="md:hidden object-contain block w-72" src="{{ asset('assets/images/fisik.png') }}" alt="">
+                <img class="md:hidden object-contain block w-72 mx-auto" src="{{ asset('assets/images/fisik.png') }}" alt="">
                 <p class="text-start text-gray-600 text-xl">Melibatkan kontak fisik yang tidak diinginkan dan bersifat seksual 
                     terhadap seseorang tanpa persetujuan mereka. Ini dapat mencakup berbagai jenis 
                     tindakan yang merugikan dan tidak etis, seperti sentuhan yang tidak senonoh, pemaksaan seksual, 
@@ -60,9 +67,9 @@
 
         <div class="grid md:grid-cols-2 grid-cols-1 p-4 place-items-stretch">
             <div class="flex flex-col gap-6 p-16 place-content-center">
-                <h2 class="text-start text-3xl font-bold text-black place-content-center">Pelecehan Seksual <span
+                <h2 class="md:text-start text-center text-3xl font-bold text-black place-content-center">Pelecehan Seksual <span
                         class="text-3xl font-bold text-orange-600">Secara Non Fisik</span></h2>
-                <img class="md:hidden object-contain block w-96" src="{{ asset('assets/images/non-fisik.png') }}" alt="">
+                <img class="md:hidden object-contain block w-96 mx-auto" src="{{ asset('assets/images/non-fisik.png') }}" alt="">
                 <p class="text-start text-gray-600 text-xl ">Melibatkan aspek-aspek non-fisik, seperti kata-kata, gambar, atau tindakan yang 
                     bersifat seksual dan dapat mengganggu atau merugikan seseorang. Ini mencakup berbagai bentuk perilaku yang 
                     merendahkan martabat atau membuat seseorang merasa tidak aman, tanpa melibatkan kontak fisik langsung.</p>
@@ -74,9 +81,9 @@
         <div class="grid md:grid-cols-2 grid-cols-1 p-4 place-items-stretch">
             <img class=" md:block hidden object-contain w-96 mx-auto place-items-center" src="{{ asset('assets/images/daring.png') }}" alt="">
             <div class="flex flex-col gap-6 p-16 place-content-center">
-                <h2 class="text-start text-3xl font-bold text-black place-content-center">Pelecehan Seksual <span
+                <h2 class="md:text-start text-center text-3xl font-bold text-black place-content-center">Pelecehan Seksual <span
                         class="text-3xl font-bold text-orange-600">Secara Daring</span></h2>
-                <img class="md:hidden object-contain block w-96" src="{{ asset('assets/images/daring.png') }}" alt="">
+                <img class="md:hidden object-contain block w-96 mx-auto" src="{{ asset('assets/images/daring.png') }}" alt="">
                 <p class="text-start text-gray-600 text-xl">Melibatkan penggunaan platform online untuk menyampaikan pesan, 
                     gambar, atau tindakan yang tidak diinginkan dan bersifat seksual, merugikan dan mengganggu kesejahteraan 
                     individu yang terkena dampak.</p>
@@ -89,62 +96,74 @@
         <h1 class="font-extrabold tracking-tight leading-none text-black text-4xl md:text-4xl text-left">Pemenuhan Hak Korban</h1>
         <h1 class="font-extrabold tracking-tight leading-none text-orange-600 text-4xl md:text-4xl text-left">Pelecehan Seksual</h1>
         </div>
-    <div class=" grid xl:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4">
-        <div class="flex flex-col justify-start max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-            <a href="#">
-                <img class="rounded-t-lg h-72 w-auto mx-auto " src="{{ asset('assets/images/perlindungan.png') }}" alt="" />
-            </a>
-            <div class="p-5 text-center">
+        <div class="grid xl:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4 place-items-center">
+            <div
+                class="flex flex-col justify-start max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                 <a href="#">
-                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Hak Prosedural</h5>
+                    <img class="rounded-t-lg h-72 w-auto mx-auto " src="{{ asset('assets/images/perlindungan.png') }}"
+                        alt="" />
                 </a>
-                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Pendampingan, bantuan hukum, informasi perkembangan perkara, akses dokumen</p>
-                
-            </div>
-        </div>
-    
-        <div class="flex flex-col justify-start max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-            <a href="#">
-                <img class="rounded-t-lg h-72 w-auto mx-auto" src="{{ asset('assets/images/kesehatan.png') }}" alt="" />
-            </a>
-            <div class="p-5 text-center">
-                <a href="#">
-                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Layanan Kesehatan</h5>
-                </a>
-                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Bantuan medis, bantuan psikologis, akses penguatan psikososial, dan pemeriksaan berkelanjutan.</p>
-                
-            </div>
-        </div>
+                <div class="p-5 text-center">
+                    <a href="#">
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Hak Prosedural</h5>
+                    </a>
+                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Pendampingan, bantuan hukum, informasi
+                        perkembangan perkara, akses dokumen</p>
 
-        <div class="flex flex-col justify-start max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-            <a href="#">
-                <img class=" rounded-t-lg h-72 w-auto mx-auto " src="{{ asset('assets/images/rumah.png') }}" alt="" />
-            </a>
-            <div class="p-5 text-center">
-                <a href="#">
-                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Perlindungan</h5>
-                </a>
-                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Bebas dari ancaman dan intimidasi, bebas diskriminasi serta sigma masyarakat.</p>
-                
+                </div>
             </div>
-        </div>
 
-        <div class="flex flex-col justify-start max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-            <a href="#">
-                <img class="rounded-t-lg h-72 w-auto mx-auto " src="{{ asset('assets/images/korban.png') }}" alt="" />
-            </a>
-            <div class="p-5 text-center">
+            <div
+                class="flex flex-col justify-start max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                 <a href="#">
-                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Rehabilitas Sosial</h5>
+                    <img class="rounded-t-lg h-72 w-auto mx-auto " src="{{ asset('assets/images/kesehatan.png') }}"
+                        alt="" />
                 </a>
-                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Bantuan medis, bantuan psikologis, akses penguatan psikososial, dan pemeriksaan berkelanjutan.</p>
-                
+                <div class="p-5 text-center">
+                    <a href="#">
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Layanan Kesehatan
+                        </h5>
+                    </a>
+                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Bantuan medis, bantuan psikologis, akses
+                        penguatan psikososial, dan pemeriksaan berkelanjutan.</p>
+
+                </div>
             </div>
+
+            <div
+                class="flex flex-col justify-start max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                <a href="#">
+                    <img class="rounded-t-lg h-72 w-auto mx-auto " src="{{ asset('assets/images/rumah.png') }}"
+                        alt="" />
+                </a>
+                <div class="p-5 text-center">
+                    <a href="#">
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Perlindungan</h5>
+                    </a>
+                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Bebas dari ancaman dan intimidasi, bebas
+                        diskriminasi serta sigma masyarakat.</p>
+
+                </div>
+            </div>
+
+            <div
+                class="flex flex-col justify-start max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                <a href="#">
+                    <img class="rounded-t-lg h-72 w-auto mx-auto " src="{{ asset('assets/images/korban.png') }}"
+                        alt="" />
+                </a>
+                <div class="p-5 text-center">
+                    <a href="#">
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Rehabilitas Sosial
+                        </h5>
+                    </a>
+                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Bantuan medis, bantuan psikologis, akses
+                        penguatan psikososial, dan pemeriksaan berkelanjutan.</p>
+                </div>
+            </div>
+
         </div>
-            
-    </div>
     </section>
-    
 @endsection
 
 

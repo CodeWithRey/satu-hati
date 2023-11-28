@@ -3,22 +3,21 @@
 
 {{-- area konten yang ada pada layout default --}}
 @section('content')
-    <h1 class="text-xl font-bold leading-7 flex items-center text-dy m-11">Edit Profil</h1>
-    <div class="col-span-full m-10">
-        <label for="photo" class="block text-sm font-medium leading-6 text-black">Foto profile</label>
-        <div class="mt-2 flex items-center gap-x-3">
-            <svg class="h-12 w-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path fill-rule="evenodd"
-                    d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
-                    clip-rule="evenodd" />
-            </svg>
-            <button type="button"
-                class="rounded-md bg-orange-600 px-8 py-1.5 text-sm font-semibold text-white">Ubah</button>
-        </div>
-    </div>
-
     <form method="POST" action="{{ route('profile.update', Auth::user()->id) }}">
         @csrf
+        <div class="col-span-full m-10 text-center py-12">
+            <h1 class="text-xl font-bold leading-7 text-dy m-11 text-center">Edit Profile</h1>
+            <div class="mt-2 flex items-center gap-x-3">
+                <label for="profilePicture" class="cursor-pointer mx-auto">
+                    <img src="{{ asset('assets/images/user_placeholder.png') }}"
+                        class="w-44 rounded-full object-contain border-2" alt="" id="previewProfilePicture">
+                </label>
+
+                <input type="file" name="profile_picture" id="profilePicture" class="hidden">
+            </div>
+        </div>
+
+
         <div class="border-b border-gray-900/10 pb-12 m-11">
             <h2 class="text-base font-semibold leading-7 text-gray-900">Data Pribadi</h2>
             <p class="mt-1 text-sm leading-6 text-gray-600">Lengkapi data diri Anda maka data privasi Anda terlindungi</p>
@@ -69,7 +68,7 @@
                     <div class="mt-2">
                         <select id="gender" name="gender"
                             class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
-`                            @foreach ($genders as $gender)
+                            ` @foreach ($genders as $gender)
                                 <option value="{{ $gender->id }}">{{ $gender->name }}</option>
                             @endforeach
                         </select>
@@ -101,3 +100,20 @@
         </div>
     </form>
 @endsection
+
+@push('scripts')
+    <script>
+        $(document).ready(function(e) {
+            $('#profilePicture').change(function(e) {
+                var file = e.target.files[0];
+                if (file) {
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        $('#previewProfilePicture').attr('src', e.target.result);
+                    }
+                    reader.readAsDataURL(file);
+                }
+            });
+        });
+    </script>
+@endpush
