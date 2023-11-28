@@ -214,10 +214,10 @@
                     <!-- Tombol Like dan Jumlah Like -->
                     <div class="flex items-center text-gray-500 mb-2">
                         <button class="mr-2">
-                            <i class="fas fa-thumbs-up"></i>
+                            <i class="fas fa-thumbs-up text-lg"></i>
                         </button>
                         <span class="mr-2">10 Likes</span>
-                        <span class="mr-2"><i class="fas fa-comment"></i> 5 Komentar</span>
+                        <span class="mr-2"><i class="fas fa-comment text-lg"></i> 5 Komentar</span>
                     </div>
                     <!-- Tombol Balas -->
                     <div>
