@@ -36,6 +36,10 @@ Route::get('/', function () {
     return view('pages.home');
 })->name('home');
 
+Route::get("/edit-profile", function(){
+    return view("pages.editprofile");
+ });
+
 Route::get('/forum', [PostController::class, 'index'])->name('forum');
 
 Route::get('/forum/{postId}', function () {
