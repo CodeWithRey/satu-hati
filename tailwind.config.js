@@ -14,6 +14,7 @@ export default {
         extend: {
             colors: {
                 'yellow': '#FFD28F',
+                'dy': '#CB6A10',
             },
                 fontFamily: {
                     sans: ["Figtree", ...defaultTheme.fontFamily.sans],
