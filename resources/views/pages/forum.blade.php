@@ -1,13 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
+{{-- Menghubungkan home page dengan layout default  --}}
+@extends('layout.default')
 
-<head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-</head>
+@section('showFooter', 'hidden')
 
-<body>
 
+@section('content')
     <div class="bg-landing-forum min-h-[80vh] min-w-screen flex flex-col items-center justify-center py-12">
         <img src="{{ asset('assets/images/vec.png') }}" class="w-[400px]" alt="">
         <div class="flex flex-col gap-4 mt-4">
@@ -35,16 +32,15 @@
                     <!-- Modal content -->
                     <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
                         <!-- Modal header -->
-                        <div
-                            class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                        <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                             <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
                                 Buat Postingan Baru
                             </h3>
                             <button type="button"
                                 class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
                                 data-modal-toggle="crud-modal">
-                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                    fill="none" viewBox="0 0 14 14">
+                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 14 14">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                         stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
                                 </svg>
@@ -190,8 +186,7 @@
                 <div class="bg-white p-4 rounded-md shadow-md w-full">
                     <!-- Foto Profile dan Nickname -->
                     <div class="flex items-center mb-4">
-                        <img src="path/to/profile-picture.jpg" alt="Profile Picture"
-                            class="w-8 h-8 rounded-full mr-2">
+                        <img src="path/to/profile-picture.jpg" alt="Profile Picture" class="w-8 h-8 rounded-full mr-2">
                         <span class="text-black font-semibold">Nickname User</span>
                     </div>
                     <!-- Judul Postingan -->
@@ -246,7 +241,4 @@
         </div>
     </section>
 
-
-</body>
-
-</html>
+@endsection
