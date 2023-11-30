@@ -73,7 +73,6 @@
         </div>
     </section>
 
-
     <section class="bg-white py-10 mb-16 w-11/12 mx-auto">
         <h2 class="text-[#CB6A10] text-2xl text-center font-bold mb-8">Balasan Para User</h2>
         <!-- Container -->
@@ -299,13 +298,11 @@
         }
     </script>
 
-
     <!-- Form Chatroom -->
-    <form
-        class="fixed bottom-0 left-0 right-0 p-4 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-600">
-        <label for="chat" class="sr-only">Your message</label>
-        <div class="flex items-center px-3 py-2 rounded-lg bg-gray-50 dark:bg-gray-700">
-            <button type="button"
+    <div class="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-700 p-3">
+        <form class="flex items-center">
+            <label for="chat" class="sr-only">Your message</label>
+            <label for="image-upload"
                 class="inline-flex justify-center p-2 text-gray-500 rounded-lg cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
                 <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                     viewBox="0 0 20 18">
@@ -317,17 +314,11 @@
                         d="M13 5.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0ZM7.565 7.423 4.5 14h11.518l-2.516-3.71L11 13 7.565 7.423Z" />
                 </svg>
                 <span class="sr-only">Upload image</span>
-            </button>
-            <button type="button"
-                class="p-2 text-gray-500 rounded-lg cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
-                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                    viewBox="0 0 20 20">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M13.408 7.5h.01m-6.876 0h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0ZM4.6 11a5.5 5.5 0 0 0 10.81 0H4.6Z" />
-                </svg>
-                <span class="sr-only">Add emoji</span>
-            </button>
-            <textarea id="chat" rows="1"
+                <input type="file" id="image-upload" class="hidden" accept="image/*"
+                    onchange="displayFileName(this)">
+            </label>
+            <span id="file-name" class="mx-4 text-gray-500"></span>
+            <textarea id="chat" rows="2"
                 class="block mx-4 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-[#CB6A10] focus:border-[#CB6A10] dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#CB6A10] dark:focus:border-[#CB6A10]"
                 placeholder="Your message..."></textarea>
             <button type="submit"
@@ -339,9 +330,19 @@
                 </svg>
                 <span class="sr-only">Send message</span>
             </button>
+        </form>
+    </div>
 
-        </div>
-    </form>
+    <script>
+        function displayFileName(input) {
+            const fileName = input.files[0].name;
+            document.getElementById('file-name').textContent = fileName;
+        }
+    </script>
+
+
+
+
 </body>
 
 </html>
