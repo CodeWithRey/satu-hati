@@ -43,14 +43,33 @@
                     <!-- Gambar Postingan -->
                     <img src="https://o-cdn-cas.sirclocdn.com/parenting/images/tipe-tipe-pelecehan-seksual-yan.width-800.jpegquality-80.jpg"
                         alt="Posting Image" class="w-80 h-auto mb-4 rounded-md">
+
                     <!-- Tombol Like dan Jumlah Like -->
+                    <style>
+                        .like-button {
+                            transition: color 0.2s ease;
+                            /* Efek transisi untuk perubahan warna */
+                        }
+
+                        .like-button.clicked {
+                            color: #CB6A10;
+                            /* Warna yang diinginkan saat tombol diklik */
+                        }
+                    </style>
+
                     <div class="flex items-center text-gray-500 mb-2">
-                        <button class="mr-2">
-                            <i class="fas fa-thumbs-up text-lg"></i>
+                        <button class="like-button mr-2" onclick="toggleLike(this)">
+                            <i class="fas fa-thumbs-up text-xl"></i>
                         </button>
                         <span class="mr-5">10 Likes</span>
-                        <span class="mr-5"><i class="fas fa-comment text-lg"></i> 5 Komentar</span>
+                        <span class="mr-5"><i class="fas fa-comment text-xl"></i> 5 Komentar</span>
                     </div>
+
+                    <script>
+                        function toggleLike(button) {
+                            button.classList.toggle('clicked');
+                        }
+                    </script>
 
                 </div>
 
