@@ -24,7 +24,7 @@
                         <a href="{{ route('forum') }}" class="hover:underline">Forum Diskusi</a>
                     </li>
                     <li>
-                        <a href="#" class="hover:underline">About Us</a>
+                        <a href="{{ route('about') }}" class="hover:underline">About Us</a>
                     </li>
                 </ul>
             </div>

@@ -2,8 +2,6 @@
 @extends('layout.default')
 
 @section('showFooter', 'hidden')
-
-
 @section('content')
     <div class="bg-landing-forum min-h-[80vh] min-w-screen flex flex-col items-center justify-center py-12">
         <img src="{{ asset('assets/images/vec.png') }}" class="w-[400px]" alt="">
@@ -129,11 +127,11 @@
                                     </script>
 
                                     <div class="flex items-center mb-5">
-                                        <input id="default-checkbox" type="checkbox" name="is_anonymous" value=1
+                                        <input id="default-checkbox" type="checkbox" value=""
                                             class="w-4 h-4 text-[#CB6A10] bg-gray-100 border-gray-300 rounded focus:ring-[#CB6A10] dark:focus:ring-[#CB6A10] dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                         <label for="default-checkbox"
-                                            class="ml-2 text-sm font-normal italic dark:text-gray-300 overflow-hidden whitespace-nowrap overflow-ellipsis">
-                                            Centang kotak ini jika Anda ingin posting secara anonim tanpa mengungkapkan
+                                            class="ml-2 text-sm font-normal italic dark:text-gray-300 overflow-visible whitespace-nowrap overflow-ellipsis">
+                                            Centang jika Anda ingin posting secara anonim tanpa mengungkapkan
                                             identitas Anda.
                                         </label>
                                         @error('is_anonymous')
@@ -146,10 +144,12 @@
 
                                 </div>
 
+
                                 <button type="submit"
                                     class="text-white inline-flex items-center bg-[#CB6A10] hover:bg-[#CB6A20] focus:ring-4 focus:outline-none focus:ring-[#CB6A10] font-medium rounded-lg text-sm px-6 py-3 text-center dark:bg-[#CB6A20] dark:hover:bg-[#CB6A30] dark:focus:ring-[#CB6A30]">
                                     <i class="fas fa-paper-plane text-lg me-2"></i> Posting
                                 </button>
+
                             </form>
 
 
@@ -190,19 +190,43 @@
 
                         <div class="flex flex-wrap items-center justify-start gap-8 mb-4">
                             @foreach ($post->images as $image)
-                                <img src="{{ asset($image->path) }}" class="object-cover" width="100px"
-                                    alt="">
+                                <a class="my-image-links" data-maxwidth="800px" href="{{ asset($image->path) }}">
+                                    <img src="{{ asset($image->path) }}" class="object-cover" width="100px"
+                                        alt="">
+                                </a>
                             @endforeach
                         </div>
                         <!-- Tombol Like dan Jumlah Like -->
                         <div class="flex items-center text-gray-500 mb-2">
-                            <button class="mr-2">
+                            <button class="like-button mr-2" onclick="toggleLike(this)">
                                 <i class="fas fa-thumbs-up"></i>
                             </button>
-                            <span class="mr-2">{{ $post->likes()->count() }} Likes</span>
-                            <span class="mr-2"><i class="fas fa-comment"></i> {{ $post->comments()->count() }}
+                            <span class="mr-5">{{ $post->likes()->count() }} Likes</span>
+                            <span class="mr-5"><i class="fas fa-comment"></i> {{ $post->comments()->count() }}
                                 Komentar</span>
                         </div>
+
+                        <!-- Tombol Like dan Jumlah Like -->
+                        <style>
+                            .like-button {
+                                transition: color 0.2s ease;
+                                /* Efek transisi untuk perubahan warna */
+                            }
+
+                            .like-button.clicked {
+                                color: #CB6A10;
+                                /* Warna yang diinginkan saat tombol diklik */
+                            }
+                        </style>
+
+
+                        <script>
+                            function toggleLike(button) {
+                                button.classList.toggle('clicked');
+                            }
+                        </script>
+
+
                         <!-- Tombol Balas -->
                         @auth
                             <button class="text-gray-600">
@@ -224,3 +248,13 @@
         </div>
     </section>
 @endsection
+
+@push('scripts')
+    <script>
+        new VenoBox({
+            selector: '.my-image-links',
+            spinner: 'rotating-plane',
+            maxWidth: '100%'
+        });
+    </script>
+@endpush

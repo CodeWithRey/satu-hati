@@ -17,6 +17,9 @@ use App\Http\Controllers\UserManagementController;
 |
 */
 
+Route::get('/about', function () {
+    return view('pages.about');
+})->name('about');
 
 Route::middleware('guest')->group(function () {
 });
