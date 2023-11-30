@@ -34,7 +34,15 @@
                     <h2 class="text-lg font-semibold mb-2">Judul Postingan</h2>
                     <!-- Deskripsi Postingan -->
                     <p class="text-gray-600 mb-4">Deskripsi Postingan Lorem ipsum dolor sit amet, consectetur adipiscing
-                        elit, blalalalalalllaalalalalalalallalalallalal</p>
+                        elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+                        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+                        aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+                        mollit anim id est laborum.
+                    </p>
+                    <!-- Gambar Postingan -->
+                    <img src="https://o-cdn-cas.sirclocdn.com/parenting/images/tipe-tipe-pelecehan-seksual-yan.width-800.jpegquality-80.jpg"
+                        alt="Posting Image" class="w-80 h-auto mb-4 rounded-md">
                     <!-- Tombol Like dan Jumlah Like -->
                     <div class="flex items-center text-gray-500 mb-2">
                         <button class="mr-2">
