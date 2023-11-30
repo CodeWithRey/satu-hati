@@ -23,9 +23,9 @@
     background-size: cover;
 }
 
-.bg-about{
-  background-image: url(/public/assets/images/bg-about2.png);
-  background-size: cover;
+.bg-about {
+    background-image: url(/public/assets/images/bg-about2.png);
+    background-size: cover;
 }
 
 @layer components {
@@ -38,6 +38,6 @@
     }
 
     .floating-shadow-lg {
-        @apply shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px]
+        @apply shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px];
     }
 }

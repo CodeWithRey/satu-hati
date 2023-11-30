@@ -190,8 +190,10 @@
 
                         <div class="flex flex-wrap items-center justify-start gap-8 mb-4">
                             @foreach ($post->images as $image)
-                                <img src="{{ asset($image->path) }}" class="object-cover" width="100px"
-                                    alt="">
+                                <a class="my-image-links" data-maxwidth="800px" href="{{ asset($image->path) }}">
+                                    <img src="{{ asset($image->path) }}" class="object-cover" width="100px"
+                                        alt="">
+                                </a>
                             @endforeach
                         </div>
                         <!-- Tombol Like dan Jumlah Like -->
@@ -246,3 +248,13 @@
         </div>
     </section>
 @endsection
+
+@push('scripts')
+    <script>
+        new VenoBox({
+            selector: '.my-image-links',
+            spinner: 'rotating-plane',
+            maxWidth: '100%'
+        });
+    </script>
+@endpush
