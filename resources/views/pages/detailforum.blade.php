@@ -5,7 +5,7 @@
 @section('content')
 
     <!-- Postingan Utama -->
-    <section class="w-11/12 py-5 mx-auto">
+    <section class="w-11/12 py-5 mx-auto mt-20">
         <div class="bg-white p-4 rounded-lg shadow-md">
             <!-- Foto Profile dan Nickname -->
             <div class="flex items-center justify-between mb-2">
@@ -73,7 +73,7 @@
         </div>
     </section>
 
-    <section class="bg-white py-10 mb-16 w-11/12 mx-auto">
+    <section class="bg-white mb-5 w-11/12 mx-auto">
         <h2 class="text-[#CB6A10] text-2xl text-center font-bold mb-8">Balasan Para User</h2>
         <!-- Container -->
         <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-4">
@@ -262,7 +262,6 @@
                 </button>
             </div>
 
-
         </div>
     </section>
 
@@ -314,6 +313,17 @@
             </label>
             <img id="image-preview" class="hidden w-16 h-16 object-cover rounded-lg mr-1" src=""
                 alt="Image Preview">
+            <!-- Tambahkan tombol silang -->
+            <button type="button" id="cancel-image"
+                class="hidden text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
+                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                    viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                        d="M14.95 5.95a1 1 0 0 1 0 1.414L11.414 10l3.536 3.536a1 1 0 0 1-1.414 1.414L10 11.414l-3.536 3.536a1 1 0 0 1-1.414-1.414L8.586 10 5.05 6.464a1 1 0 1 1 1.414-1.414L10 8.586l3.536-3.536a1 1 0 0 1 1.414 0Z">
+                    </path>
+                </svg>
+                <span class="sr-only">Cancel image</span>
+            </button>
             <textarea id="chat" rows="2"
                 class="block mx-4 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-[#CB6A10] focus:border-[#CB6A10] dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#CB6A10] dark:focus:border-[#CB6A10]"
                 placeholder="Your message..."></textarea>
@@ -332,15 +342,27 @@
     <script>
         function displayImagePreview(input) {
             const preview = document.getElementById('image-preview');
+            const cancelBtn = document.getElementById('cancel-image');
 
             const reader = new FileReader();
             reader.onload = function(e) {
                 preview.src = e.target.result;
                 preview.classList.remove('hidden');
+                cancelBtn.classList.remove('hidden');
             };
 
             reader.readAsDataURL(input.files[0]);
         }
+
+        // Tambahkan fungsi untuk membatalkan pilihan gambar
+        document.getElementById('cancel-image').addEventListener('click', function() {
+            const preview = document.getElementById('image-preview');
+            const input = document.getElementById('image-upload');
+
+            preview.classList.add('hidden');
+            this.classList.add('hidden');
+            input.value = ''; // Reset nilai input file untuk membatalkan pilihan gambar
+        });
     </script>
 
 
