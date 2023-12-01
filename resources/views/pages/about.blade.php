@@ -1,5 +1,6 @@
 {{-- Menghubungkan home page dengan layout default  --}}
 @extends('layout.default')
+@section('title', 'Satu Hati | Tentang Kami')
 
 {{-- area konten yang ada pada layout default --}}
 @section('content')

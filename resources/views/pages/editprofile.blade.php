@@ -1,5 +1,7 @@
 {{-- Menghubungkan home page dengan layout default  --}}
 @extends('layout.default')
+@section('title', 'Satu Hati | Ubah Profil')
+
 
 {{-- area konten yang ada pada layout default --}}
 @section('content')

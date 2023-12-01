@@ -1,6 +1,8 @@
 @extends('layout.default')
 @section('showFooter', 'hidden')
 @section('showNavbar', 'hidden')
+@section('title', 'Satu Hati | Buat Akun')
+
 
 @section('content')
     <div class="bg-white min-h-screen min-w-screen grid lg:grid-cols-2 grid-cols-1">

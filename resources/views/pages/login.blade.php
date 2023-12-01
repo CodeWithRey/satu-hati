@@ -1,6 +1,7 @@
 @extends('layout.default')
 @section('showFooter', 'hidden')
 @section('showNavbar', 'hidden')
+@section('title', 'Satu Hati | Masuk')
 
 @section('content')
 
