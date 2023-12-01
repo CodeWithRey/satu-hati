@@ -1,12 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
+{{-- Menghubungkan home page dengan layout default  --}}
+@extends('layout.default')
 
-<head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-</head>
+@section('showFooter', 'hidden')
+@section('content')
 
-<body>
     <!-- Postingan Utama -->
     <section class="w-11/12 py-5 mx-auto">
         <div class="bg-white p-4 rounded-lg shadow-md">
@@ -47,8 +44,11 @@
                 mollit anim id est laborum.
             </p>
             <!-- Gambar Postingan -->
-            <img src="https://o-cdn-cas.sirclocdn.com/parenting/images/tipe-tipe-pelecehan-seksual-yan.width-800.jpegquality-80.jpg"
-                alt="Posting Image" class="w-96 h-auto mb-4 rounded-md">
+            <a class="my-image-links" data-maxwidth="800px"
+                href="https://o-cdn-cas.sirclocdn.com/parenting/images/tipe-tipe-pelecehan-seksual-yan.width-800.jpegquality-80.jpg">
+                <img src="https://o-cdn-cas.sirclocdn.com/parenting/images/tipe-tipe-pelecehan-seksual-yan.width-800.jpegquality-80.jpg"
+                    alt="Posting Image" class="w-96 h-auto mb-4 rounded-md">
+            </a>
 
             <!-- Tombol Like dan Jumlah Like -->
             <style>
@@ -83,8 +83,7 @@
                 <!-- Foto Profile dan Nickname Komentator -->
                 <div class="flex items-center justify-between mb-2">
                     <div class="flex items-center">
-                        <img src="path/to/commenter-profile.jpg" alt="Profile Picture"
-                            class="w-8 h-8 rounded-full mr-2">
+                        <img src="path/to/commenter-profile.jpg" alt="Profile Picture" class="w-8 h-8 rounded-full mr-2">
                         <span class="text-black font-semibold">Nickname Commenter</span>
                     </div>
                     <div class="relative group">
@@ -123,8 +122,7 @@
                 <!-- Foto Profile dan Nickname Komentator -->
                 <div class="flex items-center justify-between mb-2">
                     <div class="flex items-center">
-                        <img src="path/to/commenter-profile.jpg" alt="Profile Picture"
-                            class="w-8 h-8 rounded-full mr-2">
+                        <img src="path/to/commenter-profile.jpg" alt="Profile Picture" class="w-8 h-8 rounded-full mr-2">
                         <span class="text-black font-semibold">Nickname Commenter</span>
                     </div>
                     <div class="relative group">
@@ -160,8 +158,7 @@
                 <!-- Foto Profile dan Nickname Komentator -->
                 <div class="flex items-center justify-between mb-2">
                     <div class="flex items-center">
-                        <img src="path/to/commenter-profile.jpg" alt="Profile Picture"
-                            class="w-8 h-8 rounded-full mr-2">
+                        <img src="path/to/commenter-profile.jpg" alt="Profile Picture" class="w-8 h-8 rounded-full mr-2">
                         <span class="text-black font-semibold">Nickname Commenter</span>
                     </div>
                     <div class="relative group">
@@ -206,17 +203,14 @@
                                 <span class="text-black font-semibold">Nickname Another Commenter</span>
                             </div>
                             <div class="relative group">
-                                <button class="text-gray-600 focus:outline-none text-lg p-2"
-                                    onclick="toggleMenu(this)">
+                                <button class="text-gray-600 focus:outline-none text-lg p-2" onclick="toggleMenu(this)">
                                     <i class="fas fa-ellipsis-v"></i>
                                 </button>
                                 <!-- Menu Opsi Edit dan Hapus -->
                                 <div class="hidden absolute right-0 mt-2 space-y-2 bg-white border rounded-md shadow-lg"
                                     id="optionsMenu">
-                                    <button
-                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Edit</button>
-                                    <button
-                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Hapus</button>
+                                    <button class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Edit</button>
+                                    <button class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Hapus</button>
                                 </div>
                             </div>
                         </div>
@@ -298,6 +292,7 @@
         }
     </script>
 
+
     <!-- Form Chatroom -->
     <div class="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-700 p-3">
         <form class="flex items-center">
@@ -340,9 +335,14 @@
         }
     </script>
 
+@endsection
 
-
-
-</body>
-
-</html>
+@push('scripts')
+    <script>
+        new VenoBox({
+            selector: '.my-image-links',
+            spinner: 'rotating-plane',
+            maxWidth: '100%'
+        });
+    </script>
+@endpush
