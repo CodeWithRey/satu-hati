@@ -24,7 +24,7 @@ class RegisteredUserController extends Controller
     {
         // dd('create method');
         $genders = Gender::all();
-        return view('auth.register', compact('genders'));
+        return view('pages.register', compact('genders'));
     }
 
     /**

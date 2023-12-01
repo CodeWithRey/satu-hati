@@ -9,7 +9,7 @@ trait ImageHandling
 {
     public function uploadImage(UploadedFile $image, $pathImage): string
     {
-        $imageName = time() . '.' . $image->extension();
+        $imageName = time() . hexdec(uniqid()) . '.' . $image->extension();
         $storeImage = $image->storeAs($pathImage, $imageName, 'public');
         $imagePath = Storage::url($storeImage);
 
