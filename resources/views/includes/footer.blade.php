@@ -17,19 +17,22 @@
             <div class="px-8">
                 <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Fitur</h2>
                 <ul class="text-gray-500 dark:text-gray-400 font-normal">
-                    <li class="mb-4">
-                        <a href="{{ route('home') }}" class="hover:underline">Home</a>
+                    <li class="mb-2">
+                        <a href="{{ route('home') }}" class="">Beranda</a>
                     </li>
-                    <li class="mb-4">
-                        <a href="{{ route('forum') }}" class="hover:underline">Forum Diskusi</a>
+                    <li class="mb-2">
+                        <a href="{{ route('forum') }}" class="">Forum Diskusi</a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="{{ route('forum') }}" class="">Pengaduan</a>
                     </li>
                     <li>
-                        <a href="{{ route('about') }}" class="hover:underline">About Us</a>
+                        <a href="{{ route('about') }}" class="">Tentang</a>
                     </li>
                 </ul>
             </div>
             <div>
-                <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">About Us</h2>
+                <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Tentang Kami</h2>
                 <p class="flex items-center  text-gray-500 dark:text-gray-400 font-">Hubungi kami jika terdapat kendala
                     saat menggunakan website satu hati.</p>
             </div>
@@ -38,7 +41,7 @@
     <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
     <div class="sm:flex sm:items-center sm:justify-between">
         <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a href="https://flowbite.com/"
-                class="hover:underline">SatuHati™</a>. All Rights Reserved.
+                class="hover:underline">SatuHati</a>
         </span>
         <div class="flex mt-4 sm:justify-center sm:mt-0">
             <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
