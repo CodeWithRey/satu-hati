@@ -29,14 +29,14 @@
                         <li>
                             <a href="{{ route('profile.edit', Auth::user()->id) }}"
                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Edit
-                                Profile</a>
+                                Profil</a>
                         </li>
                         <li>
                             <form action="{{ route('logout') }}" class="w-full" method="POST">
                                 @csrf
                                 <button type="submit"
                                     class="block px-4 w-full text-start py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                                    Sign out <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                                    Logout<i class="fa-solid fa-arrow-right-from-bracket"></i>
                                 </button>
                             </form>
                         </li>

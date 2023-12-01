@@ -8,9 +8,10 @@
         <div class="flex flex-col gap-4 mt-4">
             <h1 class="mx-auto font-bold text-5xl">Forum <span class="text-[#CB6A10]">Diskusi</span>
             </h1>
-            <p class="text-xl text-center mx-4">Selamat datang di Forum Diskusi SatuHati
-                Mari bersama-sama membangun ruang aman untuk berdiskusi, mendukung satu sama lain, dan menciptakan
-                perubahan positif.</p>
+            <p class="text-xl text-center mb-0 px-20">Selamat Datang di Forum Diskusi SatuHati!
+                <br>Mari bersama-sama membangun ruang aman untuk berdiskusi, mendukung satu sama lain, dan menciptakan
+                    perubahan positif.
+                </p>
         </div>
     </div>
 
