@@ -67,7 +67,7 @@
                 <button class="like-button mr-2" onclick="toggleLike(this)">
                     <i class="fas fa-thumbs-up text-xl"></i>
                 </button>
-                <span class="mr-5">10 Likes</span>
+                <span class="mr-5">10 Suka</span>
                 <span class="mr-5"><i class="fas fa-comment text-xl"></i> 5 Komentar</span>
             </div>
         </div>
@@ -109,7 +109,7 @@
                     <button class="like-button mr-2" onclick="toggleLike(this)">
                         <i class="fas fa-thumbs-up text-lg"></i>
                     </button>
-                    <span class="mr-5">5 Likes</span>
+                    <span class="mr-5">5 Suka</span>
                 </div>
                 <!-- Tombol Balas -->
                 <button class="text-gray-600 mt-2" onclick="">
@@ -145,7 +145,7 @@
                     <button class="like-button mr-2" onclick="toggleLike(this)">
                         <i class="fas fa-thumbs-up text-lg"></i>
                     </button>
-                    <span class="mr-5">5 Likes</span>
+                    <span class="mr-5">5 Suka</span>
                 </div>
                 <!-- Tombol Balas -->
                 <button class="text-gray-600 mt-2" onclick="">
@@ -184,7 +184,7 @@
                     <button class="like-button mr-2" onclick="toggleLike(this)">
                         <i class="fas fa-thumbs-up text-lg"></i>
                     </button>
-                    <span class="mr-5">5 Likes</span>
+                    <span class="mr-5">5 Suka</span>
                 </div>
                 <!-- Tombol Balas -->
                 <button class="text-gray-600 mt-2" onclick="">
@@ -224,7 +224,7 @@
                             <button class="like-button mr-2" onclick="toggleLike(this)">
                                 <i class="fas fa-thumbs-up text-lg"></i>
                             </button>
-                            <span class="mr-5">2 Likes</span>
+                            <span class="mr-5">2 Suka</span>
                         </div>
                         <!-- Tombol Balas -->
                         <button class="text-gray-600 mt-2" onclick="">
@@ -247,7 +247,7 @@
                             <button class="like-button mr-2" onclick="toggleLike(this)">
                                 <i class="fas fa-thumbs-up text-lg"></i>
                             </button>
-                            <span class="mr-5">3 Likes</span>
+                            <span class="mr-5">3 Suka</span>
                         </div>
                         <!-- Tombol Balas -->
                         <button class="text-gray-600 mt-2" onclick="">
@@ -324,9 +324,9 @@
                 </svg>
                 <span class="sr-only">Cancel image</span>
             </button>
-            <textarea id="chat" rows="2"
+            <textarea id="chat" rows="1"
                 class="block mx-4 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-[#CB6A10] focus:border-[#CB6A10] dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#CB6A10] dark:focus:border-[#CB6A10]"
-                placeholder="Your message..."></textarea>
+                placeholder="Tulis balasan..."></textarea>
             <button type="submit"
                 class="inline-flex justify-center p-2 text-white rounded-full cursor-pointer bg-[#CB6A10] hover:bg-[#AD5910] dark:bg-[#CB6A10] dark:hover:bg-[#AD5910]">
                 <svg class="w-5 h-5 rotate-90 rtl:-rotate-90" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -354,7 +354,7 @@
             reader.readAsDataURL(input.files[0]);
         }
 
-        // Tambahkan fungsi untuk membatalkan pilihan gambar
+        // fungsi untuk membatalkan pilihan gambar
         document.getElementById('cancel-image').addEventListener('click', function() {
             const preview = document.getElementById('image-preview');
             const input = document.getElementById('image-upload');
