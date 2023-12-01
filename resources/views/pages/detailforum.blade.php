@@ -105,16 +105,20 @@
                 <img src="https://images-tm.tempo.co/all/2021/09/09/782064/782064_1200.jpg" alt="Posting Image"
                     class="w-80 h-auto mb-4 rounded-md">
                 <!-- Tombol Like dan Jumlah Like untuk Komentar -->
-                <div class="flex items-center text-gray-500">
-                    <button class="like-button mr-2" onclick="toggleLike(this)">
-                        <i class="fas fa-thumbs-up text-lg"></i>
+                <div class="flex items-center justify-start text-gray-500">
+                    <!-- Tombol Suka -->
+                    <div class="flex items-center">
+                        <button class="like-button mr-2" onclick="toggleLike(this)">
+                            <i class="fas fa-thumbs-up text-lg"></i>
+                        </button>
+                        <span class="mr-5">5 Suka</span>
+
+                    </div>
+                    <!-- Tombol Balas -->
+                    <button class="text-gray-600" onclick="">
+                        Balas
                     </button>
-                    <span class="mr-5">5 Suka</span>
                 </div>
-                <!-- Tombol Balas -->
-                <button class="text-gray-600 mt-2" onclick="">
-                    Balas
-                </button>
             </div>
 
             <!-- Card Komentar 2-->
@@ -140,17 +144,21 @@
                 </div>
                 <!-- Isi Komentar -->
                 <p class="text-gray-600 mb-2">Komentar: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                <!-- Tombol Like dan Jumlah Like untuk Komentar -->
-                <div class="flex items-center text-gray-500">
-                    <button class="like-button mr-2" onclick="toggleLike(this)">
-                        <i class="fas fa-thumbs-up text-lg"></i>
+                <!-- Like dan Komentar -->
+                <div class="flex items-center justify-start text-gray-500">
+                    <!-- Tombol Suka -->
+                    <div class="flex items-center">
+                        <button class="like-button mr-2" onclick="toggleLike(this)">
+                            <i class="fas fa-thumbs-up text-lg"></i>
+                        </button>
+                        <span class="mr-5">5 Suka</span>
+
+                    </div>
+                    <!-- Tombol Balas -->
+                    <button class="text-gray-600" onclick="">
+                        Balas
                     </button>
-                    <span class="mr-5">5 Suka</span>
                 </div>
-                <!-- Tombol Balas -->
-                <button class="text-gray-600 mt-2" onclick="">
-                    Balas
-                </button>
             </div>
 
             <!-- Card Komentar 3-->
@@ -180,16 +188,20 @@
                 <img src="https://img.okezone.com/content/2021/06/10/612/2423291/6-bentuk-pelecehan-seksual-yang-perlu-anda-ketahui-N1SefclLxy.jpg"
                     alt="Posting Image" class="w-80 h-auto mb-4 rounded-md">
                 <!-- Tombol Like dan Jumlah Like untuk Komentar -->
-                <div class="flex items-center text-gray-500">
-                    <button class="like-button mr-2" onclick="toggleLike(this)">
-                        <i class="fas fa-thumbs-up text-lg"></i>
+                <div class="flex items-center justify-start text-gray-500">
+                    <!-- Tombol Suka -->
+                    <div class="flex items-center">
+                        <button class="like-button mr-2" onclick="toggleLike(this)">
+                            <i class="fas fa-thumbs-up text-lg"></i>
+                        </button>
+                        <span class="mr-5">5 Suka</span>
+
+                    </div>
+                    <!-- Tombol Balas -->
+                    <button class="text-gray-600" onclick="">
+                        Balas
                     </button>
-                    <span class="mr-5">5 Suka</span>
                 </div>
-                <!-- Tombol Balas -->
-                <button class="text-gray-600 mt-2" onclick="">
-                    Balas
-                </button>
 
                 <!-- Kontainer untuk reply -->
                 <div class="mt-4 space-y-4 ml-10" style="display: none;" id="commentContainer">
@@ -220,16 +232,20 @@
                         <img src="https://images.narasi.tv/preset:sharp/resize:fill:250:140:1/gravity:ce/plain/https://storage.googleapis.com/narasi-production.appspot.com/production/medium/1692774812759/apa-itu-pelecehan-verbal-pahami-pengertian-indikasi-dampak-dan-solusinya-medium.jpeg@webp"
                             alt="Posting Image" class="w-32 h-auto mb-4 rounded-md">
                         <!-- Tombol Like dan Jumlah Like untuk Komentar -->
-                        <div class="flex items-center text-gray-500">
-                            <button class="like-button mr-2" onclick="toggleLike(this)">
-                                <i class="fas fa-thumbs-up text-lg"></i>
+                        <div class="flex items-center justify-start text-gray-500">
+                            <!-- Tombol Suka -->
+                            <div class="flex items-center">
+                                <button class="like-button mr-2" onclick="toggleLike(this)">
+                                    <i class="fas fa-thumbs-up text-lg"></i>
+                                </button>
+                                <span class="mr-5">5 Suka</span>
+
+                            </div>
+                            <!-- Tombol Balas -->
+                            <button class="text-gray-600" onclick="">
+                                Balas
                             </button>
-                            <span class="mr-5">2 Suka</span>
                         </div>
-                        <!-- Tombol Balas -->
-                        <button class="text-gray-600 mt-2" onclick="">
-                            Balas
-                        </button>
                     </div>
 
                     <!-- Reply 2 -->
@@ -243,21 +259,25 @@
                         <!-- Isi reply -->
                         <p class="text-gray-600 mb-2">Balasan: Benar, saya setuju.</p>
                         <!-- Tombol Like dan Jumlah Like untuk Komentar -->
-                        <div class="flex items-center text-gray-500">
-                            <button class="like-button mr-2" onclick="toggleLike(this)">
-                                <i class="fas fa-thumbs-up text-lg"></i>
+                        <div class="flex items-center justify-start text-gray-500">
+                            <!-- Tombol Suka -->
+                            <div class="flex items-center">
+                                <button class="like-button mr-2" onclick="toggleLike(this)">
+                                    <i class="fas fa-thumbs-up text-lg"></i>
+                                </button>
+                                <span class="mr-5">5 Suka</span>
+
+                            </div>
+                            <!-- Tombol Balas -->
+                            <button class="text-gray-600" onclick="">
+                                Balas
                             </button>
-                            <span class="mr-5">3 Suka</span>
                         </div>
-                        <!-- Tombol Balas -->
-                        <button class="text-gray-600 mt-2" onclick="">
-                            Balas
-                        </button>
                     </div>
                 </div>
 
                 <!-- Tombol Tampilkan/Sembunyikan Komentar -->
-                <button class="text-gray-600 mt-2 ml-5" onclick="toggleComments(this)">
+                <button class="text-gray-600 mt-2" onclick="toggleComments(this)">
                     Tampilkan Komentar 🡫
                 </button>
             </div>
