@@ -47,7 +47,7 @@
             <a class="my-image-links" data-maxwidth="800px"
                 href="https://o-cdn-cas.sirclocdn.com/parenting/images/tipe-tipe-pelecehan-seksual-yan.width-800.jpegquality-80.jpg">
                 <img src="https://o-cdn-cas.sirclocdn.com/parenting/images/tipe-tipe-pelecehan-seksual-yan.width-800.jpegquality-80.jpg"
-                    alt="Posting Image" class="w-96 h-auto mb-4 rounded-md">
+                    alt="Posting Image" class="w-96 h-auto rounded-md">
             </a>
 
             <!-- Tombol Like dan Jumlah Like -->
@@ -63,7 +63,7 @@
                 }
             </style>
 
-            <div class="flex items-center text-gray-500 mb-2">
+            <div class="flex items-center text-gray-500 mb-2 mt-4">
                 <button class="like-button mr-2" onclick="toggleLike(this)">
                     <i class="fas fa-thumbs-up text-xl"></i>
                 </button>
@@ -73,8 +73,8 @@
         </div>
     </section>
 
-    <section class="bg-white mb-5 w-11/12 mx-auto">
-        <h2 class="text-[#CB6A10] text-2xl text-center font-bold mb-8">Balasan Para User</h2>
+    <section class="bg-white mb-5 mt-8 w-11/12 mx-auto">
+        <h2 class="text-[#CB6A10] text-2xl text-center font-bold mb-8">───※ Balasan Para User ※───</h2>
         <!-- Container -->
         <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-4">
 
@@ -103,9 +103,9 @@
                 <p class="text-gray-600 mb-2">Komentar: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                 <!-- Gambar Postingan -->
                 <img src="https://images-tm.tempo.co/all/2021/09/09/782064/782064_1200.jpg" alt="Posting Image"
-                    class="w-80 h-auto mb-4 rounded-md">
+                    class="w-80 h-auto rounded-md">
                 <!-- Tombol Like dan Jumlah Like untuk Komentar -->
-                <div class="flex items-center justify-start text-gray-500">
+                <div class="flex items-center justify-start text-gray-500 mt-4">
                     <!-- Tombol Suka -->
                     <div class="flex items-center">
                         <button class="like-button mr-2" onclick="toggleLike(this)">
@@ -145,7 +145,7 @@
                 <!-- Isi Komentar -->
                 <p class="text-gray-600 mb-2">Komentar: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                 <!-- Like dan Komentar -->
-                <div class="flex items-center justify-start text-gray-500">
+                <div class="flex items-center justify-start text-gray-500 mt-4">
                     <!-- Tombol Suka -->
                     <div class="flex items-center">
                         <button class="like-button mr-2" onclick="toggleLike(this)">
@@ -186,9 +186,9 @@
                 <p class="text-gray-600 mb-2">Komentar: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                 <!-- Gambar Postingan -->
                 <img src="https://img.okezone.com/content/2021/06/10/612/2423291/6-bentuk-pelecehan-seksual-yang-perlu-anda-ketahui-N1SefclLxy.jpg"
-                    alt="Posting Image" class="w-80 h-auto mb-4 rounded-md">
+                    alt="Posting Image" class="w-80 h-auto rounded-md">
                 <!-- Tombol Like dan Jumlah Like untuk Komentar -->
-                <div class="flex items-center justify-start text-gray-500">
+                <div class="flex items-center justify-start text-gray-500 mt-4">
                     <!-- Tombol Suka -->
                     <div class="flex items-center">
                         <button class="like-button mr-2" onclick="toggleLike(this)">
@@ -230,9 +230,9 @@
                         <p class="text-gray-600 mb-2">Balasan: Ini keterlaluan.</p>
                         <!-- Gambar Postingan -->
                         <img src="https://images.narasi.tv/preset:sharp/resize:fill:250:140:1/gravity:ce/plain/https://storage.googleapis.com/narasi-production.appspot.com/production/medium/1692774812759/apa-itu-pelecehan-verbal-pahami-pengertian-indikasi-dampak-dan-solusinya-medium.jpeg@webp"
-                            alt="Posting Image" class="w-32 h-auto mb-4 rounded-md">
+                            alt="Posting Image" class="w-32 h-auto rounded-md">
                         <!-- Tombol Like dan Jumlah Like untuk Komentar -->
-                        <div class="flex items-center justify-start text-gray-500">
+                        <div class="flex items-center justify-start text-gray-500 mt-4">
                             <!-- Tombol Suka -->
                             <div class="flex items-center">
                                 <button class="like-button mr-2" onclick="toggleLike(this)">
@@ -259,7 +259,7 @@
                         <!-- Isi reply -->
                         <p class="text-gray-600 mb-2">Balasan: Benar, saya setuju.</p>
                         <!-- Tombol Like dan Jumlah Like untuk Komentar -->
-                        <div class="flex items-center justify-start text-gray-500">
+                        <div class="flex items-center justify-start text-gray-500 mt-4">
                             <!-- Tombol Suka -->
                             <div class="flex items-center">
                                 <button class="like-button mr-2" onclick="toggleLike(this)">
