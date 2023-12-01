@@ -294,12 +294,12 @@
 
 
     <!-- Form Chatroom -->
-    <div class="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-700 p-3">
-        <form class="flex items-center">
-            <label for="chat" class="sr-only">Your message</label>
+    <form class="sticky bottom-0 inset-x-0 bg-white">
+        <label for="chat" class="sr-only">Your message</label>
+        <div class="flex items-center px-3 py-2 rounded-lg bg-gray-50 dark:bg-gray-700">
             <label for="image-upload"
                 class="inline-flex justify-center p-2 text-gray-500 rounded-lg cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
-                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                     viewBox="0 0 20 18">
                     <path fill="currentColor"
                         d="M13 5.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0ZM7.565 7.423 4.5 14h11.518l-2.516-3.71L11 13 7.565 7.423Z" />
@@ -310,9 +310,10 @@
                 </svg>
                 <span class="sr-only">Upload image</span>
                 <input type="file" id="image-upload" class="hidden" accept="image/*"
-                    onchange="displayFileName(this)">
+                    onchange="displayImagePreview(this)">
             </label>
-            <span id="file-name" class="mx-4 text-gray-500"></span>
+            <img id="image-preview" class="hidden w-16 h-16 object-cover rounded-lg mr-1" src=""
+                alt="Image Preview">
             <textarea id="chat" rows="2"
                 class="block mx-4 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-[#CB6A10] focus:border-[#CB6A10] dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#CB6A10] dark:focus:border-[#CB6A10]"
                 placeholder="Your message..."></textarea>
@@ -325,15 +326,23 @@
                 </svg>
                 <span class="sr-only">Send message</span>
             </button>
-        </form>
-    </div>
+        </div>
+    </form>
 
     <script>
-        function displayFileName(input) {
-            const fileName = input.files[0].name;
-            document.getElementById('file-name').textContent = fileName;
+        function displayImagePreview(input) {
+            const preview = document.getElementById('image-preview');
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                preview.src = e.target.result;
+                preview.classList.remove('hidden');
+            };
+
+            reader.readAsDataURL(input.files[0]);
         }
     </script>
+
 
 @endsection
 
