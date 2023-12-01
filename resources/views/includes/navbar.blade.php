@@ -3,7 +3,7 @@
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
             <img src="{{ asset('assets/images/logo-sh.png') }}" class="h-10" alt="Flowbite Logo" />
-            <span class="self-center text-2xl whitespace-nowrap text-orange-600 font-bold">SatuHati</span>
+            <span class="self-center text-2xl whitespace-nowrap text-[#CB6A10] font-bold">SatuHati</span>
         </a>
         <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
             @auth
@@ -58,11 +58,11 @@
             @guest
                 <div class="lg:grid hidden grid-cols-2 gap-4">
                     <a href="{{ route('register') }}"
-                        class="flex items-center justify-center bg-transparent hover:bg-orange-700 transition duration-300 text-orange-700 hover:text-white border-orange-700 hover:border-orange-700 border-2 py-2 px-5 font-bold rounded shadow-lg">
+                        class="flex items-center justify-center bg-transparent hover:bg-[#CB6A10] transition duration-300 text-[#CB6A10] hover:text-white border-[#CB6A10] hover:[#CB6A10] border-2 py-2 px-5 font-bold rounded shadow-lg">
                         Register
                     </a>
                     <a href="{{ route('login') }}"
-                        class="flex items-center justify-center bg-orange-700 hover:bg-orange-600 transition duration-300 text-white py-2 px-5 font-bold rounded shadow-lg">
+                        class="flex items-center justify-center bg-[#CB6A10] hover:bg-[#CB6A10] transition duration-300 text-white py-2 px-5 font-bold rounded shadow-lg">
                         Login
                     </a>
                 </div>
@@ -73,7 +73,7 @@
                 class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
                 <li>
                     <a href="{{ route('home') }}"
-                        class="block py-2 px-3 rounded {{ Route::is('home') ? 'navbar-link-active' : 'navbar-link-inactive' }}">Home</a>
+                        class="block py-2 px-3 rounded {{ Route::is('home') ? 'navbar-link-active' : 'navbar-link-inactive' }}">Beranda</a>
                 </li>
                 <li>
                     <a href="{{ route('forum') }}"
@@ -81,18 +81,22 @@
                         Diskusi</a>
                 </li>
                 <li>
+                    <a href="{{ route('forum') }}"
+                        class="block py-2 px-3 rounded {{ Route::is('forum') ? 'navbar-link-active' : 'navbar-link-inactive' }}">Pengaduan</a>
+                </li>
+                <li>
                     <a href="{{ route('about') }}"
-                        class="block py-2 px-3 rounded {{ Route::is('about') ? 'navbar-link-active' : 'navbar-link-inactive' }}">About
-                        Us</a>
+                        class="block py-2 px-3 rounded {{ Route::is('about') ? 'navbar-link-active' : 'navbar-link-inactive' }}">Tentang
+                        </a>
                 </li>
                 @guest
                     <div class="lg:hidden grid grid-cols-2 gap-4 mt-4">
                         <a href="{{ route('register') }}"
-                            class="flex items-center justify-center bg-transparent hover:bg-orange-600 transition duration-300 text-orange-700 hover:text-white border-orange-700 hover:border-orange-600 border-2 py-2 px-5 font-bold rounded shadow-lg">
+                            class="flex items-center justify-center bg-transparent hover:bg-[#CB6A10] transition duration-300 text-[#CB6A10] hover:text-white border-[#CB6A10] hover:border-[#CB6A10] border-2 py-2 px-5 font-bold rounded shadow-lg">
                             Register
                         </a>
                         <a href="{{ route('login') }}"
-                            class="flex items-center justify-center bg-orange-700 hover:bg-orange-600 transition duration-300 text-white py-2 px-5 font-bold rounded shadow-lg">
+                            class="flex items-center justify-center bg-[#CB6A10] hover:bg-[#CB6A10] transition duration-300 text-white py-2 px-5 font-bold rounded shadow-lg">
                             Login
                         </a>
                     </div>

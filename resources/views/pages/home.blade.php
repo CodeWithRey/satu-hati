@@ -8,17 +8,17 @@
         <div class=" px-4 mx-auto max-w-screen-xl text-center grid md:grid-cols-2 grid-cols-1 place-items-center h-full">
             <div class="">
                 <h1
-                    class="py-1 mb-4 text-4xl font-extrabold tracking-tight leading-none text-orange-600  md:text-5xl lg:text-6xl text-left">
+                    class="py-1 mb-4 text-4xl font-extrabold tracking-tight leading-none text-[#CB6A10] md:text-5xl lg:text-6xl text-left">
                     SatuHati</h1>
                 <p class="mb-4 text-2xl font-semibold text-black text-left">“Bersama Lawan Pelecehan Seksual, Kita Adalah
                     Suara Perubahan dan Cahaya Keadilan”</p>
                 <div class="py-7 flex flex-col space-y-4 sm:flex-row sm:justify-left sm:space-y-0">
                     <a href="{{ route('forum') }}"
-                        class="inline-flex font- gap-2 justify-center items-center py-3 px-5 text-base font-bold text-center text-white rounded-lg bg-orange-700 hover:bg-orange-600 focus:ring-4 focus:ring-orange-300 dark:focus:ring-orange-900 transition duration-300">
-                        Forum Curhat<i class="fa-solid fa-comments"></i>
+                        class="inline-flex font- gap-2 justify-center items-center py-3 px-5 text-base font-bold text-center text-white rounded-lg bg-[#CB6A10] hover:bg-[#CB6A10] focus:ring-4 focus:ring-orange-300 dark:focus:ring-[#CB6A10] transition duration-300">
+                        Forum Diskusi<i class="fa-solid fa-comments"></i>
                     </a>
                     <a href="#"
-                        class="inline-flex font- gap-2 justify-center hover:text-white hover:bg-orange-700 items-center py-3 px-5 sm:ms-4 text-base font-bold text-center text-orange-700 rounded-lg border-2 border-orange-700 focus:ring-4 focus:ring-gray-400 transition duration-300">
+                        class="inline-flex font- gap-2 justify-center hover:text-white hover:bg-[#CB6A10] items-center py-3 px-5 sm:ms-4 text-base font-bold text-center text-[#CB6A10] rounded-lg border-2 border-[#CB6A10] focus:ring-4 focus:ring-gray-400 transition duration-300">
                         Pengaduan <i class="fa-solid fa-phone-volume"></i>
                     </a>
                 </div>
@@ -34,7 +34,7 @@
             <svg class="w-8 h-8 text-gray-400 dark:text-gray-600 mb-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 14">
                 <path d="M6 0H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3H2a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3h-1a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Z"/>
             </svg>
-            <p class="text-red-600 font-bold text-3xl">REMINDER</p>
+            <p class="text-[#FF0000] font-bold text-3xl">PENGINGAT</p>
                 <p class="text-black"><br> "Kamu bukanlah kesalahan! <br>
                 Kamu kuat, kamu berharga, dan aku di sini untuk mendukungmu."</p>
         </blockquote>
@@ -44,7 +44,7 @@
         <div class="grid md:grid-cols-2 grid-cols-1 p-4 place-items-stretch">
             <div class="flex flex-col gap-6 p-16 place-content-center">
                 <h2 class="md:text-start text-center text-3xl font-bold text-black place-content-center">Pelecehan Seksual <span
-                        class="text-3xl font-bold text-orange-600">Secara Verbal</span></h2>
+                        class="text-3xl font-bold text-[#CB6A10]">Secara Verbal</span></h2>
                 <img class="md:hidden object-contain block w-96 mx-auto" src="{{ asset('assets/images/verbal.png') }}" alt="">
                 <p class="text-start text-gray-600 text-xl ">Melibatkan penggunaan kata-kata atau komunikasi lisan
                     yang tidak pantas dengan unsur seksual. Ini termasuk komentar atau lelucon yang tidak diinginkan,
@@ -56,7 +56,7 @@
             <img class=" md:block hidden object-contain w-72 mx-auto place-items-center" src="{{ asset('assets/images/fisik.png') }}" alt="">
             <div class="flex flex-col gap-6 p-16 place-content-center">
                 <h2 class="md:text-start text-center text-3xl font-bold text-black place-content-center">Pelecehan Seksual <span
-                        class="text-3xl font-bold text-orange-600">Secara Fisik</span></h2>
+                        class="text-3xl font-bold text-[#CB6A10]">Secara Fisik</span></h2>
                 <img class="md:hidden object-contain block w-72 mx-auto" src="{{ asset('assets/images/fisik.png') }}" alt="">
                 <p class="text-start text-gray-600 text-xl">Melibatkan kontak fisik yang tidak diinginkan dan bersifat seksual 
                     terhadap seseorang tanpa persetujuan mereka. Ini dapat mencakup berbagai jenis 
@@ -68,7 +68,7 @@
         <div class="grid md:grid-cols-2 grid-cols-1 p-4 place-items-stretch">
             <div class="flex flex-col gap-6 p-16 place-content-center">
                 <h2 class="md:text-start text-center text-3xl font-bold text-black place-content-center">Pelecehan Seksual <span
-                        class="text-3xl font-bold text-orange-600">Secara Non Fisik</span></h2>
+                        class="text-3xl font-bold text-[#CB6A10]">Secara Non Fisik</span></h2>
                 <img class="md:hidden object-contain block w-96 mx-auto" src="{{ asset('assets/images/non-fisik.png') }}" alt="">
                 <p class="text-start text-gray-600 text-xl ">Melibatkan aspek-aspek non-fisik, seperti kata-kata, gambar, atau tindakan yang 
                     bersifat seksual dan dapat mengganggu atau merugikan seseorang. Ini mencakup berbagai bentuk perilaku yang 
@@ -82,7 +82,7 @@
             <img class=" md:block hidden object-contain w-96 mx-auto place-items-center" src="{{ asset('assets/images/daring.png') }}" alt="">
             <div class="flex flex-col gap-6 p-16 place-content-center">
                 <h2 class="md:text-start text-center text-3xl font-bold text-black place-content-center">Pelecehan Seksual <span
-                        class="text-3xl font-bold text-orange-600">Secara Daring</span></h2>
+                        class="text-3xl font-bold text-[#CB6A10]">Secara Daring</span></h2>
                 <img class="md:hidden object-contain block w-96 mx-auto" src="{{ asset('assets/images/daring.png') }}" alt="">
                 <p class="text-start text-gray-600 text-xl">Melibatkan penggunaan platform online untuk menyampaikan pesan, 
                     gambar, atau tindakan yang tidak diinginkan dan bersifat seksual, merugikan dan mengganggu kesejahteraan 
@@ -94,7 +94,7 @@
     <section class="p-16 bg-landing2">
         <div class="flex flex-col items-center justify-center h-full pb-4">
         <h1 class="font-extrabold tracking-tight leading-none text-black text-4xl md:text-4xl text-left">Pemenuhan Hak Korban</h1>
-        <h1 class="font-extrabold tracking-tight leading-none text-orange-600 text-4xl md:text-4xl text-left">Pelecehan Seksual</h1>
+        <h1 class="font-extrabold tracking-tight leading-none text-[#FF0000] text-4xl md:text-4xl text-left">Pelecehan Seksual</h1>
         </div>
         <div class="grid xl:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4 place-items-center">
             <div
