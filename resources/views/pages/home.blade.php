@@ -18,7 +18,7 @@
                         Forum Diskusi<i class="fa-solid fa-comments"></i>
                     </a>
                     <a href="#"
-                        class="inline-flex font- gap-2 justify-center hover:text-white hover:bg-[#CB6A10] items-center py-3 px-5 sm:ms-4 text-base font-bold text-center text-[#CB6A10] rounded-lg border-2 border-[#CB6A10] focus:ring-4 focus:ring-gray-400 transition duration-300">
+                        class="inline-flex font- gap-2 justify-center hover:text-white hover:bg-[#CB6A10] items-center py-3 px-5 sm:ms-4 text-base font-bold text-center text-[#CB6A10] rounded-lg border-2 border-[#CB6A10] focus:ring-4 focus:ring-orange-300 transition duration-300">
                         Pengaduan <i class="fa-solid fa-phone-volume"></i>
                     </a>
                 </div>
@@ -40,7 +40,7 @@
             </blockquote>
         </div>
     </section>
-    <section>
+    <section class="pb-24">
         <div class="grid md:grid-cols-2 grid-cols-1 p-4 place-items-stretch">
             <div class="flex flex-col gap-6 p-16 place-content-center">
                 <h2 class="md:text-start text-center text-3xl font-bold text-black place-content-center">Pelecehan Seksual <span
@@ -95,16 +95,16 @@
         </div>
 
     </section>
-    <section class="p-16 bg-landing2">
-        <div class="flex flex-col items-center justify-center h-full pb-4">
-        <h1 class="font-extrabold tracking-tight leading-none text-black text-4xl md:text-4xl text-left">Pemenuhan Hak Korban</h1>
-        <h1 class="font-extrabold tracking-tight leading-none text-[#FF0000] text-4xl md:text-4xl text-left">Pelecehan Seksual</h1>
+    <section class="py-24 bg-landing2">
+        <div class="flex flex-col items-center justify-center h-full pb-12">
+        <h1 class="font-extrabold tracking-tight leading-none text-black text-3xl md:text-4xl lg:text-left text-center">Pemenuhan Hak Korban</h1>
+        <h1 class="font-extrabold tracking-tight leading-none text-[#FF0000] text-3xl md:text-4xl lg:text-left text-center">Pelecehan Seksual</h1>
         </div>
-        <div class="grid xl:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4 place-items-center w-10/12 mx-auto">
+        <div class="grid xl:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4 place-items-center w-11/12 mx-auto">
             <div
-                class="flex flex-col justify-start max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                class="flex flex-col justify-start max-w-sm bg-white border self-stretch border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                 <a href="#">
-                    <img class="rounded-t-lg h-72 w-auto mx-auto " src="{{ asset('assets/images/perlindungan.png') }}"
+                    <img class="rounded-t-lg h-72 w-72 object-contain mx-auto " src="{{ asset('assets/images/perlindungan.png') }}"
                         alt="" />
                 </a>
                 <div class="p-5 text-center">
@@ -118,9 +118,9 @@
             </div>
 
             <div
-                class="flex flex-col justify-start max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                class="flex flex-col justify-start max-w-sm bg-white border self-stretch border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                 <a href="#">
-                    <img class="rounded-t-lg h-72 w-auto mx-auto " src="{{ asset('assets/images/kesehatan.png') }}"
+                    <img class="rounded-t-lg h-72 w-72 object-contain mx-auto " src="{{ asset('assets/images/kesehatan.png') }}"
                         alt="" />
                 </a>
                 <div class="p-5 text-center">
@@ -135,9 +135,9 @@
             </div>
 
             <div
-                class="flex flex-col justify-start max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                class="flex flex-col justify-start max-w-sm bg-white border self-stretch border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                 <a href="#">
-                    <img class="rounded-t-lg h-72 w-auto mx-auto " src="{{ asset('assets/images/rumah.png') }}"
+                    <img class="rounded-t-lg h-72 w-72 object-contain mx-auto " src="{{ asset('assets/images/rumah.png') }}"
                         alt="" />
                 </a>
                 <div class="p-5 text-center">
@@ -151,9 +151,9 @@
             </div>
 
             <div
-                class="flex flex-col justify-start max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                class="flex flex-col justify-start max-w-sm bg-white border self-stretch border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                 <a href="#">
-                    <img class="rounded-t-lg h-72 w-auto mx-auto " src="{{ asset('assets/images/korban.png') }}"
+                    <img class="rounded-t-lg h-72 w-72 object-contain mx-auto " src="{{ asset('assets/images/korban.png') }}"
                         alt="" />
                 </a>
                 <div class="p-5 text-center">

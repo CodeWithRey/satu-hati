@@ -4,36 +4,30 @@
 
 {{-- area konten yang ada pada layout default --}}
 @section('content')
-    <section>
+    <section class="py-16">
         <div class="grid md:grid-cols-2 grid-cols-1 p-4 place-items-stretch pt-24">
             <img class=" md:block hidden object-contain w-96 mx-auto place-items-center"
                 src="{{ asset('assets/images/about.png') }}" alt="">
             <div class="flex flex-col gap-6 p-16 place-content-center">
-                <h2 class="text-start text-3xl font-bold text-orange-600 place-content-center">About Us</h2>
+                <h2 class="text-start text-3xl font-bold text-dy place-content-center">Tentang Kami</h2>
                 <img class="md:hidden object-contain block w-96" src="{{ asset('assets/images/about.png') }}" alt="">
                 <p class="text-start text-gray-600 text-xl font-semibold">Selamat Datang di SatuHati!</p>
                 <p class="text-start text-gray-600 text-xl">
-                    Kami adalah tim yang berkomitmen untuk mengatasi perbedaan perlakuan sosial dan stigma dalam penanganan
-                    pelecehan seksual di Indonesia.
-                    Berdasarkan data yang mengkhawatirkan, kami menaruh perhatian khusus pada pengalaman korban, baik
-                    perempuan maupun laki-laki.
-                    Dengan fokus pada edukasi dan forum diskusi, SatuHati bertujuan meningkatkan kesadaran masyarakat,
-                    menghilangkan stigma, dan memberikan dukungan bagi para korban.
-                    Bergabunglah dengan kami dalam membangun komunitas yang kuat dan menciptakan lingkungan yang aman bagi
-                    semua individu.
-                    Bersama-sama, mari wujudkan perubahan positif dalam penanganan pelecehan seksual di Indonesia. SatuHati
-                    - Bersama Lawan Pelecehan Seksual!</p>
+                    Kami tim yang berkomitmen mengatasi perbedaan sosial dan stigma dalam penanganan pelecehan seksual di
+                    Indonesia. Fokus pada edukasi dan diskusi, SatuHati bertujuan meningkatkan kesadaran, menghilangkan
+                    stigma, dan memberikan dukungan kepada korban. Bergabunglah dalam membangun komunitas yang kuat,
+                    menciptakan lingkungan yang aman. <br> <span class="font-bold pt-2">SatuHati - Bersama Lawan Pelecehan Seksual!</span> </p>
             </div>
         </div>
     </section>
     </section>
-    <section class="p-16 bg-about">
+    <section class="p-16 bg-[#FFEAB3]">
         <div class="flex flex-col items-center justify-center h-full pb-4">
-            <h1 class="font-extrabold tracking-tight leading-none text-black text-4xl md:text-4xl text-left">Our Team</h1>
+            <h1 class="font-extrabold tracking-tight leading-none text-black text-4xl md:text-4xl text-left ">Tim Kami</h1>
         </div>
         <div class=" grid xl:grid-cols-5 md:grid-cols-3 grid-cols-1 gap-3">
             <div class="flex flex-col justify-start max-w-sm bg-transparant ">
-                <a href="#">
+                <a href="https://www.linkedin.com/in/marcellinojg/">
                     <img class="rounded-t-lg h-48 w-auto mx-auto " src="{{ asset('assets/images/marcel2.png') }}"
                         alt="" />
                 </a>
@@ -49,7 +43,7 @@
             </div>
 
             <div class="flex flex-col justify-start max-w-sm bg-transparant">
-                <a href="#">
+                <a href="https://www.linkedin.com/in/junia-vitasari-1918a8252/">
                     <img class="rounded-t-lg h-48 w-auto mx-auto " src="{{ asset('assets/images/jun2.png') }}"
                         alt="" />
                 </a>
@@ -64,7 +58,7 @@
             </div>
 
             <div class="flex flex-col justify-start max-w-sm bg-transparant ">
-                <a href="#">
+                <a href="https://www.linkedin.com/in/reynaldi-rizky-pratama/">
                     <img class="rounded-t-lg h-48 w-auto mx-auto " src="{{ asset('assets/images/masrey.png') }}"
                         alt="" />
                 </a>
@@ -80,7 +74,7 @@
             </div>
 
             <div class="flex flex-col justify-start max-w-sm bg-transparant ">
-                <a href="#">
+                <a href="https://www.linkedin.com/in/vicka-rizqia-b4505a222/">
                     <img class="rounded-t-lg h-48 w-auto mx-auto " src="{{ asset('assets/images/vicqa.png') }}"
                         alt="" />
                 </a>
@@ -95,7 +89,7 @@
             </div>
 
             <div class="flex flex-col justify-start max-w-sm bg-transparant ">
-                <a href="#">
+                <a href="https://www.linkedin.com/in/arfan-astaraja-8b1b54221">
                     <img class="rounded-t-lg h-48 w-auto mx-auto " src="{{ asset('assets/images/arfan.png') }}"
                         alt="" />
                 </a>

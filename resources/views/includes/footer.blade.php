@@ -5,7 +5,7 @@
 <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
     <div class="md:flex md:justify-center">
         <div class="mb-6 md:mb-0 flex items-center">
-            <img class="h-16 me-3" src="{{ asset('assets/images/logo satu hati.png') }}" alt="SatuHati Logo" />
+            <img class="h-16 me-3" src="{{ asset('assets/images/logo-no-text.png') }}" alt="SatuHati Logo" />
             <div class="flex flex-col">
                 <p class=" text-2xl font-bold whitespace-nowrap  text-[#CB6A10]">SatuHati</p>
                 <p class="  text-gray-500 dark:text-gray-400 font-normal w-3/2 ">SatuHati merupakan aplikasi untuk korban
@@ -49,14 +49,17 @@
                 <span class="sr-only">Whatsapp page</span>
             </a>
             <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5">
-                <i class="fa-brands fa-github w-4 h-4"></i>
-                <span class="sr-only">Github page</span>
+                <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+                <span class="sr-only">Instagram page</span>
             </a>
             <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5">
-                <i class="fa-brands fa-linkedin w-4 h-4"></i>
-                <span class="sr-only">Linkedin page</span>
+                <i class="fa-brands fa-youtube" aria-hidden="true"></i>
+                <span class="sr-only">Youtube page</span>
             </a>
-          
+            <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5">
+                <i class="fa-brands fa-twitter w-4 h-4"></i>
+                <span class="sr-only">Twitter page</span>
+            </a>
         </div>
     </div>
 </div>
