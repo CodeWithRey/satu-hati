@@ -43,8 +43,8 @@ Route::get("/edit-profile", function () {
 
 Route::get('/forum', [PostController::class, 'index'])->name('forum');
 
-Route::get('/detail-forum', function () {
+Route::get('/detailforum', function () {
     return view('pages.detailforum');
-})->name('detail_forum');
+});
 
 require __DIR__ . '/auth.php';
