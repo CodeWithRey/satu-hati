@@ -8,9 +8,10 @@
         <div class="flex flex-col gap-4 mt-4">
             <h1 class="mx-auto font-bold text-5xl">Forum <span class="text-[#CB6A10]">Diskusi</span>
             </h1>
-            <p class="text-xl text-center mx-4">Selamat datang di Forum Diskusi SatuHati
-                Mari bersama-sama membangun ruang aman untuk berdiskusi, mendukung satu sama lain, dan menciptakan
-                perubahan positif.</p>
+            <p class="text-xl text-center mb-0 px-20">Selamat Datang di Forum Diskusi SatuHati!
+                <br>Mari bersama-sama membangun ruang aman untuk berdiskusi, mendukung satu sama lain, dan menciptakan
+                    perubahan positif.
+                </p>
         </div>
     </div>
 
@@ -127,7 +128,7 @@
                                     </script>
 
                                     <div class="flex items-center mb-5">
-                                        <input id="default-checkbox" type="checkbox" value=""
+                                        <input id="default-checkbox" type="checkbox" value=1 name="is_anonymous"
                                             class="w-4 h-4 text-[#CB6A10] bg-gray-100 border-gray-300 rounded focus:ring-[#CB6A10] dark:focus:ring-[#CB6A10] dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                         <label for="default-checkbox"
                                             class="ml-2 text-sm font-normal italic dark:text-gray-300 overflow-visible whitespace-nowrap overflow-ellipsis">
@@ -178,10 +179,10 @@
                     <div class="bg-white p-4 rounded-md shadow-md w-full">
                         <!-- Foto Profile dan Nickname -->
                         <div class="flex items-center mb-4">
-                            <img src="{{ $post->user->profile_picture_path ? $post->user->profile_picture_path : asset('assets/images/user_placeholder.png') }}"
+                            <img src="{{ $post->user->profile_picture_path && !$post->is_anonymous ? $post->user->profile_picture_path : asset('assets/images/user_placeholder.png') }}"
                                 alt="Profile Picture" class="w-8 h-8 rounded-full mr-2">
                             <span
-                                class="text-black font-semibold">{{ $post->is_anonymous === 0 ? $post->user->first_name . ' ' . $post->user->last_name : 'Anonymous' }}</span>
+                                class="text-black font-semibold">{{ $post->is_anonymous === 0 ? $post->user->full_name : 'Anonymous' }}</span>
                         </div>
                         <!-- Judul Postingan -->
                         <h2 class="text-lg font-semibold mb-2">{{ $post->title }}</h2>

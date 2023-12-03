@@ -1,5 +1,6 @@
 {{-- Menghubungkan home page dengan layout default  --}}
 @extends('layout.default')
+@section('title', 'Satu Hati | Tentang Kami')
 
 {{-- area konten yang ada pada layout default --}}
 @section('content')
@@ -53,7 +54,7 @@
                         alt="" />
                 </a>
                 <div class="p-5 text-center">
-                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Font-End Developer</p>
+                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Front-End Developer</p>
                     <a href="#">
                         <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">Junia Vitasari</h5>
                     </a>
@@ -84,7 +85,7 @@
                         alt="" />
                 </a>
                 <div class="p-5 text-center">
-                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Font-End Developer</p>
+                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Front-End Developer</p>
                     <a href="#">
                         <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">Vicka Rizqia</h5>
                     </a>
@@ -99,7 +100,7 @@
                         alt="" />
                 </a>
                 <div class="p-5 text-center">
-                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Font-End Developer</p>
+                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Front-End Developer</p>
                     <a href="#">
                         <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">Arfan Astaraja</h5>
                     </a>
