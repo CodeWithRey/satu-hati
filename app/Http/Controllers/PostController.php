@@ -17,7 +17,7 @@ class PostController extends Controller
         $posts =
             Post::with('user')
             ->with('comments')
-            ->with('images')
+            ->with('postImages')
             ->orderBy('created_at', 'desc')
             ->get();
 
@@ -50,7 +50,7 @@ class PostController extends Controller
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $imagefile) {
                 $path = 'posts';
-                $post->images()->create([
+                $post->postImages()->create([
                     'path' => $this->uploadImage($imagefile, $path),
                 ]);
             }
@@ -96,7 +96,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        $post->images->each(function ($image) {
+        $post->postImages->each(function ($image) {
             $image->checkImages($image->path);
             $image->delete();
         });

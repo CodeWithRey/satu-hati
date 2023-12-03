@@ -37,9 +37,9 @@ class Post extends Model
         return $this->hasMany(LikePost::class);
     }
 
-    public function images(): HasMany
+    public function postImages(): HasMany
     {
-        return $this->hasMany(Image::class);
+        return $this->hasMany(PostImage::class);
     }
 
 

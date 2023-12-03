@@ -189,7 +189,7 @@
                         <p class="text-gray-600 mb-4">{{ $post->description }}</p>
 
                         <div class="flex flex-wrap items-center justify-start gap-8 mb-4">
-                            @foreach ($post->images as $image)
+                            @foreach ($post->postImages as $image)
                                 <a class="my-image-links" data-maxwidth="800px" href="{{ asset($image->path) }}">
                                     <img src="{{ asset($image->path) }}" class="object-cover" width="100px"
                                         alt="">

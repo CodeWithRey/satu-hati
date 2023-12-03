@@ -37,6 +37,11 @@ class Comment extends Model
         return $this->hasMany(LikeComment::class);
     }
 
+    public function commentImages(): HasMany
+    {
+        return $this->hasMany(CommentImage::class);
+    }
+
     public static function boot()
     {
         parent::boot();
