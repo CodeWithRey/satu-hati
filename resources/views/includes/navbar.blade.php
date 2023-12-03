@@ -28,7 +28,7 @@
                     <ul class="py-2" aria-labelledby="user-menu-button">
                         <li>
                             <a href="{{ route('profile.edit', Auth::user()->id) }}"
-                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Edit
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
                                 Profil</a>
                         </li>
                         <li>
@@ -36,7 +36,7 @@
                                 @csrf
                                 <button type="submit"
                                     class="block px-4 w-full text-start py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                                    Logout<i class="fa-solid fa-arrow-right-from-bracket"></i>
+                                    Keluar <i class="fa-solid fa-arrow-right-from-bracket"></i>
                                 </button>
                             </form>
                         </li>
