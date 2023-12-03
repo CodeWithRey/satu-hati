@@ -198,7 +198,7 @@
                                             <span
                                                 class="text-black font-semibold">{{ $top_post->is_anonymous === 0 ? $top_post->user->full_name : 'Anonymous' }}</span>
                                         </div>
-                                        <a href='{{ route('detail_forum', $top_post->id) }}' class="flex items-center gap-3 bg-dy hover:bg-dy-dark py-2 px-6 rounded focus:ring-4 focus:ring-orange-200 text-white transition duration-300">
+                                        <a href='' class="flex items-center gap-3 bg-dy hover:bg-dy-dark py-2 px-6 rounded focus:ring-4 focus:ring-orange-200 text-white transition duration-300">
                                             <i class="fa fa-eye" aria-hidden="true"></i>
                                             Lihat
                                         </a>
