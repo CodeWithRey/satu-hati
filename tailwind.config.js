@@ -15,6 +15,7 @@ export default {
             colors: {
                 'yellow': '#FFD28F',
                 'dy': '#CB6A10',
+                'dy-dark': '#B35803'
             },
                 fontFamily: {
                     sans: ["Figtree", ...defaultTheme.fontFamily.sans],

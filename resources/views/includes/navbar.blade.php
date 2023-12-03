@@ -12,7 +12,7 @@
                     id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown"
                     data-dropdown-placement="bottom">
                     <span class="sr-only">Open user menu</span>
-                    <img class="w-8 h-8 rounded-full" src="{{ asset('assets/images/user_placeholder.png') }}"
+                    <img class="w-8 h-8 rounded-full" src="{{ Auth::user()->profile_picture_path ? asset(Auth::user()->profile_picture_path) : asset('assets/images/user_placeholder.png') }}"
                         alt="user photo">
                 </button>
 
