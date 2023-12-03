@@ -14,8 +14,17 @@ class CommentController extends Controller
      */
     public function create($postId)
     {
-        $comment = Post::find($postId);
-        return view('comments', compact('comment'));
+        $posts = Post::find($postId)
+            ->with('user')
+            ->with('postImages')
+            ->get();
+
+        $comments = Comment::with('user')
+            ->with('commentImages')
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return view('pages.detailforum', compact('posts', 'comments'));
     }
 
 

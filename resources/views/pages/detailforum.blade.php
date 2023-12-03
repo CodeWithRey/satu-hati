@@ -8,68 +8,72 @@
     <section class="w-11/12 py-5 mx-auto mt-20">
         <div class="bg-white p-4 rounded-lg shadow-md">
             <!-- Foto Profile dan Nickname -->
-            <div class="flex items-center justify-between mb-2">
-                <div class="flex items-center">
-                    <img src="path/to/commenter-profile.jpg" alt="Profile Picture" class="w-8 h-8 rounded-full mr-2">
-                    <span class="text-black font-semibold">Nickname User</span>
-                </div>
-                <div class="relative group">
-                    <button class="text-gray-600 focus:outline-none text-lg p-2" onclick="toggleMenu(this)">
-                        <i class="fas fa-ellipsis-v"></i>
-                    </button>
-
-                    <!-- Menu Opsi Edit dan Hapus -->
-                    <div class="hidden absolute right-0 mt-2 space-y-2 bg-white border rounded-md shadow-lg"
-                        id="optionsMenu">
-                        <button
-                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition duration-300">
-                            Edit
-                        </button>
-                        <button
-                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition duration-300">
-                            Hapus
-                        </button>
+            @foreach ($posts as $post)
+                <div class="flex items-center justify-between mb-2">
+                    <div class="flex items-center">
+                        <img src="{{ $post->user->profile_picture_path ? $post->user->profile_picture_path : asset('assets/images/user_placeholder.png') }}"
+                            alt="Profile Picture" class="w-8 h-8 rounded-full mr-2">
+                        <span
+                            class="text-black font-semibold">{{ $post->is_anonymous === 0 ? $post->user->full_name : 'Anonymous' }}</span>
                     </div>
+                    <div class="relative group">
+                        <button class="text-gray-600 focus:outline-none text-lg p-2" onclick="toggleMenu(this)">
+                            <i class="fas fa-ellipsis-v"></i>
+                        </button>
 
+                        <!-- Menu Opsi Edit dan Hapus -->
+                        <div class="hidden absolute right-0 mt-2 space-y-2 bg-white border rounded-md shadow-lg"
+                            id="optionsMenu">
+                            <button
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition duration-300">
+                                Edit
+                            </button>
+                            <form action="{{ route('post.destroy', $post->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition duration-300"
+                                    type="submit">
+                                    Hapus
+                                </button>
+                            </form>
+                        </div>
+
+                    </div>
                 </div>
-            </div>
-            <!-- Judul Postingan -->
-            <h2 class="text-lg font-semibold mb-2">Judul Postingan</h2>
-            <!-- Deskripsi Postingan -->
-            <p class="text-gray-600 mb-4">Deskripsi Postingan Lorem ipsum dolor sit amet, consectetur adipiscing
-                elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-                aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                mollit anim id est laborum.
-            </p>
-            <!-- Gambar Postingan -->
-            <a class="my-image-links" data-maxwidth="800px"
-                href="https://o-cdn-cas.sirclocdn.com/parenting/images/tipe-tipe-pelecehan-seksual-yan.width-800.jpegquality-80.jpg">
-                <img src="https://o-cdn-cas.sirclocdn.com/parenting/images/tipe-tipe-pelecehan-seksual-yan.width-800.jpegquality-80.jpg"
-                    alt="Posting Image" class="w-96 h-auto rounded-md">
-            </a>
+                <!-- Judul Postingan -->
+                <h2 class="text-lg font-semibold mb-2">{{ $post->title }}</h2>
+                <!-- Deskripsi Postingan -->
+                <p class="text-gray-600 mb-4">{{ $post->description }}
+                </p>
+                <!-- Gambar Postingan -->
+                @foreach ($post->postImages as $image)
+                    <a class="my-image-links" data-maxwidth="800px" href="{{ asset($image->path) }}">
+                        <img src="{{ asset($image->path) }}" alt="Posting Image" class="w-96 h-auto rounded-md">
+                    </a>
+                @endforeach
+                <!-- Tombol Like dan Jumlah Like -->
+                <style>
+                    .like-button {
+                        transition: color 0.2s ease;
+                        /* Efek transisi untuk perubahan warna */
+                    }
 
-            <!-- Tombol Like dan Jumlah Like -->
-            <style>
-                .like-button {
-                    transition: color 0.2s ease;
-                    /* Efek transisi untuk perubahan warna */
-                }
+                    .like-button.clicked {
+                        color: #CB6A10;
+                        /* Warna yang diinginkan saat tombol diklik */
+                    }
+                </style>
 
-                .like-button.clicked {
-                    color: #CB6A10;
-                    /* Warna yang diinginkan saat tombol diklik */
-                }
-            </style>
-
-            <div class="flex items-center text-gray-500 mb-2 mt-4">
-                <button class="like-button mr-2" onclick="toggleLike(this)">
-                    <i class="fas fa-thumbs-up text-xl"></i>
-                </button>
-                <span class="mr-5">10 Suka</span>
-                <span class="mr-5"><i class="fas fa-comment text-xl"></i> 5 Komentar</span>
-            </div>
+                <div class="flex items-center text-gray-500 mb-2 mt-4">
+                    <button class="like-button mr-2" onclick="toggleLike(this)">
+                        <i class="fas fa-thumbs-up text-xl"></i>
+                    </button>
+                    <span class="mr-5">{{ $post->likes()->count() }} Suka</span>
+                    <span class="mr-5"><i class="fas fa-comment text-xl"></i> {{ $post->comments()->count() }}
+                        Komentar</span>
+                </div>
+            @endforeach
         </div>
     </section>
 

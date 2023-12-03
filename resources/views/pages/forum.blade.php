@@ -181,7 +181,7 @@
                             <img src="{{ $post->user->profile_picture_path ? $post->user->profile_picture_path : asset('assets/images/user_placeholder.png') }}"
                                 alt="Profile Picture" class="w-8 h-8 rounded-full mr-2">
                             <span
-                                class="text-black font-semibold">{{ $post->is_anonymous === 0 ? $post->user->first_name . ' ' . $post->user->last_name : 'Anonymous' }}</span>
+                                class="text-black font-semibold">{{ $post->is_anonymous === 0 ? $post->user->full_name : 'Anonymous' }}</span>
                         </div>
                         <!-- Judul Postingan -->
                         <h2 class="text-lg font-semibold mb-2">{{ $post->title }}</h2>
@@ -230,7 +230,9 @@
                         <!-- Tombol Balas -->
                         @auth
                             <button class="text-gray-600">
-                                Balas
+                                <a href="{{ route('reply.comment', $post->id) }}" class="w-full h-full">
+                                    Balas
+                                </a>
                             </button>
                         @endauth
 
