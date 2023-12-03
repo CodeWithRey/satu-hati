@@ -5,7 +5,7 @@
 <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
     <div class="md:flex md:justify-center">
         <div class="mb-6 md:mb-0 flex items-center">
-            <img class="h-16 me-3" src="{{ asset('assets/images/logo-sh.png') }}" alt="SatuHati Logo" />
+            <img class="h-16 me-3" src="{{ asset('assets/images/logo satu hati.png') }}" alt="SatuHati Logo" />
             <div class="flex flex-col">
                 <p class=" text-2xl font-bold whitespace-nowrap  text-[#CB6A10]">SatuHati</p>
                 <p class="  text-gray-500 dark:text-gray-400 font-normal w-3/2 ">SatuHati merupakan aplikasi untuk korban
