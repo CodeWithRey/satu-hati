@@ -36,8 +36,8 @@
             </svg>
             <p class="text-[#FF0000] font-bold text-3xl">PENGINGAT</p>
                 <p class="text-black"><br> "Kamu bukanlah kesalahan! <br>
-                Kamu kuat, kamu berharga, dan aku di sini untuk mendukungmu."</p>
-        </blockquote>
+                    Kamu kuat, kamu berharga, dan aku di sini untuk mendukungmu."</p>
+            </blockquote>
         </div>
     </section>
     <section>
@@ -50,10 +50,12 @@
                     yang tidak pantas dengan unsur seksual. Ini termasuk komentar atau lelucon yang tidak diinginkan,
                     merendahkan, dan menciptakan rasa tidak aman.</p>
             </div>
-            <img class=" md:block hidden object-contain w-96 mx-auto place-items-center" src="{{ asset('assets/images/verbal.png') }}" alt="">
+            <img class=" md:block hidden object-contain w-96 mx-auto place-items-center"
+                src="{{ asset('assets/images/verbal.png') }}" alt="">
         </div>
         <div class="grid md:grid-cols-2 grid-cols-1 p-4 place-items-stretch">
-            <img class=" md:block hidden object-contain w-72 mx-auto place-items-center" src="{{ asset('assets/images/fisik.png') }}" alt="">
+            <img class=" md:block hidden object-contain w-72 mx-auto place-items-center"
+                src="{{ asset('assets/images/fisik.png') }}" alt="">
             <div class="flex flex-col gap-6 p-16 place-content-center">
                 <h2 class="md:text-start text-center text-3xl font-bold text-black place-content-center">Pelecehan Seksual <span
                         class="text-3xl font-bold text-[#CB6A10]">Secara Fisik</span></h2>
@@ -74,12 +76,14 @@
                     bersifat seksual dan dapat mengganggu atau merugikan seseorang. Ini mencakup berbagai bentuk perilaku yang 
                     merendahkan martabat atau membuat seseorang merasa tidak aman, tanpa melibatkan kontak fisik langsung.</p>
             </div>
-            <img class=" md:block hidden object-contain w-96 mx-auto place-items-center" src="{{ asset('assets/images/non-fisik.png') }}" alt="">
+            <img class=" md:block hidden object-contain w-96 mx-auto place-items-center"
+                src="{{ asset('assets/images/non-fisik.png') }}" alt="">
         </div>
 
-        
+
         <div class="grid md:grid-cols-2 grid-cols-1 p-4 place-items-stretch">
-            <img class=" md:block hidden object-contain w-96 mx-auto place-items-center" src="{{ asset('assets/images/daring.png') }}" alt="">
+            <img class=" md:block hidden object-contain w-96 mx-auto place-items-center"
+                src="{{ asset('assets/images/daring.png') }}" alt="">
             <div class="flex flex-col gap-6 p-16 place-content-center">
                 <h2 class="md:text-start text-center text-3xl font-bold text-black place-content-center">Pelecehan Seksual <span
                         class="text-3xl font-bold text-[#CB6A10]">Secara Daring</span></h2>
@@ -96,7 +100,7 @@
         <h1 class="font-extrabold tracking-tight leading-none text-black text-4xl md:text-4xl text-left">Pemenuhan Hak Korban</h1>
         <h1 class="font-extrabold tracking-tight leading-none text-[#FF0000] text-4xl md:text-4xl text-left">Pelecehan Seksual</h1>
         </div>
-        <div class="grid xl:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4 place-items-center">
+        <div class="grid xl:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4 place-items-center w-10/12 mx-auto">
             <div
                 class="flex flex-col justify-start max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                 <a href="#">

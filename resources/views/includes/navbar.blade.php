@@ -12,7 +12,7 @@
                     id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown"
                     data-dropdown-placement="bottom">
                     <span class="sr-only">Open user menu</span>
-                    <img class="w-8 h-8 rounded-full" src="{{ asset('assets/images/user_placeholder.png') }}"
+                    <img class="w-8 h-8 rounded-full" src="{{ Auth::user()->profile_picture_path ? asset(Auth::user()->profile_picture_path) : asset('assets/images/user_placeholder.png') }}"
                         alt="user photo">
                 </button>
 
@@ -21,13 +21,13 @@
                     id="user-dropdown">
                     <div class="px-4 py-3">
                         <span
-                            class="block text-sm text-gray-900 dark:text-white">{{ Auth::user()->first_name . ' ' . Auth::user()->last_name }}</span>
+                            class="block text-sm text-gray-900 dark:text-white">{{ Auth::user()->full_name }}</span>
                         <span
                             class="block text-sm  text-gray-500 truncate dark:text-gray-400">{{ Auth::user()->email }}</span>
                     </div>
                     <ul class="py-2" aria-labelledby="user-menu-button">
                         <li>
-                            <a href="{{ route('profile.edit', Auth::user()->id) }}"
+                            <a href="{{ route('profile.show', Auth::user()->id) }}"
                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
                                 Profil</a>
                         </li>
@@ -36,7 +36,7 @@
                                 @csrf
                                 <button type="submit"
                                     class="block px-4 w-full text-start py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                                    Keluar <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                                    Keluar <i class="ml-1 fa-solid fa-arrow-right-from-bracket"></i>
                                 </button>
                             </form>
                         </li>
