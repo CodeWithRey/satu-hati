@@ -44,9 +44,21 @@ class CommentController extends Controller
             //parent_id => nullable 
         ]);
 
+
+        // dd($request->all());
         //ada kondisi untuk mengecek parent
 
-        Comment::create($validatedData);
+        $comment = Comment::create($request->all());
+
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $imagefile) {
+                $path = 'comments';
+                $comment->commentImages()->create([
+                    'path' => $this->uploadImage($imagefile, $path),
+                ]);
+            }
+        }
+
         return redirect()->route('post.index')->with('success', 'Comment has been created successfully !');
     }
 
