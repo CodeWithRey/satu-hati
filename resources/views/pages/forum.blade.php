@@ -8,9 +8,10 @@
         <div class="flex flex-col gap-4 mt-4">
             <h1 class="mx-auto font-bold text-5xl">Forum <span class="text-[#CB6A10]">Diskusi</span>
             </h1>
-            <p class="text-xl text-center mx-4">Selamat datang di Forum Diskusi SatuHati
-                Mari bersama-sama membangun ruang aman untuk berdiskusi, mendukung satu sama lain, dan menciptakan
-                perubahan positif.</p>
+            <p class="text-xl text-center mb-0 px-20">Selamat Datang di Forum Diskusi SatuHati!
+                <br>Mari bersama-sama membangun ruang aman untuk berdiskusi, mendukung satu sama lain, dan menciptakan
+                    perubahan positif.
+                </p>
         </div>
     </div>
 
@@ -65,10 +66,10 @@
                                     <div class="col-span-2">
                                         <label for="name"
                                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Judul
-                                            Postingan</label>
-                                        <input type="text" name="title" id="name" value="{{ old('name') }}"
+                                            Postingan <span class="text-red-500">*</span></label>
+                                        <input value="{{ old('title') }}" type="text" name="title" id="name" value="{{ old('name') }}"
                                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#CB6A10] focus:border-[#CB6A10] block w-full p-3 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#CB6A10] dark:focus:border-[#CB6A10]"
-                                            placeholder="Tulis judul dengan singkat">
+                                            placeholder="Tuliskan judul dengan singkat...">
                                         @error('title')
                                             <span class="text-red-500 text-sm">
                                                 {{ $message }}
@@ -79,10 +80,10 @@
                                     <div class="col-span-2">
                                         <label for="description"
                                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Isi
-                                            Postingan</label>
+                                            Postingan <span class="text-red-500">*</span></label>
                                         <textarea id="description" name="description" rows="10"
                                             class="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-[#CB6A10] focus:border-[#CB6A10] dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#CB6A10] dark:focus:border-[#CB6A10]"
-                                            placeholder="Tulis sesuatu"></textarea>
+                                            placeholder="Ceritakan masalahmu di sini secara detail...">{{ old('description') }}</textarea>
                                         @error('description')
                                             <span class="text-red-500 text-sm">
                                                 {{ $message }}
@@ -96,11 +97,11 @@
                                             Gambar</label>
                                         <div
                                             class="relative border-dashed border-2 border-[#CB6A10] rounded-lg p-6 flex justify-center items-center">
-                                            <input type="file" id="imageInput" name="images[]" multiple
+                                            <input type="file" id="imageInput" name="images[]" accept="image/*" multiple
                                                 class="absolute inset-0 z-50 w-full h-full opacity-0 cursor-pointer"
                                                 onchange="displayFileName()">
                                             <div class="text-center">
-                                                <p class="text-sm text-gray-500 dark:text-gray-400">Seret dan lepas file
+                                                <p class="text-sm text-gray-500 dark:text-gray-400">Tarik dan lepas gambar
                                                     atau klik di sini</p>
                                                 <p id="fileName"
                                                     class="text-[#CB6A10] text-sm font-medium mt-2 whitespace-pre-wrap"></p>
@@ -178,15 +179,15 @@
                     <div class="bg-white p-4 rounded-md shadow-md w-full">
                         <!-- Foto Profile dan Nickname -->
                         <div class="flex items-center mb-4">
-                            <img src="{{ $post->user->profile_picture_path ? $post->user->profile_picture_path : asset('assets/images/user_placeholder.png') }}"
+                            <img src="{{ $post->user->profile_picture_path && !$post->is_anonymous ? $post->user->profile_picture_path : asset('assets/images/user_placeholder.png') }}"
                                 alt="Profile Picture" class="w-8 h-8 rounded-full mr-2">
                             <span
-                                class="text-black font-semibold">{{ $post->is_anonymous === 0 ? $post->user->full_name : 'Anonymous' }}</span>
+                                class="text-black font-semibold {{ $post->is_anonymous == 1 ? 'italic' : '' }}">{{ $post->is_anonymous === 0 ? $post->user->full_name : 'Pengguna Anonim' }}</span>
                         </div>
                         <!-- Judul Postingan -->
                         <h2 class="text-lg font-semibold mb-2">{{ $post->title }}</h2>
                         <!-- Deskripsi Postingan -->
-                        <p class="text-gray-600 mb-4">{{ $post->description }}</p>
+                        <p class="text-gray-600 mb-4 whitespace-pre-wrap">{{ $post->description }}</p>
 
                         <div class="flex flex-wrap items-center justify-start gap-8 mb-4">
                             @foreach ($post->postImages as $image)
@@ -201,7 +202,7 @@
                             <button class="like-button mr-2" onclick="toggleLike(this)">
                                 <i class="fas fa-thumbs-up"></i>
                             </button>
-                            <span class="mr-5">{{ $post->likes()->count() }} Likes</span>
+                            <span class="mr-5">{{ $post->likes()->count() }} Suka</span>
                             <span class="mr-5"><i class="fas fa-comment"></i> {{ $post->comments()->count() }}
                                 Komentar</span>
                         </div>

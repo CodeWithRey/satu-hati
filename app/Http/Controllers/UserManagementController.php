@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Gender;
-use App\Traits\ImageHandling;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
+use App\Traits\ImageHandling;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
+use RealRashid\SweetAlert\Facades\Alert;
+use Dotenv\Exception\ValidationException;
 use App\Http\Requests\ProfileUpdateRequest;
-use App\Models\User;
 
 class UserManagementController extends Controller
 {
@@ -23,7 +25,6 @@ class UserManagementController extends Controller
 
         $request->user()->fill($request->validated());
 
-
         if ($request->user()->isDirty('email')) {
             $request->user()->email_verified_at = null;
         }
@@ -34,7 +35,7 @@ class UserManagementController extends Controller
 
         $request->user()->save();
 
-        return Redirect::route('profile.show', $request->user()->id)->with('status', 'profile-updated');
+        return Redirect::route('profile.show', $request->user()->id)->with('success', 'Profile anda berhasil diperbaharui !');
     }
 
     public function show(string $postId)
