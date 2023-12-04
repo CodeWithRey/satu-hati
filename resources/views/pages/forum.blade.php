@@ -10,8 +10,8 @@
             </h1>
             <p class="text-xl text-center mb-0 px-20">Selamat Datang di Forum Diskusi SatuHati!
                 <br>Mari bersama-sama membangun ruang aman untuk berdiskusi, mendukung satu sama lain, dan menciptakan
-                    perubahan positif.
-                </p>
+                perubahan positif.
+            </p>
         </div>
     </div>
 
@@ -67,7 +67,8 @@
                                         <label for="name"
                                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Judul
                                             Postingan <span class="text-red-500">*</span></label>
-                                        <input value="{{ old('title') }}" type="text" name="title" id="name" value="{{ old('name') }}"
+                                        <input value="{{ old('title') }}" type="text" name="title" id="name"
+                                            value="{{ old('name') }}"
                                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#CB6A10] focus:border-[#CB6A10] block w-full p-3 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#CB6A10] dark:focus:border-[#CB6A10]"
                                             placeholder="Tuliskan judul dengan singkat...">
                                         @error('title')

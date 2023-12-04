@@ -38,7 +38,10 @@ class CommentController extends Controller
             'body' => 'required',
             'post_id' => 'required',
             'user_id' => 'required',
+            //parent_id => nullable 
         ]);
+
+        //ada kondisi untuk mengecek parent
 
         Comment::create($validatedData);
         return redirect()->route('post.index')->with('success', 'Comment has been created successfully !');

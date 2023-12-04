@@ -44,6 +44,7 @@ class PostController extends Controller
             'user_id' => 'required',
         ]);
 
+
         $post = Post::create($request->all());
 
 
