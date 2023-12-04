@@ -14,17 +14,20 @@ class CommentController extends Controller
      */
     public function create($postId)
     {
-        $posts = Post::find($postId)
-            ->with('user')
-            ->with('postImages')
-            ->get();
+
+        $title = 'Hapus Diskusi !';
+        $text = 'Apakah anda yakin untuk menghapus ?';
+
+        confirmDelete($title, $text);
+
+        $post = Post::find($postId);
 
         $comments = Comment::with('user')
             ->with('commentImages')
             ->orderBy('created_at', 'desc')
             ->get();
 
-        return view('pages.detailforum', compact('posts', 'comments'));
+        return view('pages.detailforum', compact('post', 'comments'));
     }
 
 

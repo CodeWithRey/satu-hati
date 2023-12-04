@@ -182,8 +182,12 @@
                         <div class="flex items-center mb-4">
                             <img src="{{ $post->user->profile_picture_path && !$post->is_anonymous ? $post->user->profile_picture_path : asset('assets/images/user_placeholder.png') }}"
                                 alt="Profile Picture" class="w-8 h-8 rounded-full mr-2">
-                            <span
-                                class="text-black font-semibold {{ $post->is_anonymous == 1 ? 'italic' : '' }}">{{ $post->is_anonymous === 0 ? $post->user->full_name : 'Pengguna Anonim' }}</span>
+                            <div class="flex flex-col ">
+                                <span
+                                    class="text-black font-semibold capitalize {{ $post->is_anonymous == 1 ? 'italic' : '' }}">{{ $post->is_anonymous === 0 ? $post->user->full_name : 'Pengguna Anonim' }}</span>
+                                <span class="text-slate-400 font-medium">Dipublish pada
+                                    {{ $post->created_at->diffForHumans() }}</span>
+                            </div>
                         </div>
                         <!-- Judul Postingan -->
                         <h2 class="text-lg font-semibold mb-2">{{ $post->title }}</h2>
