@@ -15,7 +15,7 @@
                     <div class="flex flex-col ">
                         <span
                             class="text-black font-semibold capitalize {{ $post->is_anonymous == 1 ? 'italic' : '' }}">{{ $post->is_anonymous === 0 ? $post->user->full_name : 'Pengguna Anonim' }}</span>
-                        <span class="text-slate-400 font-medium">Dipublish pada
+                        <span class="text-slate-400 font-medium">Diposting pada
                             {{ $post->created_at->diffForHumans() }}</span>
                     </div>
                 </div>
@@ -89,7 +89,7 @@
                                 <div class="flex flex-col ">
                                     <span
                                         class="text-black font-semibold capitalize">{{ $comment->user->full_name }}</span>
-                                    <span class="text-slate-400 font-medium">Dipublish pada
+                                    <span class="text-slate-400 font-medium">Diposting pada
                                         {{ $comment->created_at->diffForHumans() }}</span>
                                 </div>
                             </div>
@@ -149,7 +149,7 @@
                                                     <div class="flex flex-col ">
                                                         <span
                                                             class="text-black font-semibold capitalize">{{ $reply->user->full_name }}</span>
-                                                        <span class="text-slate-400 font-medium">Dipublish pada
+                                                        <span class="text-slate-400 font-medium">Diposting pada
                                                             {{ $reply->created_at->diffForHumans() }}</span>
                                                     </div>
                                                 </div>
@@ -169,8 +169,14 @@
                                                 </div>
                                             </div>
                                         </div>
+
                                         <!-- Isi reply -->
-                                        <p class="text-gray-600 mb-2">{{ $reply->body }}</p>
+                                        <p class="text-gray-600 mb-2">
+                                            <span
+                                                class="text-blue-500 font-semibold capitalize">{{ '@' . $reply->parentComment->user->full_name }}</span>
+                                            {{ $reply->body }}
+                                        </p>
+
                                         <!-- Gambar Postingan -->
                                         @foreach ($reply->commentImages as $image)
                                             <a class="my-image-links" data-maxwidth="800px"
@@ -256,7 +262,8 @@
             </button>
             <textarea id="chat" rows="1"
                 class="block mx-4 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-[#CB6A10] focus:border-[#CB6A10] dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#CB6A10] dark:focus:border-[#CB6A10]"
-                name="body" placeholder="Tulis balasan..."></textarea>
+                name="body" placeholder="Tulis balasan...">
+            </textarea>
             <button type="submit"
                 class="inline-flex justify-center p-2 text-white rounded-full cursor-pointer bg-[#CB6A10] hover:bg-[#AD5910] dark:bg-[#CB6A10] dark:hover:bg-[#AD5910]">
                 <svg class="w-5 h-5 rotate-90 rtl:-rotate-90" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -338,7 +345,6 @@
             textarea.placeholder = 'Balas kepada ' + commenterName + '...';
             let commentId = $('#reply-comment').data('comment-id');
             console.log(commentId);
-
             $('#parent_comment_id').val([commentId]);
         }
     </script>

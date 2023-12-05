@@ -28,6 +28,7 @@ class CommentController extends Controller
             ->orderBy('created_at', 'desc')
             ->get();
 
+
         return view('pages.detailforum', compact('post', 'comments'));
     }
 
@@ -59,6 +60,7 @@ class CommentController extends Controller
         } else {
             $comment = Comment::create($request->except('parent_comment_id'));
         }
+
 
 
         if ($request->hasFile('images')) {

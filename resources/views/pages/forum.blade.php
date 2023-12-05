@@ -185,7 +185,7 @@
                             <div class="flex flex-col ">
                                 <span
                                     class="text-black font-semibold capitalize {{ $post->is_anonymous == 1 ? 'italic' : '' }}">{{ $post->is_anonymous === 0 ? $post->user->full_name : 'Pengguna Anonim' }}</span>
-                                <span class="text-slate-400 font-medium">Dipublish pada
+                                <span class="text-slate-400 font-medium">Diposting pada
                                     {{ $post->created_at->diffForHumans() }}</span>
                             </div>
                         </div>
