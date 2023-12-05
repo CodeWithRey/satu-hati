@@ -81,8 +81,8 @@
                         Diskusi</a>
                 </li>
                 <li>
-                    <a href="{{ route('forum') }}"
-                        class="block py-2 px-3 rounded {{ Route::is('forum') ? 'navbar-link-active' : 'navbar-link-inactive' }}">Pengaduan</a>
+                    <a href="{{ route('pengaduan') }}"
+                        class="block py-2 px-3 rounded {{ Route::is('pengaduan') ? 'navbar-link-active' : 'navbar-link-inactive' }}">Pengaduan</a>
                 </li>
                 <li>
                     <a href="{{ route('about') }}"

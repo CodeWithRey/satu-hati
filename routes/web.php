@@ -47,4 +47,8 @@ Route::get('/detailforum', function () {
     return view('pages.detailforum');
 });
 
+Route::get('/pengaduan', function () {
+    return view('pages.pengaduan');
+})->name('pengaduan');
+
 require __DIR__ . '/auth.php';
