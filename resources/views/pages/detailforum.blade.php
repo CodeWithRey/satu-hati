@@ -79,114 +79,134 @@
         <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-4">
             <!-- Card Komentar 3-->
             @foreach ($comments as $comment)
-                <div class="bg-white p-4 rounded-lg border w-full">
-                    <!-- Foto Profile dan Nickname Komentator -->
-                    <div class="flex items-center justify-between mb-2">
-                        <div class="flex items-center">
-                            <img src="{{ $comment->user->profile_picture_path ? $comment->user->profile_picture_path : asset('assets/images/user_placeholder.png') }}"
-                                alt="Profile Picture" class="w-8 h-8 rounded-full mr-2">
-                            <div class="flex flex-col ">
-                                <span class="text-black font-semibold capitalize">{{ $comment->user->full_name }}</span>
-                                <span class="text-slate-400 font-medium">Dipublish pada
-                                    {{ $comment->created_at->diffForHumans() }}</span>
+                @if ($comment->parent_comment_id === null)
+                    <div class="bg-white p-4 rounded-lg border w-full">
+                        <!-- Foto Profile dan Nickname Komentator -->
+                        <div class="flex items-center justify-between mb-2">
+                            <div class="flex items-center">
+                                <img src="{{ $comment->user->profile_picture_path ? $comment->user->profile_picture_path : asset('assets/images/user_placeholder.png') }}"
+                                    alt="Profile Picture" class="w-8 h-8 rounded-full mr-2">
+                                <div class="flex flex-col ">
+                                    <span
+                                        class="text-black font-semibold capitalize">{{ $comment->user->full_name }}</span>
+                                    <span class="text-slate-400 font-medium">Dipublish pada
+                                        {{ $comment->created_at->diffForHumans() }}</span>
+                                </div>
+                            </div>
+                            <div class="relative group">
+                                <button class="text-gray-600 focus:outline-none text-lg p-2" onclick="toggleMenu(this)">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </button>
+
+                                <!-- Menu Opsi Edit dan Hapus -->
+                                <div class="hidden absolute right-0 mt-2 space-y-2 bg-white border rounded-md shadow-lg"
+                                    id="optionsMenu">
+                                    <button class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Edit</button>
+                                    <a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition duration-300"
+                                        href="{{ route('comment.destroy', $comment->id) }}" data-confirm-delete="true">
+                                        Hapus
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                        <div class="relative group">
-                            <button class="text-gray-600 focus:outline-none text-lg p-2" onclick="toggleMenu(this)">
-                                <i class="fas fa-ellipsis-v"></i>
-                            </button>
+                        <!-- Isi Komentar -->
+                        <p class="text-gray-600 mb-2">{{ $comment->body }}</p>
+                        <!-- Gambar Postingan -->
+                        @foreach ($comment->commentImages as $image)
+                            <a class="my-image-links" data-maxwidth="800px" href="{{ asset($image->path) }}">
+                                <img src="{{ asset($image->path) }}" alt="Posting Image" class="w-80 h-auto rounded-md">
+                            </a>
+                        @endforeach
+                        <!-- Tombol Like dan Jumlah Like untuk Komentar -->
+                        <div class="flex items-center justify-start text-gray-500 mt-4">
+                            <!-- Tombol Suka -->
+                            <div class="flex items-center">
+                                <button class="like-button mr-2" onclick="toggleLike(this)">
+                                    <i class="fas fa-thumbs-up text-lg"></i>
+                                </button>
+                                <span class="mr-5">{{ $comment->likes()->count() }} Suka</span>
 
-                            <!-- Menu Opsi Edit dan Hapus -->
-                            <div class="hidden absolute right-0 mt-2 space-y-2 bg-white border rounded-md shadow-lg"
-                                id="optionsMenu">
-                                <button class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Edit</button>
-                                <a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition duration-300"
-                                    href="{{ route('comment.destroy', $comment->id) }}" data-confirm-delete="true">
-                                    Hapus
-                                </a>
                             </div>
-                        </div>
-                    </div>
-                    <!-- Isi Komentar -->
-                    <p class="text-gray-600 mb-2">{{ $comment->body }}</p>
-                    <!-- Gambar Postingan -->
-                    @foreach ($comment->commentImages as $image)
-                        <a class="my-image-links" data-maxwidth="800px" href="{{ asset($image->path) }}">
-                            <img src="{{ asset($image->path) }}" alt="Posting Image" class="w-80 h-auto rounded-md">
-                        </a>
-                    @endforeach
-                    <!-- Tombol Like dan Jumlah Like untuk Komentar -->
-                    <div class="flex items-center justify-start text-gray-500 mt-4">
-                        <!-- Tombol Suka -->
-                        <div class="flex items-center">
-                            <button class="like-button mr-2" onclick="toggleLike(this)">
-                                <i class="fas fa-thumbs-up text-lg"></i>
+                            <!-- Tombol Balas -->
+                            <button class="text-gray-600" id="reply-comment" data-comment-id="{{ $comment->id }}"
+                                onclick="prepareReply('{{ $comment->user->full_name }}')">
+                                Balas
                             </button>
-                            <span class="mr-5">{{ $comment->likes()->count() }} Suka</span>
-
                         </div>
-                        <!-- Tombol Balas -->
-                        <button class="text-gray-600" id="reply-comment" data-comment-id="{{ $comment->id }}"
-                            onclick="prepareReply('{{ $comment->user->full_name }}')">
-                            Balas
-                        </button>
-                    </div>
 
-                    <!-- Kontainer untuk reply -->
-                    <div class="mt-4 space-y-4 ml-10" style="display: none;" id="commentContainer">
-                        <!-- Reply 1 -->
-                        @if ($comment->replies()->count() > 0)
-                            <div class="bg-gray-100 p-4 rounded-lg border">
-                                <!-- Foto Profile dan Nickname Penjawab -->
-                                <div class="flex items-center justify-between mb-2">
-                                    <div class="flex items-center">
-                                        <img src="path/to/commenter-profile.jpg" alt="Profile Picture"
-                                            class="w-8 h-8 rounded-full mr-2">
-                                        <span class="text-black font-semibold">Nickname Another Commenter</span>
-                                    </div>
-                                    <div class="relative group">
-                                        <button class="text-gray-600 focus:outline-none text-lg p-2"
-                                            onclick="toggleMenu(this)">
-                                            <i class="fas fa-ellipsis-v"></i>
-                                        </button>
-                                        <!-- Menu Opsi Edit dan Hapus -->
-                                        <div class="hidden absolute right-0 mt-2 space-y-2 bg-white border rounded-md shadow-lg"
-                                            id="optionsMenu">
-                                            <button
-                                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Edit</button>
-                                            <a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Hapus</a>
+                        <!-- Kontainer untuk reply -->
+                        <div class="mt-4 space-y-4 ml-10" style="display: none;" id="commentContainer">
+                            <!-- Reply 1 -->
+                            @if ($comment->replies()->count() > 0)
+                                @foreach ($comment->replies()->orderBy('created_at', 'desc')->get() as $reply)
+                                    <div class="bg-gray-100 p-4 rounded-lg border">
+                                        <!-- Foto Profile dan Nickname Penjawab -->
+                                        <div class="flex items-center justify-between mb-2">
+                                            <div class="flex items-center">
+                                                <div class="flex items-center">
+                                                    <img src="{{ $reply->user->profile_picture_path ? $reply->user->profile_picture_path : asset('assets/images/user_placeholder.png') }}"
+                                                        alt="Profile Picture" class="w-8 h-8 rounded-full mr-2">
+                                                    <div class="flex flex-col ">
+                                                        <span
+                                                            class="text-black font-semibold capitalize">{{ $reply->user->full_name }}</span>
+                                                        <span class="text-slate-400 font-medium">Dipublish pada
+                                                            {{ $reply->created_at->diffForHumans() }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="relative group">
+                                                <button class="text-gray-600 focus:outline-none text-lg p-2"
+                                                    onclick="toggleMenu(this)">
+                                                    <i class="fas fa-ellipsis-v"></i>
+                                                </button>
+                                                <!-- Menu Opsi Edit dan Hapus -->
+                                                <div class="hidden absolute right-0 mt-2 space-y-2 bg-white border rounded-md shadow-lg"
+                                                    id="optionsMenu">
+                                                    <button
+                                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Edit</button>
+                                                    <a
+                                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Hapus</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Isi reply -->
+                                        <p class="text-gray-600 mb-2">{{ $reply->body }}</p>
+                                        <!-- Gambar Postingan -->
+                                        @foreach ($reply->commentImages as $image)
+                                            <a class="my-image-links" data-maxwidth="800px"
+                                                href="{{ asset($image->path) }}">
+                                                <img src="{{ asset($image->path) }}" alt="Posting Image"
+                                                    class="w-32 h-auto rounded-md">
+                                            </a>
+                                        @endforeach
+                                        <!-- Tombol Like dan Jumlah Like untuk Komentar -->
+                                        <div class="flex items-center justify-start text-gray-500 mt-4">
+                                            <!-- Tombol Suka -->
+                                            <div class="flex items-center">
+                                                <button class="like-button mr-2" onclick="toggleLike(this)">
+                                                    <i class="fas fa-thumbs-up text-lg"></i>
+                                                </button>
+                                                <span class="mr-5">{{ $reply->likes()->count() }} Suka</span>
+
+                                            </div>
+                                            <!-- Tombol Balas -->
+                                            <button class="text-gray-600" id="reply-comment"
+                                                data-comment-id="{{ $reply->id }}"
+                                                onclick="prepareReply('{{ $reply->user->full_name }}')">
+                                                Balas
+                                            </button>
                                         </div>
                                     </div>
-                                </div>
-                                <!-- Isi reply -->
-                                <p class="text-gray-600 mb-2">Balasan: Ini keterlaluan.</p>
-                                <!-- Gambar Postingan -->
-                                <img src="https://images.narasi.tv/preset:sharp/resize:fill:250:140:1/gravity:ce/plain/https://storage.googleapis.com/narasi-production.appspot.com/production/medium/1692774812759/apa-itu-pelecehan-verbal-pahami-pengertian-indikasi-dampak-dan-solusinya-medium.jpeg@webp"
-                                    alt="Posting Image" class="w-32 h-auto rounded-md">
-                                <!-- Tombol Like dan Jumlah Like untuk Komentar -->
-                                <div class="flex items-center justify-start text-gray-500 mt-4">
-                                    <!-- Tombol Suka -->
-                                    <div class="flex items-center">
-                                        <button class="like-button mr-2" onclick="toggleLike(this)">
-                                            <i class="fas fa-thumbs-up text-lg"></i>
-                                        </button>
-                                        <span class="mr-5">5 Suka</span>
+                                @endforeach
+                            @endif
+                        </div>
 
-                                    </div>
-                                    <!-- Tombol Balas -->
-                                    <button class="text-gray-600" onclick="">
-                                        Balas
-                                    </button>
-                                </div>
-                            </div>
-                        @endif
+                        <!-- Tombol Tampilkan/Sembunyikan Komentar -->
+                        <button class="text-gray-600 mt-2" onclick="toggleComments(this)">
+                            Tampilkan Komentar 🡫
+                        </button>
                     </div>
-
-                    <!-- Tombol Tampilkan/Sembunyikan Komentar -->
-                    <button class="text-gray-600 mt-2" onclick="toggleComments(this)">
-                        Tampilkan Komentar 🡫
-                    </button>
-                </div>
+                @endif
             @endforeach
 
         </div>
@@ -197,11 +217,12 @@
     <form action="{{ route('comment.store') }}" method="POST" class="sticky bottom-0 inset-x-0 bg-white"
         enctype="multipart/form-data">
         @csrf
+
         <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
         <input type="hidden" name="post_id" value="{{ $post->id }}">
-        @if (isset($comment->parent_comment_id))
-            <input type="hidden" name="parent_comment_id" value="{{ $comment->parent_comment_id }}">
-        @endif
+
+
+        <input type="hidden" name="parent_comment_id[]" id="parent_comment_id">
 
         <label for="chat" class="sr-only">Your message</label>
         <div class="flex items-center px-3 py-2 rounded-lg bg-gray-50 dark:bg-gray-700">
@@ -313,8 +334,12 @@
     <script>
         function prepareReply(commenterName) {
             var textarea = document.getElementById('chat');
-            textarea.value = '@' + commenterName + ' ';
+            textarea.value = '@' + commenterName + ' : ';
             textarea.placeholder = 'Balas kepada ' + commenterName + '...';
+            let commentId = $('#reply-comment').data('comment-id');
+            console.log(commentId);
+
+            $('#parent_comment_id').val([commentId]);
         }
     </script>
 @endpush

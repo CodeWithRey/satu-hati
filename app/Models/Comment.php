@@ -20,7 +20,7 @@ class Comment extends Model
         'body',
         'post_id',
         'user_id',
-        //parent_id
+        'parent_comment_id'
     ];
 
     public function user(): BelongsTo

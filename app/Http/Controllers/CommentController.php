@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Traits\ImageHandling;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
@@ -42,16 +43,21 @@ class CommentController extends Controller
             'post_id' => 'required',
             'user_id' => 'required',
             'images' => 'sometimes|image|max:2048',
-            'parent_comment_id' => 'nullable|exists:comments,id'
+            'parent_comment_id.*' => 'nullable|exists:comments,id'
         ]);
 
-        //ada kondisi untuk mengecek parent
 
-        if ($request->filled('parent_comment_id')) {
-            $parentComment = Comment::find($validatedData['parent_comment_id']);
-            $comment = $parentComment->replies()->create($request->all());
+        if (isset($validatedData['parent_comment_id']) && $validatedData['parent_comment_id'][0] !== null) {
+            foreach ($validatedData['parent_comment_id'] as $parentCommentId) {
+                $parentComment = Comment::find($parentCommentId);
+                if ($parentComment) {
+                    $comment = $parentComment->replies()->create($request->all());
+                } else {
+                    abort(404, 'Parent comment not found');
+                }
+            }
         } else {
-            $comment = Comment::create($request->all());
+            $comment = Comment::create($request->except('parent_comment_id'));
         }
 
 
