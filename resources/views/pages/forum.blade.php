@@ -175,7 +175,7 @@
 
             <!-- Komentar-komentar -->
             <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-4">
-                @foreach ($posts as $post)
+                @forelse ($posts as $post)
                     <!-- Card Komentar -->
                     <div class="bg-white p-4 rounded-md shadow-md w-full">
                         <!-- Foto Profile dan Nickname -->
@@ -251,7 +251,9 @@
                         @endguest
 
                     </div>
-                @endforeach
+                @empty
+                    @include('includes.no_content_forum')
+                @endforelse
             </div>
         </div>
     </section>
