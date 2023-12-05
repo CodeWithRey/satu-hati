@@ -81,14 +81,13 @@
             </div>
 
             <div
-                class="max-w-sm p-6 bg-white border border-[#FFEAB3] rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                <img class="h-48 w-auto mx-auto " src="{{ asset('assets/images/logo-no-text.png') }}" alt="logo-satuhati">
+                class="max-w-sm p-6 bg-[#FFEAB3] border border-[#FFEAB3] rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                <img class="h-48 w-auto mx-auto" src="{{ asset('assets/images/logo-kemenpppa.png') }}" alt="logo-kemenpppa">
 
-                <h5 class="mb-2 text-2xl font-semibold tracking-tight text-black dark:text-white">Platform SatuHati</h5>
+                <h5 class="mb-2 text-2xl font-semibold tracking-tight text-black dark:text-white">Kementerian Pemberdayaan Perempuan dan Perlindungan Anak (KemenPPPA)</h5>
 
-                <p class="mb-3 font-normal text-black">Hubungi 129 untuk melakukan pengaduan. Call Center Sahabat Perempuan
-                    dan Anak 129 bertujuan mempermudah akses bagi korban dalam melakukan pengaduan kasus kekerasan seksual,
-                    serta pendataan kasusnya.
+                <p class="mb-3 font-normal text-black">
+                    Jika anda mengalami, melihat, mendengar dan mengetahui tindak kekerasan pada perempuan dan anak hubungi hotline SAPA 129 atau melalui whatsapp 08111-129-129.
             </div>
         </div>
 
