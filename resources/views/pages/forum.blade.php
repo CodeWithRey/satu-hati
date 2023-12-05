@@ -10,8 +10,8 @@
             </h1>
             <p class="text-xl text-center mb-0 px-20">Selamat Datang di Forum Diskusi SatuHati!
                 <br>Mari bersama-sama membangun ruang aman untuk berdiskusi, mendukung satu sama lain, dan menciptakan
-                    perubahan positif.
-                </p>
+                perubahan positif.
+            </p>
         </div>
     </div>
 
@@ -67,7 +67,8 @@
                                         <label for="name"
                                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Judul
                                             Postingan <span class="text-red-500">*</span></label>
-                                        <input value="{{ old('title') }}" type="text" name="title" id="name" value="{{ old('name') }}"
+                                        <input value="{{ old('title') }}" type="text" name="title" id="name"
+                                            value="{{ old('name') }}"
                                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#CB6A10] focus:border-[#CB6A10] block w-full p-3 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#CB6A10] dark:focus:border-[#CB6A10]"
                                             placeholder="Tuliskan judul dengan singkat...">
                                         @error('title')
@@ -181,8 +182,12 @@
                         <div class="flex items-center mb-4">
                             <img src="{{ $post->user->profile_picture_path && !$post->is_anonymous ? $post->user->profile_picture_path : asset('assets/images/user_placeholder.png') }}"
                                 alt="Profile Picture" class="w-8 h-8 rounded-full mr-2">
-                            <span
-                                class="text-black font-semibold {{ $post->is_anonymous == 1 ? 'italic' : '' }}">{{ $post->is_anonymous === 0 ? $post->user->full_name : 'Pengguna Anonim' }}</span>
+                            <div class="flex flex-col ">
+                                <span
+                                    class="text-black font-semibold capitalize {{ $post->is_anonymous == 1 ? 'italic' : '' }}">{{ $post->is_anonymous === 0 ? $post->user->full_name : 'Pengguna Anonim' }}</span>
+                                <span class="text-slate-400 font-medium">Diposting pada
+                                    {{ $post->created_at->diffForHumans() }}</span>
+                            </div>
                         </div>
                         <!-- Judul Postingan -->
                         <h2 class="text-lg font-semibold mb-2">{{ $post->title }}</h2>
@@ -190,7 +195,7 @@
                         <p class="text-gray-600 mb-4 whitespace-pre-wrap">{{ $post->description }}</p>
 
                         <div class="flex flex-wrap items-center justify-start gap-8 mb-4">
-                            @foreach ($post->images as $image)
+                            @foreach ($post->postImages as $image)
                                 <a class="my-image-links" data-maxwidth="800px" href="{{ asset($image->path) }}">
                                     <img src="{{ asset($image->path) }}" class="object-cover" width="100px"
                                         alt="">
@@ -231,7 +236,9 @@
                         <!-- Tombol Balas -->
                         @auth
                             <button class="text-gray-600">
-                                Balas
+                                <a href="{{ route('reply.comment', $post->id) }}" class="w-full h-full">
+                                    Balas
+                                </a>
                             </button>
                         @endauth
 

@@ -2,20 +2,34 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Comment;
 use App\Models\Post;
+use App\Models\Comment;
 use Illuminate\Http\Request;
+use App\Traits\ImageHandling;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
 
+    use ImageHandling;
     /**
      * Show the form for creating a new resource.
      */
     public function create($postId)
     {
-        $comment = Post::find($postId);
-        return view('comments', compact('comment'));
+        $textPost = 'Apakah anda yakin untuk menghapus ?';
+        confirmDelete('', $textPost);
+
+        $post = Post::find($postId);
+
+        $comments = Comment::with('user')
+            ->with('commentImages')
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+
+        return view('pages.detailforum', compact('post', 'comments'));
     }
 
 
@@ -29,10 +43,34 @@ class CommentController extends Controller
             'body' => 'required',
             'post_id' => 'required',
             'user_id' => 'required',
+            'images' => 'sometimes|image|max:2048',
+            'parent_comment_id.*' => 'nullable|exists:comments,id'
         ]);
 
-        Comment::create($validatedData);
-        return redirect()->route('post.index')->with('success', 'Comment has been created successfully !');
+
+        if (isset($validatedData['parent_comment_id']) && $validatedData['parent_comment_id'][0] !== null) {
+            foreach ($validatedData['parent_comment_id'] as $parentCommentId) {
+                $parentComment = Comment::find($parentCommentId);
+                if ($parentComment) {
+                    $comment = $parentComment->replies()->create($request->all());
+                } else {
+                    abort(404, 'Parent comment not found');
+                }
+            }
+        } else {
+            $comment = Comment::create($request->except('parent_comment_id'));
+        }
+
+
+
+        if ($request->hasFile('images')) {
+            $path = 'comments';
+            $comment->commentImages()->create([
+                'path' => $this->uploadImage($validatedData['images'], $path),
+            ]);
+        }
+
+        return redirect()->back()->with('success', 'Comment has been created successfully !');
     }
 
     /**
@@ -54,7 +92,17 @@ class CommentController extends Controller
      */
     public function destroy(Comment $comment)
     {
+        if (Auth::id() !== $comment->user_id) {
+            return redirect()->back()->with('error', 'Kamu tidak bisa menghapus komen orang lain');
+        }
+
+
+        $comment->commentImages->each(function ($image) {
+            $image->checkImages($image->path);
+            $image->delete();
+        });
+
         $comment->delete();
-        return redirect()->route('pages')->with('success', 'Comment has been deleted successfully');
+        return redirect()->back()->with('success', 'Comment has been deleted successfully');
     }
 }

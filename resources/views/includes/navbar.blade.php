@@ -58,11 +58,11 @@
             @guest
                 <div class="lg:grid hidden grid-cols-2 gap-4">
                     <a href="{{ route('register') }}"
-                        class="flex items-center justify-center bg-transparent hover:bg-[#CB6A10] transition duration-300 text-[#CB6A10] hover:text-white border-[#CB6A10] hover:[#CB6A10] border-2 py-2 px-5 font-bold rounded shadow-lg">
+                        class="flex items-center justify-center bg-transparent hover:bg-dy transition duration-300 text-[#CB6A10] hover:text-white border-[#CB6A10] hover:[#CB6A10] border-2 py-2 px-5 font-bold rounded shadow-lg">
                         Daftar
                     </a>
                     <a href="{{ route('login') }}"
-                        class="flex items-center justify-center bg-[#CB6A10] hover:bg-[#CB6A10] transition duration-300 text-white py-2 px-5 font-bold rounded shadow-lg">
+                        class="flex items-center justify-center bg-[#CB6A10] hover:bg-dy-dark transition duration-300 text-white py-2 px-5 font-bold rounded shadow-lg">
                         Masuk
                     </a>
                 </div>
