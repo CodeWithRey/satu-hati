@@ -4,21 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Models\Comment;
 use App\Models\Post;
+use App\Traits\ImageHandling;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
 
+    use ImageHandling;
     /**
      * Show the form for creating a new resource.
      */
     public function create($postId)
     {
-
-        $title = 'Hapus Diskusi !';
-        $text = 'Apakah anda yakin untuk menghapus ?';
-
-        confirmDelete($title, $text);
+        $textPost = 'Apakah anda yakin untuk menghapus ?';
+        confirmDelete('', $textPost);
 
         $post = Post::find($postId);
 
@@ -41,25 +40,22 @@ class CommentController extends Controller
             'body' => 'required',
             'post_id' => 'required',
             'user_id' => 'required',
+            'images' => 'sometimes|image|max:2048',
             //parent_id => nullable 
         ]);
 
-
-        // dd($request->all());
         //ada kondisi untuk mengecek parent
 
         $comment = Comment::create($request->all());
 
         if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $imagefile) {
-                $path = 'comments';
-                $comment->commentImages()->create([
-                    'path' => $this->uploadImage($imagefile, $path),
-                ]);
-            }
+            $path = 'comments';
+            $comment->commentImages()->create([
+                'path' => $this->uploadImage($validatedData['images'], $path),
+            ]);
         }
 
-        return redirect()->route('post.index')->with('success', 'Comment has been created successfully !');
+        return redirect()->back()->with('success', 'Comment has been created successfully !');
     }
 
     /**
@@ -81,7 +77,12 @@ class CommentController extends Controller
      */
     public function destroy(Comment $comment)
     {
+        $comment->commentImages->each(function ($image) {
+            $image->checkImages($image->path);
+            $image->delete();
+        });
+
         $comment->delete();
-        return redirect()->route('pages')->with('success', 'Comment has been deleted successfully');
+        return redirect()->back()->with('success', 'Comment has been deleted successfully');
     }
 }

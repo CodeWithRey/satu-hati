@@ -184,12 +184,15 @@
                             <div class="hidden absolute right-0 mt-2 space-y-2 bg-white border rounded-md shadow-lg"
                                 id="optionsMenu">
                                 <button class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Edit</button>
-                                <button class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Hapus</button>
+                                <a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition duration-300"
+                                    href="{{ route('comment.destroy', $comment->id) }}" data-confirm-delete="true">
+                                    Hapus
+                                </a>
                             </div>
                         </div>
                     </div>
                     <!-- Isi Komentar -->
-                    <p class="text-gray-600 mb-2">Komentar: {{ $comment->body }}</p>
+                    <p class="text-gray-600 mb-2">{{ $comment->body }}</p>
                     <!-- Gambar Postingan -->
                     @foreach ($comment->commentImages as $image)
                         <a class="my-image-links" data-maxwidth="800px" href="{{ asset($image->path) }}">
@@ -232,8 +235,7 @@
                                         id="optionsMenu">
                                         <button
                                             class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Edit</button>
-                                        <button
-                                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Hapus</button>
+                                        <a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Hapus</a>
                                     </div>
                                 </div>
                             </div>
@@ -344,7 +346,7 @@
                         d="M13 5.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0ZM7.565 7.423 4.5 14h11.518l-2.516-3.71L11 13 7.565 7.423Z" />
                 </svg>
                 <span class="sr-only">Upload image</span>
-                <input type="file" id="image-upload" class="hidden" accept="image/*" name="images"
+                <input type="file" id="image-upload" class="hidden" name="images"
                     onchange="displayImagePreview(this)">
             </label>
             <img id="image-preview" class="hidden w-16 h-16 object-cover rounded-lg mr-1" src=""
