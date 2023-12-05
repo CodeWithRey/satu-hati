@@ -142,16 +142,30 @@
                             <div class="flex flex-col gap-2 text-start">
                                 <label for="current_password">Kata Sandi Lama <span
                                         class="text-white font-bold">*</span></label>
-                                <input id="current_password" type="password" name="current_password"
-                                    class="w-full px-4 py-2 border rounded-md text-black">
+                                <div class="w-full relative">
+                                    <input id="current_password" type="password" name="current_password"
+                                        class="w-full px-4 py-2 border rounded-md text-black"
+                                        placeholder="Masukkan kata sandi lama...">
+                                    <button type="button" tabindex="-1" class="show-password absolute top-1/2 -translate-y-1/2 right-4 text-gray-400 hover:text-gray-500">
+                                        <i class="fa fa-eye-slash" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+
                                 @error('current_password')
                                     <span class="text-red">{{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="flex flex-col gap-2 text-start">
                                 <label for="password">Kata Sandi Baru <span class="text-white font-bold">*</span></label>
-                                <input id="password" type="password" name="password"
-                                    class="w-full px-4 py-2 border rounded-md text-black">
+                                <div class="w-full relative">
+                                    <input id="password" type="password" name="password"
+                                        class="w-full px-4 py-2 border rounded-md text-black"
+                                        placeholder="Masukkan kata sandi baru...">
+                                    <button type="button" tabindex="-1" class="show-password absolute top-1/2 -translate-y-1/2 right-4 text-gray-400 hover:text-gray-500">
+                                        <i class="fa fa-eye-slash" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+
                                 @error('password')
                                     <span class="text-red">{{ $message }}</span>
                                 @enderror
@@ -159,8 +173,15 @@
                             <div class="flex flex-col gap-2 text-start">
                                 <label for="password_confirmation">Konfirmasi Kata Sandi Baru <span
                                         class="text-white font-bold">*</span></label>
-                                <input id="password_confirmation" type="password" name="password_confirmation"
-                                    class="w-full px-4 py-2 border rounded-md text-black">
+                                <div class="w-full relative">
+                                    <input id="password_confirmation" type="password" name="password_confirmation"
+                                        class="w-full px-4 py-2 border rounded-md text-black"
+                                        placeholder="Masukkan kata sandi baru...">
+                                    <button type="button" tabindex="-1" class="show-password absolute top-1/2 -translate-y-1/2 right-4 text-gray-400 hover:text-gray-500">
+                                        <i class="fa fa-eye-slash" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+
                                 @error('password_confirmation')
                                     <span class="text-red">{{ $message }}</span>
                                 @enderror
