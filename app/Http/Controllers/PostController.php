@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
-use App\Traits\ImageHandling;
 use Illuminate\Http\Request;
+use App\Traits\ImageHandling;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -97,6 +98,12 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+
+        if (Auth::id() !== $post->user_id) {
+            return redirect()->back()->with('error', 'Kamu tidak bisa menghapus post orang lain');
+        }
+
+
         $post->postImages->each(function ($image) {
             $image->checkImages($image->path);
             $image->delete();

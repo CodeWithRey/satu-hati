@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Comment;
 use App\Models\Post;
-use App\Traits\ImageHandling;
+use App\Models\Comment;
 use Illuminate\Http\Request;
+use App\Traits\ImageHandling;
+use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
@@ -41,12 +42,18 @@ class CommentController extends Controller
             'post_id' => 'required',
             'user_id' => 'required',
             'images' => 'sometimes|image|max:2048',
-            //parent_id => nullable 
+            'parent_comment_id' => 'nullable|exists:comments,id'
         ]);
 
         //ada kondisi untuk mengecek parent
 
-        $comment = Comment::create($request->all());
+        if ($request->filled('parent_comment_id')) {
+            $parentComment = Comment::find($validatedData['parent_comment_id']);
+            $comment = $parentComment->replies()->create($request->all());
+        } else {
+            $comment = Comment::create($request->all());
+        }
+
 
         if ($request->hasFile('images')) {
             $path = 'comments';
@@ -77,6 +84,11 @@ class CommentController extends Controller
      */
     public function destroy(Comment $comment)
     {
+        if (Auth::id() !== $comment->user_id) {
+            return redirect()->back()->with('error', 'Kamu tidak bisa menghapus komen orang lain');
+        }
+
+
         $comment->commentImages->each(function ($image) {
             $image->checkImages($image->path);
             $image->delete();

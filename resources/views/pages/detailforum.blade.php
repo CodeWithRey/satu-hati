@@ -77,90 +77,6 @@
         <h2 class="text-[#CB6A10] text-2xl text-center font-bold mb-8">───※ Balasan Para User ※───</h2>
         <!-- Container -->
         <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-4">
-
-            <!-- Card Komentar 1-->
-            {{-- <div class="bg-white p-4 rounded-lg border w-full">
-                <!-- Foto Profile dan Nickname Komentator -->
-                <div class="flex items-center justify-between mb-2">
-                    <div class="flex items-center">
-                        <img src="path/to/commenter-profile.jpg" alt="Profile Picture" class="w-8 h-8 rounded-full mr-2">
-                        <span class="text-black font-semibold">Nickname Commenter</span>
-                    </div>
-                    <div class="relative group">
-                        <button class="text-gray-600 focus:outline-none text-lg p-2" onclick="toggleMenu(this)">
-                            <i class="fas fa-ellipsis-v"></i>
-                        </button>
-
-                        <!-- Menu Opsi Edit dan Hapus -->
-                        <div class="hidden absolute right-0 mt-2 space-y-2 bg-white border rounded-md shadow-lg"
-                            id="optionsMenu">
-                            <button class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Edit</button>
-                            <button class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Hapus</button>
-                        </div>
-                    </div>
-                </div>
-                <!-- Isi Komentar -->
-                <p class="text-gray-600 mb-2">Komentar: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                <!-- Gambar Postingan -->
-                <img src="https://images-tm.tempo.co/all/2021/09/09/782064/782064_1200.jpg" alt="Posting Image"
-                    class="w-80 h-auto rounded-md">
-                <!-- Tombol Like dan Jumlah Like untuk Komentar -->
-                <div class="flex items-center justify-start text-gray-500 mt-4">
-                    <!-- Tombol Suka -->
-                    <div class="flex items-center">
-                        <button class="like-button mr-2" onclick="toggleLike(this)">
-                            <i class="fas fa-thumbs-up text-lg"></i>
-                        </button>
-                        <span class="mr-5">5 Suka</span>
-
-                    </div>
-                    <!-- Tombol Balas -->
-                    <button class="text-gray-600" onclick="">
-                        Balas
-                    </button>
-                </div>
-            </div> --}}
-
-            <!-- Card Komentar 2-->
-            {{-- <div class="bg-white p-4 rounded-lg border w-full">
-                <!-- Foto Profile dan Nickname Komentator -->
-                <div class="flex items-center justify-between mb-2">
-                    <div class="flex items-center">
-                        <img src="path/to/commenter-profile.jpg" alt="Profile Picture" class="w-8 h-8 rounded-full mr-2">
-                        <span class="text-black font-semibold">Nickname Commenter</span>
-                    </div>
-                    <div class="relative group">
-                        <button class="text-gray-600 focus:outline-none text-lg p-2" onclick="toggleMenu(this)">
-                            <i class="fas fa-ellipsis-v"></i>
-                        </button>
-
-                        <!-- Menu Opsi Edit dan Hapus -->
-                        <div class="hidden absolute right-0 mt-2 space-y-2 bg-white border rounded-md shadow-lg"
-                            id="optionsMenu">
-                            <button class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Edit</button>
-                            <button class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Hapus</button>
-                        </div>
-                    </div>
-                </div>
-                <!-- Isi Komentar -->
-                <p class="text-gray-600 mb-2">Komentar: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                <!-- Like dan Komentar -->
-                <div class="flex items-center justify-start text-gray-500 mt-4">
-                    <!-- Tombol Suka -->
-                    <div class="flex items-center">
-                        <button class="like-button mr-2" onclick="toggleLike(this)">
-                            <i class="fas fa-thumbs-up text-lg"></i>
-                        </button>
-                        <span class="mr-5">5 Suka</span>
-
-                    </div>
-                    <!-- Tombol Balas -->
-                    <button class="text-gray-600" onclick="">
-                        Balas
-                    </button>
-                </div>
-            </div> --}}
-
             <!-- Card Komentar 3-->
             @foreach ($comments as $comment)
                 <div class="bg-white p-4 rounded-lg border w-full">
@@ -210,7 +126,8 @@
 
                         </div>
                         <!-- Tombol Balas -->
-                        <button class="text-gray-600" onclick="">
+                        <button class="text-gray-600" id="reply-comment" data-comment-id="{{ $comment->id }}"
+                            onclick="prepareReply('{{ $comment->user->full_name }}')">
                             Balas
                         </button>
                     </div>
@@ -218,75 +135,51 @@
                     <!-- Kontainer untuk reply -->
                     <div class="mt-4 space-y-4 ml-10" style="display: none;" id="commentContainer">
                         <!-- Reply 1 -->
-                        <div class="bg-gray-100 p-4 rounded-lg border">
-                            <!-- Foto Profile dan Nickname Penjawab -->
-                            <div class="flex items-center justify-between mb-2">
-                                <div class="flex items-center">
-                                    <img src="path/to/commenter-profile.jpg" alt="Profile Picture"
-                                        class="w-8 h-8 rounded-full mr-2">
-                                    <span class="text-black font-semibold">Nickname Another Commenter</span>
-                                </div>
-                                <div class="relative group">
-                                    <button class="text-gray-600 focus:outline-none text-lg p-2" onclick="toggleMenu(this)">
-                                        <i class="fas fa-ellipsis-v"></i>
-                                    </button>
-                                    <!-- Menu Opsi Edit dan Hapus -->
-                                    <div class="hidden absolute right-0 mt-2 space-y-2 bg-white border rounded-md shadow-lg"
-                                        id="optionsMenu">
-                                        <button
-                                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Edit</button>
-                                        <a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Hapus</a>
+                        @if ($comment->replies()->count() > 0)
+                            <div class="bg-gray-100 p-4 rounded-lg border">
+                                <!-- Foto Profile dan Nickname Penjawab -->
+                                <div class="flex items-center justify-between mb-2">
+                                    <div class="flex items-center">
+                                        <img src="path/to/commenter-profile.jpg" alt="Profile Picture"
+                                            class="w-8 h-8 rounded-full mr-2">
+                                        <span class="text-black font-semibold">Nickname Another Commenter</span>
+                                    </div>
+                                    <div class="relative group">
+                                        <button class="text-gray-600 focus:outline-none text-lg p-2"
+                                            onclick="toggleMenu(this)">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </button>
+                                        <!-- Menu Opsi Edit dan Hapus -->
+                                        <div class="hidden absolute right-0 mt-2 space-y-2 bg-white border rounded-md shadow-lg"
+                                            id="optionsMenu">
+                                            <button
+                                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Edit</button>
+                                            <a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Hapus</a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- Isi reply -->
-                            <p class="text-gray-600 mb-2">Balasan: Ini keterlaluan.</p>
-                            <!-- Gambar Postingan -->
-                            <img src="https://images.narasi.tv/preset:sharp/resize:fill:250:140:1/gravity:ce/plain/https://storage.googleapis.com/narasi-production.appspot.com/production/medium/1692774812759/apa-itu-pelecehan-verbal-pahami-pengertian-indikasi-dampak-dan-solusinya-medium.jpeg@webp"
-                                alt="Posting Image" class="w-32 h-auto rounded-md">
-                            <!-- Tombol Like dan Jumlah Like untuk Komentar -->
-                            <div class="flex items-center justify-start text-gray-500 mt-4">
-                                <!-- Tombol Suka -->
-                                <div class="flex items-center">
-                                    <button class="like-button mr-2" onclick="toggleLike(this)">
-                                        <i class="fas fa-thumbs-up text-lg"></i>
+                                <!-- Isi reply -->
+                                <p class="text-gray-600 mb-2">Balasan: Ini keterlaluan.</p>
+                                <!-- Gambar Postingan -->
+                                <img src="https://images.narasi.tv/preset:sharp/resize:fill:250:140:1/gravity:ce/plain/https://storage.googleapis.com/narasi-production.appspot.com/production/medium/1692774812759/apa-itu-pelecehan-verbal-pahami-pengertian-indikasi-dampak-dan-solusinya-medium.jpeg@webp"
+                                    alt="Posting Image" class="w-32 h-auto rounded-md">
+                                <!-- Tombol Like dan Jumlah Like untuk Komentar -->
+                                <div class="flex items-center justify-start text-gray-500 mt-4">
+                                    <!-- Tombol Suka -->
+                                    <div class="flex items-center">
+                                        <button class="like-button mr-2" onclick="toggleLike(this)">
+                                            <i class="fas fa-thumbs-up text-lg"></i>
+                                        </button>
+                                        <span class="mr-5">5 Suka</span>
+
+                                    </div>
+                                    <!-- Tombol Balas -->
+                                    <button class="text-gray-600" onclick="">
+                                        Balas
                                     </button>
-                                    <span class="mr-5">5 Suka</span>
-
                                 </div>
-                                <!-- Tombol Balas -->
-                                <button class="text-gray-600" onclick="">
-                                    Balas
-                                </button>
                             </div>
-                        </div>
-
-                        <!-- Reply 2 -->
-                        <div class="bg-gray-100 p-4 mt-4 rounded-lg border">
-                            <!-- Foto Profile dan Nickname Penjawab -->
-                            <div class="flex items-center mb-2">
-                                <img src="path/to/another-profile.jpg" alt="Profile Picture"
-                                    class="w-8 h-8 rounded-full mr-2">
-                                <span class="text-black font-semibold">Nickname Another Commenter</span>
-                            </div>
-                            <!-- Isi reply -->
-                            <p class="text-gray-600 mb-2">Balasan: Benar, saya setuju.</p>
-                            <!-- Tombol Like dan Jumlah Like untuk Komentar -->
-                            <div class="flex items-center justify-start text-gray-500 mt-4">
-                                <!-- Tombol Suka -->
-                                <div class="flex items-center">
-                                    <button class="like-button mr-2" onclick="toggleLike(this)">
-                                        <i class="fas fa-thumbs-up text-lg"></i>
-                                    </button>
-                                    <span class="mr-5">5 Suka</span>
-
-                                </div>
-                                <!-- Tombol Balas -->
-                                <button class="text-gray-600" onclick="">
-                                    Balas
-                                </button>
-                            </div>
-                        </div>
+                        @endif
                     </div>
 
                     <!-- Tombol Tampilkan/Sembunyikan Komentar -->
@@ -299,32 +192,6 @@
         </div>
     </section>
 
-    <script>
-        function toggleMenu(button) {
-            const optionsMenu = button.nextElementSibling;
-            optionsMenu.classList.toggle('hidden');
-        }
-
-        function toggleLike(button) {
-            button.classList.toggle('clicked');
-        }
-
-        let commentsVisible = false;
-
-        function toggleComments(button) {
-            const commentSection = button.parentElement.querySelector(".mt-4.space-y-4.ml-10");
-            commentsVisible = !commentsVisible;
-
-            if (commentsVisible) {
-                commentSection.style.display = "block";
-                button.textContent = "Sembunyikan Komentar 🡩";
-            } else {
-                commentSection.style.display = "none";
-                button.textContent = "Tampilkan Komentar 🡫";
-            }
-        }
-    </script>
-
 
     <!-- Form Chatroom -->
     <form action="{{ route('comment.store') }}" method="POST" class="sticky bottom-0 inset-x-0 bg-white"
@@ -332,6 +199,10 @@
         @csrf
         <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
         <input type="hidden" name="post_id" value="{{ $post->id }}">
+        @if (isset($comment->parent_comment_id))
+            <input type="hidden" name="parent_comment_id" value="{{ $comment->parent_comment_id }}">
+        @endif
+
         <label for="chat" class="sr-only">Your message</label>
         <div class="flex items-center px-3 py-2 rounded-lg bg-gray-50 dark:bg-gray-700">
             <label for="image-upload"
@@ -376,6 +247,42 @@
             </button>
         </div>
     </form>
+@endsection
+
+@push('scripts')
+    <script>
+        new VenoBox({
+            selector: '.my-image-links',
+            spinner: 'rotating-plane',
+            maxWidth: '100%'
+        });
+    </script>
+
+    <script>
+        function toggleMenu(button) {
+            const optionsMenu = button.nextElementSibling;
+            optionsMenu.classList.toggle('hidden');
+        }
+
+        function toggleLike(button) {
+            button.classList.toggle('clicked');
+        }
+
+        let commentsVisible = false;
+
+        function toggleComments(button) {
+            const commentSection = button.parentElement.querySelector(".mt-4.space-y-4.ml-10");
+            commentsVisible = !commentsVisible;
+
+            if (commentsVisible) {
+                commentSection.style.display = "block";
+                button.textContent = "Sembunyikan Komentar 🡩";
+            } else {
+                commentSection.style.display = "none";
+                button.textContent = "Tampilkan Komentar 🡫";
+            }
+        }
+    </script>
 
     <script>
         function displayImagePreview(input) {
@@ -403,15 +310,11 @@
         });
     </script>
 
-
-@endsection
-
-@push('scripts')
     <script>
-        new VenoBox({
-            selector: '.my-image-links',
-            spinner: 'rotating-plane',
-            maxWidth: '100%'
-        });
+        function prepareReply(commenterName) {
+            var textarea = document.getElementById('chat');
+            textarea.value = '@' + commenterName + ' ';
+            textarea.placeholder = 'Balas kepada ' + commenterName + '...';
+        }
     </script>
 @endpush
