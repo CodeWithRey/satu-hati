@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('images', function (Blueprint $table) {
+        Schema::create('comment_images', function (Blueprint $table) {
             $table->id();
             $table->string('path');
-            $table->foreignUuid('post_id')->constrained(
-                table: 'posts',
+            $table->foreignUuid('comment_id')->constrained(
+                table: 'comments',
                 column: 'id',
-                indexName: 'images_post_id'
+                indexName: 'images_comment_id'
             )->cascadeOnDelete();
             $table->timestamps();
         });
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('images');
+        Schema::dropIfExists('comment_images');
     }
 };

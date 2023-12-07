@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
-use App\Traits\ImageHandling;
 use Illuminate\Http\Request;
+use App\Traits\ImageHandling;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -17,7 +18,7 @@ class PostController extends Controller
         $posts =
             Post::with('user')
             ->with('comments')
-            ->with('images')
+            ->with('postImages')
             ->orderBy('created_at', 'desc')
             ->get();
 
@@ -44,13 +45,14 @@ class PostController extends Controller
             'user_id' => 'required',
         ]);
 
+
         $post = Post::create($request->all());
 
 
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $imagefile) {
                 $path = 'posts';
-                $post->images()->create([
+                $post->postImages()->create([
                     'path' => $this->uploadImage($imagefile, $path),
                 ]);
             }
@@ -96,13 +98,19 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        $post->images->each(function ($image) {
+
+        if (Auth::id() !== $post->user_id) {
+            return redirect()->back()->with('error', 'Kamu tidak bisa menghapus post orang lain');
+        }
+
+
+        $post->postImages->each(function ($image) {
             $image->checkImages($image->path);
             $image->delete();
         });
 
         $post->delete();
 
-        return redirect()->back()->with('success', 'Post has been deleted successfully');
+        return redirect()->route('post.index')->with('success', 'Post has been deleted successfully');
     }
 }

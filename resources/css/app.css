@@ -30,11 +30,11 @@
 
 @layer components {
     .navbar-link-active {
-        @apply text-white bg-orange-700 md:bg-transparent md:text-orange-700 md:dark:text-orange-500;
+        @apply text-white bg-dy md:bg-transparent md:text-dy transition duration-300;
     }
 
     .navbar-link-inactive {
-        @apply text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-orange-700 md:p-0 dark:text-white md:dark:hover:text-orange-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700;
+        @apply text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-dy md:p-0 transition duration-300  ;
     }
 
     .floating-shadow-lg {
