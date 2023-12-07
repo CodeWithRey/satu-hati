@@ -19,6 +19,7 @@ class PostController extends Controller
             Post::with('user')
             ->with('comments')
             ->with('postImages')
+            ->with('likes')
             ->orderBy('created_at', 'desc')
             ->get();
 

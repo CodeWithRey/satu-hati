@@ -205,10 +205,10 @@
 
                         <!-- Tombol Like dan Jumlah Like -->
                         <div class="flex items-center text-gray-500 mb-2">
-                            <form id="like-form">
+                            <form id="like-form" data-like-id="{{ $post->likes }}">
                                 <input type="hidden" name="user_id" value="{{ $post->user->id }}">
-                                <input type="hidden" name="post_id" value="{{ $post->id }}">
-                                <button class="like-button mr-2" onclick="toggleLike(this)">
+                                <input type="hidden" name="post_id" id="post_id" value="{{ $post->id }}">
+                                <button class="like-button mr-2" onclick="toggleLike(event, this)">
                                     <i class="fas fa-thumbs-up"></i>
                                 </button>
                             </form>
@@ -230,12 +230,6 @@
                             }
                         </style>
 
-
-                        <script>
-                            function toggleLike(button) {
-                                button.classList.toggle('clicked');
-                            }
-                        </script>
 
 
                         <!-- Tombol Balas -->
@@ -274,26 +268,50 @@
     </script>
 
     <script>
-        $("#like-form").submit(function(e) {
-            e.preventDefault();
-            const fd = new FormData(this);
-            $.ajax({
-                type: "post",
-                url: "{{ route('like.store') }}",
-                data: fd,
-                processData: false,
-                contentType: false,
-                headers: {
-                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
-                },
-                success: function(response) {
-                    console.log(response);
-                    $('#total-like').text(response.data.totalLikes + ' Suka');
-                },
-                error: function(error) {
-                    console.error('Error:', error);
-                }
-            });
-        });
+        function toggleLike(event, button) {
+            event.preventDefault(); // Prevent the default form submission behavior
+
+            const isClicked = button.classList.toggle('clicked');
+            const form = $(button).closest('form');
+
+            if (isClicked) {
+                $.ajax({
+                    type: "post",
+                    url: "{{ route('like.store') }}",
+                    data: new FormData(form[0]),
+                    processData: false,
+                    contentType: false,
+                    headers: {
+                        'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                    },
+                    success: function(response) {
+                        console.log(response);
+                        $('#total-like').text(response.data.totalLikes + ' Suka');
+                    },
+                    error: function(error) {
+                        console.error('Error:', error);
+                    }
+                });
+            } else {
+                const likeId = form.data('like-id');
+                $.ajax({
+                    type: "post",
+                    url: "{{ route('unlike.post', ['like' => ':likeId']) }}".replace(':likeId', likeId),
+                    data: new FormData(form[0]),
+                    processData: false,
+                    contentType: false,
+                    headers: {
+                        'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                    },
+                    success: function(response) {
+                        console.log(response);
+                        $('#total-like').text(response.data.totalLikes + ' Suka');
+                    },
+                    error: function(error) {
+                        console.error('Error:', error);
+                    }
+                });
+            }
+        }
     </script>
 @endpush

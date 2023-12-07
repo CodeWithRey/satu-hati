@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserManagement;
 use App\Http\Controllers\UserManagementController;
+use App\Models\LikePost;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('/profile', UserManagementController::class);
     Route::resource('/like', LikePostController::class);
 
+    Route::delete('/like/{like}', [LikePost::class, 'destroy'])->name('unlike.post');
     Route::get('comments/{postId}', [CommentController::class, 'create'])->name('reply.comment');
 });
 
