@@ -2,7 +2,7 @@
 <nav class="fixed top-0 w-full z-20 bg-white border-gray-200 dark:bg-gray-900 floating-shadow-lg">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a href="{{ route('home') }}" class="flex items-center space-x-3 rtl:space-x-reverse">
-            <img src="{{ asset('assets/images/logo satu hati.png') }}" class="h-10" alt="Flowbite Logo" />
+            <img src="{{ asset('assets/images/logo-no-text.png') }}" class="h-10" alt="Flowbite Logo" />
             <span class="self-center text-2xl whitespace-nowrap text-[#CB6A10] font-bold">SatuHati</span>
         </a>
         <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
@@ -58,12 +58,12 @@
             @guest
                 <div class="lg:grid hidden grid-cols-2 gap-4">
                     <a href="{{ route('register') }}"
-                        class="flex items-center justify-center bg-transparent hover:bg-[#CB6A10] transition duration-300 text-[#CB6A10] hover:text-white border-[#CB6A10] hover:[#CB6A10] border-2 py-2 px-5 font-bold rounded shadow-lg">
-                        Register
+                        class="flex items-center justify-center bg-transparent hover:bg-dy transition duration-300 text-[#CB6A10] hover:text-white border-[#CB6A10] hover:[#CB6A10] border-2 py-2 px-5 font-bold rounded shadow-lg">
+                        Daftar
                     </a>
                     <a href="{{ route('login') }}"
-                        class="flex items-center justify-center bg-[#CB6A10] hover:bg-[#CB6A10] transition duration-300 text-white py-2 px-5 font-bold rounded shadow-lg">
-                        Login
+                        class="flex items-center justify-center bg-[#CB6A10] hover:bg-dy-dark transition duration-300 text-white py-2 px-5 font-bold rounded shadow-lg">
+                        Masuk
                     </a>
                 </div>
             @endguest
@@ -81,8 +81,8 @@
                         Diskusi</a>
                 </li>
                 <li>
-                    <a href="{{ route('forum') }}"
-                        class="block py-2 px-3 rounded {{ Route::is('forum') ? 'navbar-link-active' : 'navbar-link-inactive' }}">Pengaduan</a>
+                    <a href="{{ route('pengaduan') }}"
+                        class="block py-2 px-3 rounded {{ Route::is('pengaduan') ? 'navbar-link-active' : 'navbar-link-inactive' }}">Pengaduan</a>
                 </li>
                 <li>
                     <a href="{{ route('about') }}"
@@ -93,11 +93,11 @@
                     <div class="lg:hidden grid grid-cols-2 gap-4 mt-4">
                         <a href="{{ route('register') }}"
                             class="flex items-center justify-center bg-transparent hover:bg-[#CB6A10] transition duration-300 text-[#CB6A10] hover:text-white border-[#CB6A10] hover:border-[#CB6A10] border-2 py-2 px-5 font-bold rounded shadow-lg">
-                            Register
+                            Daftar
                         </a>
                         <a href="{{ route('login') }}"
                             class="flex items-center justify-center bg-[#CB6A10] hover:bg-[#CB6A10] transition duration-300 text-white py-2 px-5 font-bold rounded shadow-lg">
-                            Login
+                            Masuk
                         </a>
                     </div>
                 @endguest

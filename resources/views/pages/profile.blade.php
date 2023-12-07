@@ -66,7 +66,7 @@
                             <li>
                                 <button type="button" data-menu="editPassword"
                                     class="btn-switch text-black p-4 text-sm hover:bg-slate-50 w-full text-start rounded-b-lg">Ubah
-                                    Password</button>
+                                    Kata Sandi</button>
                             </li>
                         </ul>
                     </div>
@@ -105,7 +105,7 @@
                             @enderror
                         </div>
                         <div class="flex flex-col gap-2">
-                            <label for="birthday">Tanggal Lahir <span class="text-white font-bold">*</span></label>
+                            <label for="birthday">Tanggal Lahir</label>
                             <input type="date" id="birthday" name="birthday"
                                 class="w-full px-4 py-2 border rounded-md text-black" value="{{ $user->birthday }}">
                             @error('birthday')
@@ -142,16 +142,30 @@
                             <div class="flex flex-col gap-2 text-start">
                                 <label for="current_password">Kata Sandi Lama <span
                                         class="text-white font-bold">*</span></label>
-                                <input id="current_password" type="password" name="current_password"
-                                    class="w-full px-4 py-2 border rounded-md text-black">
+                                <div class="w-full relative">
+                                    <input id="current_password" type="password" name="current_password"
+                                        class="w-full px-4 py-2 border rounded-md text-black"
+                                        placeholder="Masukkan kata sandi lama...">
+                                    <button type="button" tabindex="-1" class="show-password absolute top-1/2 -translate-y-1/2 right-4 text-gray-400 hover:text-gray-500">
+                                        <i class="fa fa-eye-slash" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+
                                 @error('current_password')
                                     <span class="text-red">{{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="flex flex-col gap-2 text-start">
                                 <label for="password">Kata Sandi Baru <span class="text-white font-bold">*</span></label>
-                                <input id="password" type="password" name="password"
-                                    class="w-full px-4 py-2 border rounded-md text-black">
+                                <div class="w-full relative">
+                                    <input id="password" type="password" name="password"
+                                        class="w-full px-4 py-2 border rounded-md text-black"
+                                        placeholder="Masukkan kata sandi baru...">
+                                    <button type="button" tabindex="-1" class="show-password absolute top-1/2 -translate-y-1/2 right-4 text-gray-400 hover:text-gray-500">
+                                        <i class="fa fa-eye-slash" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+
                                 @error('password')
                                     <span class="text-red">{{ $message }}</span>
                                 @enderror
@@ -159,8 +173,15 @@
                             <div class="flex flex-col gap-2 text-start">
                                 <label for="password_confirmation">Konfirmasi Kata Sandi Baru <span
                                         class="text-white font-bold">*</span></label>
-                                <input id="password_confirmation" type="password" name="password_confirmation"
-                                    class="w-full px-4 py-2 border rounded-md text-black">
+                                <div class="w-full relative">
+                                    <input id="password_confirmation" type="password" name="password_confirmation"
+                                        class="w-full px-4 py-2 border rounded-md text-black"
+                                        placeholder="Masukkan kata sandi baru...">
+                                    <button type="button" tabindex="-1" class="show-password absolute top-1/2 -translate-y-1/2 right-4 text-gray-400 hover:text-gray-500">
+                                        <i class="fa fa-eye-slash" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+
                                 @error('password_confirmation')
                                     <span class="text-red">{{ $message }}</span>
                                 @enderror
@@ -194,11 +215,12 @@
                                     <div class="flex w-full items-center justify-between">
                                         <div class="flex items-center mb-4">
                                             <img src="{{ $top_post->user->profile_picture_path ? $top_post->user->profile_picture_path : asset('assets/images/user_placeholder.png') }}"
-                                                alt="Profile Picture" class="w-8 h-8 rounded-full mr-2">
+                                                alt="Profile Picture" class="w-8 h-8 rounded-full mr-2 ">
                                             <span
                                                 class="text-black font-semibold">{{ $top_post->is_anonymous === 0 ? $top_post->user->full_name : 'Anonymous' }}</span>
                                         </div>
-                                        <a href='' class="flex items-center gap-3 bg-dy hover:bg-dy-dark py-2 px-6 rounded focus:ring-4 focus:ring-orange-200 text-white transition duration-300">
+                                        <a href=''
+                                            class="flex items-center gap-3 bg-dy hover:bg-dy-dark py-2 px-6 rounded focus:ring-4 focus:ring-orange-200 text-white transition duration-300">
                                             <i class="fa fa-eye" aria-hidden="true"></i>
                                             Lihat
                                         </a>
@@ -218,7 +240,7 @@
                                         <div class="like-button mr-2">
                                             <i class="fas fa-thumbs-up"></i>
                                         </div>
-                                        <span class="mr-5">{{ $top_post->likes()->count() }} Likes</span>
+                                        <span class="mr-5">{{ $top_post->likes()->count() }} Suka</span>
                                         <span class="mr-5"><i class="fas fa-comment"></i>
                                             {{ $top_post->comments()->count() }}
                                             Komentar</span>
@@ -239,6 +261,13 @@
 @endsection
 
 @push('scripts')
+    <script>
+        new VenoBox({
+            selector: '.my-image-links',
+            spinner: 'rotating-plane',
+            maxWidth: '100%'
+        });
+    </script>
     <script>
         $(document).ready(function(e) {
             $('#profilePicture').change(function(e) {
