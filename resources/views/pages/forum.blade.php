@@ -202,12 +202,17 @@
                                 </a>
                             @endforeach
                         </div>
+
                         <!-- Tombol Like dan Jumlah Like -->
                         <div class="flex items-center text-gray-500 mb-2">
-                            <button class="like-button mr-2" onclick="toggleLike(this)">
-                                <i class="fas fa-thumbs-up"></i>
-                            </button>
-                            <span class="mr-5">{{ $post->likes()->count() }} Suka</span>
+                            <form id="like-form">
+                                <input type="hidden" name="user_id" value="{{ $post->user->id }}">
+                                <input type="hidden" name="post_id" value="{{ $post->id }}">
+                                <button class="like-button mr-2" onclick="toggleLike(this)">
+                                    <i class="fas fa-thumbs-up"></i>
+                                </button>
+                            </form>
+                            <span class="mr-5" id="total-like">{{ $post->likes()->count() }} Suka</span>
                             <span class="mr-5"><i class="fas fa-comment"></i> {{ $post->comments()->count() }}
                                 Komentar</span>
                         </div>
@@ -265,6 +270,30 @@
             selector: '.my-image-links',
             spinner: 'rotating-plane',
             maxWidth: '100%'
+        });
+    </script>
+
+    <script>
+        $("#like-form").submit(function(e) {
+            e.preventDefault();
+            const fd = new FormData(this);
+            $.ajax({
+                type: "post",
+                url: "{{ route('like.store') }}",
+                data: fd,
+                processData: false,
+                contentType: false,
+                headers: {
+                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                },
+                success: function(response) {
+                    console.log(response);
+                    $('#total-like').text(response.data.totalLikes + ' Suka');
+                },
+                error: function(error) {
+                    console.error('Error:', error);
+                }
+            });
         });
     </script>
 @endpush

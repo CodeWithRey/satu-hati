@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\LikePost;
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,17 +14,20 @@ class LikePostController extends Controller
      */
     public function store(Request $request)
     {
-        $userId = Auth::id();
-        $postId = $request->route()->parameter('postId');
-
-        LikePost::create([
-            'user_id' => $userId,
-            'post_id' => $postId,
+        $data = LikePost::create([
+            'user_id' => $request->user_id,
+            'post_id' => $request->post_id,
         ]);
+
+        $post = Post::findOrFail($data->post_id);
+        $totalLike = $post->likes()->count();
+
+        $data->totalLikes = $totalLike;
 
         return response()->json([
             'status' => 'OK',
             'message' => 'Like Post has been created successfully',
+            'data' => $data
         ]);
     }
     /**

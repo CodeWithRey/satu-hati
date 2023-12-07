@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\LikePostController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserManagement;
@@ -28,6 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('/post', PostController::class);
     Route::resource('/comment', CommentController::class);
     Route::resource('/profile', UserManagementController::class);
+    Route::resource('/like', LikePostController::class);
 
     Route::get('comments/{postId}', [CommentController::class, 'create'])->name('reply.comment');
 });
