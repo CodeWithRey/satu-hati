@@ -78,7 +78,7 @@
         <!-- Container -->
         <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-4">
             <!-- Card Komentar 3-->
-            @foreach ($comments as $comment)
+            @forelse ($comments as $comment)
                 @if ($comment->parent_comment_id === null)
                     <div class="bg-white p-4 rounded-lg border w-full">
                         <!-- Foto Profile dan Nickname Komentator -->
@@ -213,7 +213,9 @@
                         </button>
                     </div>
                 @endif
-            @endforeach
+            @empty
+                @include('includes.no_content_detail')
+            @endforelse
 
         </div>
     </section>
@@ -262,8 +264,7 @@
             </button>
             <textarea id="chat" rows="1"
                 class="block mx-4 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-[#CB6A10] focus:border-[#CB6A10] dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#CB6A10] dark:focus:border-[#CB6A10]"
-                name="body" placeholder="Tulis balasan...">
-            </textarea>
+                name="body" placeholder="Tulis balasan..."></textarea>
             <button type="submit"
                 class="inline-flex justify-center p-2 text-white rounded-full cursor-pointer bg-[#CB6A10] hover:bg-[#AD5910] dark:bg-[#CB6A10] dark:hover:bg-[#AD5910]">
                 <svg class="w-5 h-5 rotate-90 rtl:-rotate-90" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"

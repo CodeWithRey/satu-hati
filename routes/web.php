@@ -47,4 +47,16 @@ Route::get('/detailforum', function () {
     return view('pages.detailforum');
 });
 
+Route::get('/pengaduan', function () {
+    return view('pages.pengaduan');
+})->name('pengaduan');
+
+Route::get('/no-content', function () {
+    return view('includes.no_content_forum');
+});
+
+Route::get('/no-contentdetail', function () {
+    return view('includes.no_content_detail');
+});
+
 require __DIR__ . '/auth.php';
