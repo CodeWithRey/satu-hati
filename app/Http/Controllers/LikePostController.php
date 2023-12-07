@@ -35,13 +35,20 @@ class LikePostController extends Controller
      */
     public function destroy(LikePost $likePost)
     {
+
+
+        $post = Post::findOrFail($likePost->post_id);
         $likePost->delete();
-        $totalLike = $likePost->count();
+        $totalLike = $post->likes->count();
+
+
 
         return response()->json([
             'status' => 'OK',
             'message' => 'Like Post has been deleted successfully',
-            'data' => $totalLike,
+            'data' => [
+                'totalLikes' => $totalLike
+            ],
         ]);
     }
 }

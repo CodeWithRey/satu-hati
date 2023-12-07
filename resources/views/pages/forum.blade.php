@@ -205,7 +205,8 @@
 
                         <!-- Tombol Like dan Jumlah Like -->
                         <div class="flex items-center text-gray-500 mb-2">
-                            <form id="like-form" data-like-id="{{ $post->likes }}">
+                            <form id="like-form"
+                                data-like-id="{{ optional($post->likes->where('user_id', auth()->id())->first())->id }}">
                                 <input type="hidden" name="user_id" value="{{ $post->user->id }}">
                                 <input type="hidden" name="post_id" id="post_id" value="{{ $post->id }}">
                                 <button class="like-button mr-2" onclick="toggleLike(event, this)">
@@ -271,13 +272,14 @@
         function toggleLike(event, button) {
             event.preventDefault(); // Prevent the default form submission behavior
 
-            const isClicked = button.classList.toggle('clicked');
             const form = $(button).closest('form');
+            const like_post = form.data('like-id');
+            const isClicked = button.classList.toggle('clicked');
 
             if (isClicked) {
                 $.ajax({
                     type: "post",
-                    url: "{{ route('like.store') }}",
+                    url: "{{ route('like_post.store') }}",
                     data: new FormData(form[0]),
                     processData: false,
                     contentType: false,
@@ -286,6 +288,7 @@
                     },
                     success: function(response) {
                         console.log(response);
+                        form.data('like-id', response.data.id);
                         $('#total-like').text(response.data.totalLikes + ' Suka');
                     },
                     error: function(error) {
@@ -293,10 +296,11 @@
                     }
                 });
             } else {
-                const likeId = form.data('like-id');
+                console.log(like_post);
                 $.ajax({
-                    type: "post",
-                    url: "{{ route('unlike.post', ['like' => ':likeId']) }}".replace(':likeId', likeId),
+                    type: "DELETE",
+                    url: "{{ route('like_post.destroy', ['like_post' => ':like_post']) }}".replace(':like_post',
+                        like_post),
                     data: new FormData(form[0]),
                     processData: false,
                     contentType: false,
@@ -306,6 +310,7 @@
                     success: function(response) {
                         console.log(response);
                         $('#total-like').text(response.data.totalLikes + ' Suka');
+                        form.removeData('like-id');
                     },
                     error: function(error) {
                         console.error('Error:', error);

@@ -30,9 +30,9 @@ Route::middleware('auth')->group(function () {
     Route::resource('/post', PostController::class);
     Route::resource('/comment', CommentController::class);
     Route::resource('/profile', UserManagementController::class);
-    Route::resource('/like', LikePostController::class);
+    Route::resource('/like_post', LikePostController::class);
 
-    Route::delete('/like/{like}', [LikePost::class, 'destroy'])->name('unlike.post');
+
     Route::get('comments/{postId}', [CommentController::class, 'create'])->name('reply.comment');
 });
 
