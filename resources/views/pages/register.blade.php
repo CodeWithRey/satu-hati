@@ -23,8 +23,8 @@
                 <!-- Isian Form -->
                 <div class="flex flex-col gap-2 mb-4">
                     <label for="full_name" class="block text-sm font-semibold text-gray-600">Nama Lengkap</label>
-                    <input type="text" id="full_name" name="full_name" placeholder="Masukkan nama lengkap anda..." class="w-full px-4 py-2 border rounded-md"
-                        value={{ old('full_name') }}>
+                    <input type="text" id="full_name" name="full_name" placeholder="Masukkan nama lengkap anda..."
+                        class="w-full px-4 py-2 border rounded-md" value={{ old('full_name') }}>
                     @error('full_name')
                         <span class="text-red-500">{{ $message }}</span>
                     @enderror
@@ -32,8 +32,8 @@
 
                 <div class="flex flex-col gap-2 mb-4">
                     <label for="email" class="block text-sm font-semibold text-gray-600">E-Mail</label>
-                    <input type="email" id="email" name="email" placeholder="Masukkan E-Mail anda..." class="w-full px-4 py-2 border rounded-md"
-                        value={{ old('email') }}>
+                    <input type="email" id="email" name="email" placeholder="Masukkan E-Mail anda..."
+                        class="w-full px-4 py-2 border rounded-md" value={{ old('email') }}>
                     @error('email')
                         <span class="text-red-500">{{ $message }}</span>
                     @enderror
@@ -57,7 +57,14 @@
 
                 <div class="flex flex-col gap-2 mb-4">
                     <label for="password" class="block text-sm font-semibold text-gray-600">Kata Sandi</label>
-                    <input type="password" placeholder="Masukkan kata sandi anda..." id="password" name="password" class="w-full px-4 py-2 border rounded-md">
+                    <div class="w-full relative">
+                        <input type="password" placeholder="Masukkan kata sandi anda..." id="password" name="password"
+                            class="w-full px-4 py-2 border rounded-md">
+                        <button type="button" tabindex="-1"
+                            class="show-password absolute top-1/2 -translate-y-1/2 right-4 text-gray-400 hover:text-gray-500">
+                            <i class="fa fa-eye-slash" aria-hidden="true"></i>
+                        </button>
+                    </div>
                     @error('password')
                         <span class="text-red-500">{{ $message }}</span>
                     @enderror
@@ -66,8 +73,14 @@
                 <div class="flex flex-col gap-2 mb-4">
                     <label for="password_confirmation" class="block text-sm font-semibold text-gray-600">Ulangi
                         Kata Sandi</label>
-                    <input type="password" placeholder="Masukkan ulang kata sandi anda..." id="password_confirmation" name="password_confirmation"
-                        class="w-full px-4 py-2 border rounded-md">
+                    <div class="w-full relative">
+                        <input type="password" placeholder="Masukkan ulang kata sandi anda..." id="password_confirmation"
+                            name="password_confirmation" class="w-full px-4 py-2 border rounded-md">
+                        <button type="button" tabindex="-1"
+                            class="show-password absolute top-1/2 -translate-y-1/2 right-4 text-gray-400 hover:text-gray-500">
+                            <i class="fa fa-eye-slash" aria-hidden="true"></i>
+                        </button>
+                    </div>
                     @error('password_confirmation')
                         <span class="text-red-500">{{ $message }}</span>
                     @enderror
