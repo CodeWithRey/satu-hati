@@ -16,6 +16,34 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `comment_images`
+--
+
+DROP TABLE IF EXISTS `comment_images`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `comment_images` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `path` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `comment_id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `images_comment_id` (`comment_id`),
+  CONSTRAINT `images_comment_id` FOREIGN KEY (`comment_id`) REFERENCES `comments` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `comment_images`
+--
+
+LOCK TABLES `comment_images` WRITE;
+/*!40000 ALTER TABLE `comment_images` DISABLE KEYS */;
+/*!40000 ALTER TABLE `comment_images` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `comments`
 --
 
@@ -23,15 +51,19 @@ DROP TABLE IF EXISTS `comments`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `comments` (
-  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
   `body` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `user_id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
   `post_id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `parent_comment_id` char(36) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
+  KEY `comments_id_index` (`id`),
   KEY `comments_user_id` (`user_id`),
   KEY `comments_post_id` (`post_id`),
+  KEY `comments_parent_comment_id_foreign` (`parent_comment_id`),
+  CONSTRAINT `comments_parent_comment_id_foreign` FOREIGN KEY (`parent_comment_id`) REFERENCES `comments` (`id`) ON DELETE CASCADE,
   CONSTRAINT `comments_post_id` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`) ON DELETE CASCADE,
   CONSTRAINT `comments_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -43,6 +75,7 @@ CREATE TABLE `comments` (
 
 LOCK TABLES `comments` WRITE;
 /*!40000 ALTER TABLE `comments` DISABLE KEYS */;
+INSERT INTO `comments` VALUES ('1567dd9d-cf9e-46e3-bc66-9241604f4a03','test 123','fd0d3770-d9ef-4aeb-aba3-961289ade53f','eb18fc9c-1454-426b-82ae-4ff9628a59f1',NULL,'2023-12-07 05:09:20','2023-12-07 05:09:20'),('24506cfc-c8c3-4bc8-82e5-845571abb69f','test 456','d2d2388e-b4fc-4e1e-8723-e88940b1c79b','eb18fc9c-1454-426b-82ae-4ff9628a59f1','1567dd9d-cf9e-46e3-bc66-9241604f4a03','2023-12-07 05:09:58','2023-12-07 05:09:58'),('7b186f7a-939f-4d3c-8638-df403d209f1e','test 1011112','d2d2388e-b4fc-4e1e-8723-e88940b1c79b','eb18fc9c-1454-426b-82ae-4ff9628a59f1','ba6dde78-e050-49fb-8c3c-80cbf9e5a29b','2023-12-07 05:13:10','2023-12-07 05:13:10'),('ba6dde78-e050-49fb-8c3c-80cbf9e5a29b','test 789','fd0d3770-d9ef-4aeb-aba3-961289ade53f','eb18fc9c-1454-426b-82ae-4ff9628a59f1','24506cfc-c8c3-4bc8-82e5-845571abb69f','2023-12-07 05:11:06','2023-12-07 05:11:06');
 /*!40000 ALTER TABLE `comments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -97,7 +130,7 @@ CREATE TABLE `genders` (
 
 LOCK TABLES `genders` WRITE;
 /*!40000 ALTER TABLE `genders` DISABLE KEYS */;
-INSERT INTO `genders` VALUES (1,'laki-laki','2023-11-19 04:44:23','2023-11-19 04:44:23'),(2,'perempuan','2023-11-19 04:44:23','2023-11-19 04:44:23');
+INSERT INTO `genders` VALUES (1,'Laki-laki','2023-12-03 20:48:14','2023-12-03 20:48:14'),(2,'Perempuan','2023-12-03 20:48:14','2023-12-03 20:48:14');
 /*!40000 ALTER TABLE `genders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -111,7 +144,7 @@ DROP TABLE IF EXISTS `like_comments`;
 CREATE TABLE `like_comments` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `user_id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `comment_id` bigint unsigned NOT NULL,
+  `comment_id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -149,7 +182,7 @@ CREATE TABLE `like_posts` (
   KEY `like_posts_post_id` (`post_id`),
   CONSTRAINT `like_posts_post_id` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`) ON DELETE CASCADE,
   CONSTRAINT `like_posts_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=118 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -173,7 +206,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -182,7 +215,7 @@ CREATE TABLE `migrations` (
 
 LOCK TABLES `migrations` WRITE;
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
-INSERT INTO `migrations` VALUES (1,'2013_10_12_000000_create_genders_table',1),(2,'2013_10_12_000000_create_roles_table',1),(3,'2014_10_12_000000_create_users_table',1),(4,'2014_10_12_100000_create_password_reset_tokens_table',1),(5,'2019_08_19_000000_create_failed_jobs_table',1),(6,'2019_12_14_000001_create_personal_access_tokens_table',1),(7,'2023_11_17_121421_create_posts_table',1),(8,'2023_11_17_121427_create_like_posts_table',1),(9,'2023_11_17_121432_create_comments_table',1),(10,'2023_11_17_121437_create_like_comments_table',1);
+INSERT INTO `migrations` VALUES (1,'2013_10_12_000000_create_genders_table',1),(2,'2013_10_12_000000_create_roles_table',1),(3,'2014_10_12_000000_create_users_table',1),(4,'2014_10_12_100000_create_password_reset_tokens_table',1),(5,'2019_08_19_000000_create_failed_jobs_table',1),(6,'2019_12_14_000001_create_personal_access_tokens_table',1),(7,'2023_11_17_121421_create_posts_table',1),(8,'2023_11_17_121427_create_like_posts_table',1),(9,'2023_11_17_121432_create_comments_table',1),(10,'2023_11_17_121437_create_like_comments_table',1),(11,'2023_11_21_024535_create_post_images_table',1),(12,'2023_12_03_095047_create_comment_images_table',1);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -244,6 +277,35 @@ LOCK TABLES `personal_access_tokens` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `post_images`
+--
+
+DROP TABLE IF EXISTS `post_images`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `post_images` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `path` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `post_id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `images_post_id` (`post_id`),
+  CONSTRAINT `images_post_id` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `post_images`
+--
+
+LOCK TABLES `post_images` WRITE;
+/*!40000 ALTER TABLE `post_images` DISABLE KEYS */;
+INSERT INTO `post_images` VALUES (10,'/storage/posts/17019333381784606452188868.jpg','eb18fc9c-1454-426b-82ae-4ff9628a59f1','2023-12-07 00:15:38','2023-12-07 00:15:38');
+/*!40000 ALTER TABLE `post_images` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `posts`
 --
 
@@ -254,7 +316,7 @@ CREATE TABLE `posts` (
   `id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `is_anonymous` tinyint(1) NOT NULL,
+  `is_anonymous` tinyint(1) NOT NULL DEFAULT '0',
   `user_id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -270,6 +332,7 @@ CREATE TABLE `posts` (
 
 LOCK TABLES `posts` WRITE;
 /*!40000 ALTER TABLE `posts` DISABLE KEYS */;
+INSERT INTO `posts` VALUES ('eb18fc9c-1454-426b-82ae-4ff9628a59f1','test','test',0,'d2d2388e-b4fc-4e1e-8723-e88940b1c79b','2023-12-07 00:15:38','2023-12-07 00:15:38');
 /*!40000 ALTER TABLE `posts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -295,7 +358,7 @@ CREATE TABLE `roles` (
 
 LOCK TABLES `roles` WRITE;
 /*!40000 ALTER TABLE `roles` DISABLE KEYS */;
-INSERT INTO `roles` VALUES (1,'User','2023-11-19 04:44:23','2023-11-19 04:44:23'),(2,'Expert','2023-11-19 04:44:23','2023-11-19 04:44:23');
+INSERT INTO `roles` VALUES (1,'User','2023-12-03 20:48:14','2023-12-03 20:48:14'),(2,'Expert','2023-12-03 20:48:14','2023-12-03 20:48:14');
 /*!40000 ALTER TABLE `roles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -308,10 +371,10 @@ DROP TABLE IF EXISTS `users`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `users` (
   `id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `first_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `last_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `full_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `gender_id` bigint unsigned NOT NULL,
   `age` int DEFAULT NULL,
+  `summary` longtext COLLATE utf8mb4_unicode_ci,
   `birthday` date DEFAULT NULL,
   `profile_picture_path` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `role_id` bigint unsigned NOT NULL,
@@ -336,7 +399,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES ('0e546bd6-25a6-42f6-a59b-b3d45b495cd2','normal','user',1,20,'2023-11-19',NULL,1,'user@gmail.com',NULL,'$2y$12$ys6nI7fw1M.2OYxxv3X..ekvkMcpfitN0DrSKwOqBULdP2aJ0kX7e',NULL,'2023-11-19 05:10:23','2023-11-19 05:10:23');
+INSERT INTO `users` VALUES ('d2d2388e-b4fc-4e1e-8723-e88940b1c79b','reynaldi',1,NULL,NULL,NULL,'/storage/profile/17017795171784445159110124.png',1,'rizkypratama471@gmail.com',NULL,'$2y$12$IKRWsmUAh9w7N/Uk5yrdbexRRjW1Ptdn4ilKr5/nazQS7aU3caPDe',NULL,'2023-12-03 20:49:48','2023-12-05 05:31:57'),('fd0d3770-d9ef-4aeb-aba3-961289ade53f','Rizkyansah',1,NULL,NULL,NULL,'/storage/profile/17017642151784429113636438.png',1,'rizky@gmail.com',NULL,'$2y$12$46DZeE98jO5kW6gjK2hg6u5xEpo0w0M.d6Lxbmgw4STn48EgnSc1q',NULL,'2023-12-05 01:16:37','2023-12-05 01:16:55');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -353,4 +416,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-11-19 22:11:26
+-- Dump completed on 2023-12-07 23:42:48
