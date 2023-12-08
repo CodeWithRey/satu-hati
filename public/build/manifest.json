@@ -1,0 +1,28 @@
+{
+  "public/assets/images/bg-about2.png": {
+    "file": "assets/bg-about2-1360cf6b.png",
+    "src": "public/assets/images/bg-about2.png"
+  },
+  "public/assets/images/bg-forum.png": {
+    "file": "assets/bg-forum-731fb72a.png",
+    "src": "public/assets/images/bg-forum.png"
+  },
+  "public/assets/images/bg.png": {
+    "file": "assets/bg-08ad7cdf.png",
+    "src": "public/assets/images/bg.png"
+  },
+  "public/assets/images/bg2.png": {
+    "file": "assets/bg2-641316de.png",
+    "src": "public/assets/images/bg2.png"
+  },
+  "resources/css/app.css": {
+    "file": "assets/app-d34c2637.css",
+    "isEntry": true,
+    "src": "resources/css/app.css"
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-aa379cfa.js",
+    "isEntry": true,
+    "src": "resources/js/app.js"
+  }
+}
