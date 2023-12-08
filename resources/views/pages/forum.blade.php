@@ -1,7 +1,7 @@
 {{-- Menghubungkan home page dengan layout default  --}}
 @extends('layout.default')
 
-@section('showFooter', 'hidden')
+{{-- @section('showFooter', 'hidden') --}}
 @section('content')
     <div class="bg-landing-forum min-h-[80vh] min-w-screen flex flex-col items-center justify-center py-12">
         <img src="{{ asset('assets/images/vec.png') }}" class="w-[400px]" alt="">
