@@ -8,7 +8,7 @@
                         <img src="{{ $reply->user->profile_picture_path ? $reply->user->profile_picture_path : asset('assets/images/user_placeholder.png') }}"
                             alt="Profile Picture" class="w-8 h-8 rounded-full mr-2">
                         <div class="flex flex-col ">
-                            <span class="text-black font-semibold capitalize">{{ $reply->user->full_name }}</span>
+                            <span class="text-black font-semibold capitalize flex self-start" id="{{ $reply->id }}">{{ $reply->user->full_name }}</span>
                             <span class="text-slate-400 font-medium">Diposting pada
                                 {{ $reply->created_at->diffForHumans() }}</span>
                         </div>
@@ -29,8 +29,11 @@
 
             <!-- Isi reply -->
             <p class="text-gray-600 mb-2">
-                <span
-                    class="text-blue-500 font-semibold capitalize">{{ '@' . $reply->parentComment->user->full_name }}</span>
+                @if ($reply->parentComment->id !== $comment->id)
+                    <button type="button" onclick="handleReplyOrigin('{{ $reply->parentComment->id }}')" class="text-blue-500 font-semibold capitalize">
+                        {{ '@' . $reply->parentComment->user->full_name }}
+                    </button>
+                @endif
                 {{ $reply->body }}
             </p>
 
@@ -52,7 +55,7 @@
                 </div>
                 <!-- Tombol Balas -->
                 <button class="text-gray-600 reply-comment" data-comment-id="{{ $reply->id }}"
-                    onclick="prepareReply(this)">
+                    onclick="prepareReply('{{ $reply->user->full_name }}', '{{ $reply->id }}')">
                     Balas
                 </button>
             </div>
