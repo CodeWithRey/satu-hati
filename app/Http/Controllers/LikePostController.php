@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\LikePost;
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,17 +14,20 @@ class LikePostController extends Controller
      */
     public function store(Request $request)
     {
-        $userId = Auth::id();
-        $postId = $request->route()->parameter('postId');
+        $post = Post::findOrFail($request->post_id);
 
-        LikePost::create([
-            'user_id' => $userId,
-            'post_id' => $postId,
+        $data = LikePost::create([
+            'user_id' => auth()->user()->id,
+            'post_id' => $post->id,
         ]);
+
+        $totalLike = $post->likes()->count();
+        $data->totalLikes = $totalLike;
 
         return response()->json([
             'status' => 'OK',
             'message' => 'Like Post has been created successfully',
+            'data' => $data
         ]);
     }
     /**
@@ -31,10 +35,20 @@ class LikePostController extends Controller
      */
     public function destroy(LikePost $likePost)
     {
+
+
+        $post = Post::findOrFail($likePost->post_id);
         $likePost->delete();
+        $totalLike = $post->likes->count();
+
+
+
         return response()->json([
             'status' => 'OK',
             'message' => 'Like Post has been deleted successfully',
+            'data' => [
+                'totalLikes' => $totalLike
+            ],
         ]);
     }
 }

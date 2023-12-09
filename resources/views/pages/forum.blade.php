@@ -202,12 +202,20 @@
                                 </a>
                             @endforeach
                         </div>
+
                         <!-- Tombol Like dan Jumlah Like -->
                         <div class="flex items-center text-gray-500 mb-2">
-                            <button class="like-button mr-2" onclick="toggleLike(this)">
-                                <i class="fas fa-thumbs-up"></i>
-                            </button>
-                            <span class="mr-5">{{ $post->likes()->count() }} Suka</span>
+                            <form
+                                data-like-id="{{ optional($post->likes->where('user_id', auth()->id())->first())->id }}">
+                                <input type="hidden" name="post_id" id="post_id" value="{{ $post->id }}">
+                                <button
+                                    class="like-button mr-2 {{ optional($userLikedPost[$post->id])['userLikedPost'] ? 'clicked' : '' }}"
+                                    onclick="toggleLike(event, this)">
+                                    <i class="fas fa-thumbs-up"></i>
+                                </button>
+                            </form>
+                            <span class="mr-5 total-like-{{ $post->id }}">{{ $post->likes()->count() }}
+                                Suka</span>
                             <span class="mr-5"><i class="fas fa-comment"></i> {{ $post->comments()->count() }}
                                 Komentar</span>
                         </div>
@@ -225,12 +233,6 @@
                             }
                         </style>
 
-
-                        <script>
-                            function toggleLike(button) {
-                                button.classList.toggle('clicked');
-                            }
-                        </script>
 
 
                         <!-- Tombol Balas -->
@@ -266,5 +268,71 @@
             spinner: 'rotating-plane',
             maxWidth: '100%'
         });
+    </script>
+
+    <script>
+        let ajaxQueue = Promise.resolve();
+
+        function toggleLike(event, button) {
+            event.preventDefault();
+
+            const form = $(button).closest('form');
+            const like_post = form.data('like-id');
+            const isClicked = button.classList.toggle('clicked');
+
+
+            const ajaxRequest = () => {
+                return new Promise((resolve, reject) => {
+                    if (isClicked) {
+                        $.ajax({
+                            type: "post",
+                            url: "{{ route('like_post.store') }}",
+                            data: new FormData(form[0]),
+                            processData: false,
+                            contentType: false,
+                            headers: {
+                                'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                            },
+                            success: function(response) {
+                                const postId = response.data.post_id;
+                                const totalLikeId = `.total-like-${postId}`
+                                form.data('like-id', response.data.id);
+                                $(totalLikeId).text(response.data.totalLikes + ' Suka');
+                                resolve(); // Resolve the promise to indicate successful completion
+                            },
+                            error: function(error) {
+                                console.error('Error:', error);
+                                reject(error); // Reject the promise on error
+                            }
+                        });
+                    } else {
+                        $.ajax({
+                            type: "DELETE",
+                            url: "{{ route('like_post.destroy', ['like_post' => ':like_post']) }}"
+                                .replace(':like_post', like_post),
+                            data: new FormData(form[0]),
+                            processData: false,
+                            contentType: false,
+                            headers: {
+                                'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                            },
+                            success: function(response) {
+                                const postId = form.find('input[name="post_id"]').val();
+                                const totalLikeId = `.total-like-${postId}`;
+                                $(totalLikeId).text(response.data.totalLikes + ' Suka');
+                                form.removeData('like-id');
+                                resolve(); // Resolve the promise to indicate successful completion
+                            },
+                            error: function(error) {
+                                console.error('Error:', error);
+                                reject(error); // Reject the promise on error
+                            }
+                        });
+                    }
+                });
+            };
+
+            ajaxQueue = ajaxQueue.then(ajaxRequest).catch((error) => console.error('Error in AJAX request:', error));
+        }
     </script>
 @endpush

@@ -28,8 +28,15 @@ class CommentController extends Controller
             ->orderBy('created_at', 'desc')
             ->get();
 
+        $userLikedComment = $comments->mapWithKeys(function ($comment) {
+            return [
+                $comment->id => [
+                    'userLikedComment' => $comment->likes->where('user_id', auth()->check() ? auth()->user()->id : null)->isNotEmpty(),
+                ],
+            ];
+        });
 
-        return view('pages.detailforum', compact('post', 'comments'));
+        return view('pages.detailforum', compact('post', 'comments', 'userLikedComment'));
     }
 
 

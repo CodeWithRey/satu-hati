@@ -67,7 +67,7 @@
                 <button class="like-button mr-2" onclick="toggleLike(this)">
                     <i class="fas fa-thumbs-up text-xl"></i>
                 </button>
-                <span class="mr-5">{{ $post->likes()->count() }} Suka</span>
+                <span class="mr-5 ">{{ $post->likes()->count() }} Suka</span>
                 <span class="mr-5"><i class="fas fa-comment text-xl"></i> {{ $post->comments()->count() }}
                     Komentar</span>
             </div>
@@ -125,10 +125,17 @@
                         <div class="flex items-center justify-start text-gray-500 mt-4">
                             <!-- Tombol Suka -->
                             <div class="flex items-center">
-                                <button class="like-button mr-2" onclick="toggleLike(this)">
-                                    <i class="fas fa-thumbs-up text-lg"></i>
-                                </button>
-                                <span class="mr-5">{{ $comment->likes()->count() }} Suka</span>
+                                <form
+                                    data-like-id="{{ optional($comment->likes->where('user_id', auth()->id())->first())->id }}">
+                                    <input type="hidden" name="comment_id" id="comment_id" value="{{ $comment->id }}">
+                                    <button
+                                        class="like-button mr-2 {{ optional($userLikedComment[$comment->id])['userLikedComment'] ? 'clicked' : '' }}"
+                                        onclick="togleLike(event, this)">
+                                        <i class="fas fa-thumbs-up text-lg"></i>
+                                    </button>
+                                </form>
+                                <span class="mr-5 total-like-{{ $comment->id }}">{{ $comment->likes()->count() }}
+                                    Suka</span>
 
                             </div>
                             <!-- Tombol Balas -->
@@ -241,10 +248,6 @@
             optionsMenu.classList.toggle('hidden');
         }
 
-        function toggleLike(button) {
-            button.classList.toggle('clicked');
-        }
-
         let commentsVisible = false;
 
         function toggleComments(button) {
@@ -320,6 +323,72 @@
                 top: offsetPosition,
                 behavior: "smooth"
             });
+        }
+    </script>
+
+    <script>
+        let ajaxQueue = Promise.resolve();
+
+        function togleLike(event, button) {
+            event.preventDefault();
+
+            const form = $(button).closest('form');
+            const like_comment = form.data('like-id');
+            const isClicked = button.classList.toggle('clicked');
+
+
+            const ajaxRequest = () => {
+                return new Promise((resolve, reject) => {
+                    if (isClicked) {
+                        $.ajax({
+                            type: "post",
+                            url: "{{ route('like_comment.store') }}",
+                            data: new FormData(form[0]),
+                            processData: false,
+                            contentType: false,
+                            headers: {
+                                'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                            },
+                            success: function(response) {
+                                const commentId = response.data.comment_id;
+                                const totalLikeId = `.total-like-${commentId}`
+                                form.data('like-id', response.data.id);
+                                $(totalLikeId).text(response.data.totalLikes + ' Suka');
+                                resolve(); // Resolve the promise to indicate successful completion
+                            },
+                            error: function(error) {
+                                console.error('Error:', error);
+                                reject(error); // Reject the promise on error
+                            }
+                        });
+                    } else {
+                        $.ajax({
+                            type: "DELETE",
+                            url: "{{ route('like_comment.destroy', ['like_comment' => ':like_comment']) }}"
+                                .replace(':like_comment', like_comment),
+                            data: new FormData(form[0]),
+                            processData: false,
+                            contentType: false,
+                            headers: {
+                                'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                            },
+                            success: function(response) {
+                                const commentId = form.find('input[name="comment_id"]').val();
+                                const totalLikeId = `.total-like-${commentId}`;
+                                $(totalLikeId).text(response.data.totalLikes + ' Suka');
+                                form.removeData('like-id');
+                                resolve(); // Resolve the promise to indicate successful completion
+                            },
+                            error: function(error) {
+                                console.error('Error:', error);
+                                reject(error); // Reject the promise on error
+                            }
+                        });
+                    }
+                });
+            };
+
+            ajaxQueue = ajaxQueue.then(ajaxRequest).catch((error) => console.error('Error in AJAX request:', error));
         }
     </script>
 @endpush
