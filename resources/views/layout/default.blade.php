@@ -8,8 +8,7 @@
     <title>@yield('title', 'Satu Hati | Bersama Lawan Pelecehan')</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.compat.css" />
     {{-- Styles --}}
     @include('includes.css.styles')
 </head>
