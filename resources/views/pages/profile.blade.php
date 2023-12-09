@@ -219,7 +219,7 @@
                                             <span
                                                 class="text-black font-semibold">{{ $top_post->is_anonymous === 0 ? $top_post->user->full_name : 'Anonymous' }}</span>
                                         </div>
-                                        <a href=''
+                                        <a href='{{ route('reply.comment', $top_post->id) }}'
                                             class="flex items-center gap-3 bg-dy hover:bg-dy-dark py-2 px-6 rounded focus:ring-4 focus:ring-orange-200 text-white transition duration-300">
                                             <i class="fa fa-eye" aria-hidden="true"></i>
                                             Lihat
@@ -228,7 +228,7 @@
                                     <h2 class="text-lg font-semibold mb-2">{{ $top_post->title }}</h2>
                                     <p class="text-gray-600 mb-4">{{ $top_post->description }}</p>
                                     <div class="flex flex-wrap items-center justify-start gap-8 mb-4">
-                                        @foreach ($top_post->images as $image)
+                                        @foreach ($top_post->postImages as $image)
                                             <a class="my-image-links" data-maxwidth="800px"
                                                 href="{{ asset($image->path) }}">
                                                 <img src="{{ asset($image->path) }}" class="object-cover" width="100px"
