@@ -291,7 +291,6 @@
                         'X-CSRF-TOKEN': "{{ csrf_token() }}"
                     },
                     success: function(response) {
-                        console.log(response);
                         const postId = response.data.post_id;
                         const totalLikeId = `.total-like-${postId}`
                         form.data('like-id', response.data.id);

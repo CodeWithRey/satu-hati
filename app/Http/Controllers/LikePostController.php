@@ -22,7 +22,6 @@ class LikePostController extends Controller
         ]);
 
         $totalLike = $post->likes()->count();
-
         $data->totalLikes = $totalLike;
 
         return response()->json([

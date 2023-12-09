@@ -31,8 +31,6 @@ class PostController extends Controller
             ];
         });
 
-        // dd($userLikedPost);
-
         return view('pages.forum', compact('posts', 'userLikedPost'));
     }
 
