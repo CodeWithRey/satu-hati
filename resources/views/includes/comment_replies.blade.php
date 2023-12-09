@@ -23,7 +23,8 @@
                     <div class="hidden absolute right-0 mt-2 space-y-2 bg-white border rounded-md shadow-lg"
                         id="optionsMenu">
                         <button class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Edit</button>
-                        <a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Hapus</a>
+                        <a href="{{ route('comment.destroy', $reply->id) }}" data-confirm-delete="true"
+                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Hapus</a>
                     </div>
                 </div>
             </div>
