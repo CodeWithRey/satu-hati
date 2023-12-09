@@ -14,12 +14,13 @@ class LikePostController extends Controller
      */
     public function store(Request $request)
     {
+        $post = Post::findOrFail($request->post_id);
+
         $data = LikePost::create([
-            'user_id' => $request->user_id,
-            'post_id' => $request->post_id,
+            'user_id' => auth()->user()->id,
+            'post_id' => $post->id,
         ]);
 
-        $post = Post::findOrFail($data->post_id);
         $totalLike = $post->likes()->count();
 
         $data->totalLikes = $totalLike;

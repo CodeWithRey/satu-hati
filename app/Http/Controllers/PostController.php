@@ -23,8 +23,17 @@ class PostController extends Controller
             ->orderBy('created_at', 'desc')
             ->get();
 
+        $userLikedPost = $posts->mapWithKeys(function ($post) {
+            return [
+                $post->id => [
+                    'userLikedPost' => $post->likes->where('user_id', auth()->check() ? auth()->user()->id : null)->isNotEmpty(),
+                ],
+            ];
+        });
 
-        return view('pages.forum', compact('posts'));
+        // dd($userLikedPost);
+
+        return view('pages.forum', compact('posts', 'userLikedPost'));
     }
 
     /**

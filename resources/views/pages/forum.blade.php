@@ -205,15 +205,17 @@
 
                         <!-- Tombol Like dan Jumlah Like -->
                         <div class="flex items-center text-gray-500 mb-2">
-                            <form id="like-form"
+                            <form
                                 data-like-id="{{ optional($post->likes->where('user_id', auth()->id())->first())->id }}">
-                                <input type="hidden" name="user_id" value="{{ $post->user->id }}">
                                 <input type="hidden" name="post_id" id="post_id" value="{{ $post->id }}">
-                                <button class="like-button mr-2" onclick="toggleLike(event, this)">
+                                <button
+                                    class="like-button mr-2 {{ optional($userLikedPost[$post->id])['userLikedPost'] ? 'clicked' : '' }}"
+                                    onclick="toggleLike(event, this)">
                                     <i class="fas fa-thumbs-up"></i>
                                 </button>
                             </form>
-                            <span class="mr-5" id="total-like">{{ $post->likes()->count() }} Suka</span>
+                            <span class="mr-5 total-like-{{ $post->id }}">{{ $post->likes()->count() }}
+                                Suka</span>
                             <span class="mr-5"><i class="fas fa-comment"></i> {{ $post->comments()->count() }}
                                 Komentar</span>
                         </div>
@@ -270,11 +272,13 @@
 
     <script>
         function toggleLike(event, button) {
-            event.preventDefault(); // Prevent the default form submission behavior
+            event.preventDefault();
+
 
             const form = $(button).closest('form');
             const like_post = form.data('like-id');
             const isClicked = button.classList.toggle('clicked');
+
 
             if (isClicked) {
                 $.ajax({
@@ -288,15 +292,16 @@
                     },
                     success: function(response) {
                         console.log(response);
+                        const postId = response.data.post_id;
+                        const totalLikeId = `.total-like-${postId}`
                         form.data('like-id', response.data.id);
-                        $('#total-like').text(response.data.totalLikes + ' Suka');
+                        $(totalLikeId).text(response.data.totalLikes + ' Suka');
                     },
                     error: function(error) {
                         console.error('Error:', error);
                     }
                 });
             } else {
-                console.log(like_post);
                 $.ajax({
                     type: "DELETE",
                     url: "{{ route('like_post.destroy', ['like_post' => ':like_post']) }}".replace(':like_post',
@@ -308,8 +313,9 @@
                         'X-CSRF-TOKEN': "{{ csrf_token() }}"
                     },
                     success: function(response) {
-                        console.log(response);
-                        $('#total-like').text(response.data.totalLikes + ' Suka');
+                        const postId = form.find('input[name="post_id"]').val();
+                        const totalLikeId = `.total-like-${postId}`;
+                        $(totalLikeId).text(response.data.totalLikes + ' Suka');
                         form.removeData('like-id');
                     },
                     error: function(error) {
