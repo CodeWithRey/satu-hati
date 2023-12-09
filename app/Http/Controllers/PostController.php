@@ -19,11 +19,19 @@ class PostController extends Controller
             Post::with('user')
             ->with('comments')
             ->with('postImages')
+            ->with('likes')
             ->orderBy('created_at', 'desc')
             ->get();
 
+        $userLikedPost = $posts->mapWithKeys(function ($post) {
+            return [
+                $post->id => [
+                    'userLikedPost' => $post->likes->where('user_id', auth()->check() ? auth()->user()->id : null)->isNotEmpty(),
+                ],
+            ];
+        });
 
-        return view('pages.forum', compact('posts'));
+        return view('pages.forum', compact('posts', 'userLikedPost'));
     }
 
     /**

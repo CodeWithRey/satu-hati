@@ -146,7 +146,8 @@
                                     <input id="current_password" type="password" name="current_password"
                                         class="w-full px-4 py-2 border rounded-md text-black"
                                         placeholder="Masukkan kata sandi lama...">
-                                    <button type="button" tabindex="-1" class="show-password absolute top-1/2 -translate-y-1/2 right-4 text-gray-400 hover:text-gray-500">
+                                    <button type="button" tabindex="-1"
+                                        class="show-password absolute top-1/2 -translate-y-1/2 right-4 text-gray-400 hover:text-gray-500">
                                         <i class="fa fa-eye-slash" aria-hidden="true"></i>
                                     </button>
                                 </div>
@@ -161,7 +162,8 @@
                                     <input id="password" type="password" name="password"
                                         class="w-full px-4 py-2 border rounded-md text-black"
                                         placeholder="Masukkan kata sandi baru...">
-                                    <button type="button" tabindex="-1" class="show-password absolute top-1/2 -translate-y-1/2 right-4 text-gray-400 hover:text-gray-500">
+                                    <button type="button" tabindex="-1"
+                                        class="show-password absolute top-1/2 -translate-y-1/2 right-4 text-gray-400 hover:text-gray-500">
                                         <i class="fa fa-eye-slash" aria-hidden="true"></i>
                                     </button>
                                 </div>
@@ -177,7 +179,8 @@
                                     <input id="password_confirmation" type="password" name="password_confirmation"
                                         class="w-full px-4 py-2 border rounded-md text-black"
                                         placeholder="Masukkan kata sandi baru...">
-                                    <button type="button" tabindex="-1" class="show-password absolute top-1/2 -translate-y-1/2 right-4 text-gray-400 hover:text-gray-500">
+                                    <button type="button" tabindex="-1"
+                                        class="show-password absolute top-1/2 -translate-y-1/2 right-4 text-gray-400 hover:text-gray-500">
                                         <i class="fa fa-eye-slash" aria-hidden="true"></i>
                                     </button>
                                 </div>
@@ -219,7 +222,7 @@
                                             <span
                                                 class="text-black font-semibold">{{ $top_post->is_anonymous === 0 ? $top_post->user->full_name : 'Anonymous' }}</span>
                                         </div>
-                                        <a href=''
+                                        <a href='{{ route('reply.comment', $top_post->id) }}'
                                             class="flex items-center gap-3 bg-dy hover:bg-dy-dark py-2 px-6 rounded focus:ring-4 focus:ring-orange-200 text-white transition duration-300">
                                             <i class="fa fa-eye" aria-hidden="true"></i>
                                             Lihat
@@ -228,7 +231,7 @@
                                     <h2 class="text-lg font-semibold mb-2">{{ $top_post->title }}</h2>
                                     <p class="text-gray-600 mb-4">{{ $top_post->description }}</p>
                                     <div class="flex flex-wrap items-center justify-start gap-8 mb-4">
-                                        @foreach ($top_post->images as $image)
+                                        @foreach ($top_post->postImages as $image)
                                             <a class="my-image-links" data-maxwidth="800px"
                                                 href="{{ asset($image->path) }}">
                                                 <img src="{{ asset($image->path) }}" class="object-cover" width="100px"

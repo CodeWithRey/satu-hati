@@ -19,24 +19,25 @@
                             {{ $post->created_at->diffForHumans() }}</span>
                     </div>
                 </div>
-                <div class="relative group">
-                    <button class="text-gray-600 focus:outline-none text-lg p-2" onclick="toggleMenu(this)">
-                        <i class="fas fa-ellipsis-v"></i>
-                    </button>
-
-                    <!-- Menu Opsi Edit dan Hapus -->
-                    <div class="hidden absolute right-0 mt-2 space-y-2 bg-white border rounded-md shadow-lg"
-                        id="optionsMenu">
-                        <button
-                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition duration-300">
-                            Edit
+                @if ($post->user->id == Auth::id())
+                    <div class="relative group">
+                        <button class="text-gray-600 focus:outline-none text-lg p-2" onclick="toggleMenu(this)">
+                            <i class="fas fa-ellipsis-v"></i>
                         </button>
-                        <a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition duration-300"
-                            href="{{ route('post.destroy', $post->id) }}" data-confirm-delete="true">
-                            Hapus
-                        </a>
+
+                        <!-- Menu Opsi Edit dan Hapus -->
+                        <div class="hidden absolute right-0 mt-2 bg-white border rounded-md shadow-lg" id="optionsMenu">
+                            <button
+                                class="w-full text-start block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition duration-300">
+                                Edit
+                            </button>
+                            <a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition duration-300"
+                                href="{{ route('post.destroy', $post->id) }}" data-confirm-delete="true">
+                                Hapus
+                            </a>
+                        </div>
                     </div>
-                </div>
+                @endif
             </div>
             <!-- Judul Postingan -->
             <h2 class="text-lg font-semibold mb-2">{{ $post->title }}</h2>
@@ -66,7 +67,7 @@
                 <button class="like-button mr-2" onclick="toggleLike(this)">
                     <i class="fas fa-thumbs-up text-xl"></i>
                 </button>
-                <span class="mr-5">{{ $post->likes()->count() }} Suka</span>
+                <span class="mr-5 ">{{ $post->likes()->count() }} Suka</span>
                 <span class="mr-5"><i class="fas fa-comment text-xl"></i> {{ $post->comments()->count() }}
                     Komentar</span>
             </div>
@@ -78,7 +79,7 @@
         <!-- Container -->
         <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-4">
             <!-- Card Komentar 3-->
-            @forelse ($comments as $comment)
+            @forelse ($post->comments as $comment)
                 @if ($comment->parent_comment_id === null)
                     <div class="bg-white p-4 rounded-lg border w-full">
                         <!-- Foto Profile dan Nickname Komentator -->
@@ -87,27 +88,30 @@
                                 <img src="{{ $comment->user->profile_picture_path ? $comment->user->profile_picture_path : asset('assets/images/user_placeholder.png') }}"
                                     alt="Profile Picture" class="w-8 h-8 rounded-full mr-2">
                                 <div class="flex flex-col ">
-                                    <span
-                                        class="text-black font-semibold capitalize">{{ $comment->user->full_name }}</span>
+                                    <span class="text-black font-semibold capitalize flex self-start"
+                                        id="{{ $comment->id }}">{{ $comment->user->full_name }}</span>
                                     <span class="text-slate-400 font-medium">Diposting pada
                                         {{ $comment->created_at->diffForHumans() }}</span>
                                 </div>
                             </div>
-                            <div class="relative group">
-                                <button class="text-gray-600 focus:outline-none text-lg p-2" onclick="toggleMenu(this)">
-                                    <i class="fas fa-ellipsis-v"></i>
-                                </button>
-
-                                <!-- Menu Opsi Edit dan Hapus -->
-                                <div class="hidden absolute right-0 mt-2 space-y-2 bg-white border rounded-md shadow-lg"
-                                    id="optionsMenu">
-                                    <button class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Edit</button>
-                                    <a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition duration-300"
-                                        href="{{ route('comment.destroy', $comment->id) }}" data-confirm-delete="true">
-                                        Hapus
-                                    </a>
+                            @if ($comment->user->id == Auth::id())
+                                <div class="relative group">
+                                    <button class="text-gray-600 focus:outline-none text-lg p-2" onclick="toggleMenu(this)">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+                                    <!-- Menu Opsi Edit dan Hapus -->
+                                    <div class="hidden absolute right-0 mt-2 bg-white border rounded-md shadow-lg"
+                                        id="optionsMenu">
+                                        <button
+                                            class="text-start block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full">Edit</button>
+                                        <a class="text-start block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition duration-300"
+                                            href="{{ route('comment.destroy', $comment->id) }}" data-confirm-delete="true">
+                                            Hapus
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
+                            @endif
+
                         </div>
                         <!-- Isi Komentar -->
                         <p class="text-gray-600 mb-2">{{ $comment->body }}</p>
@@ -121,15 +125,22 @@
                         <div class="flex items-center justify-start text-gray-500 mt-4">
                             <!-- Tombol Suka -->
                             <div class="flex items-center">
-                                <button class="like-button mr-2" onclick="toggleLike(this)">
-                                    <i class="fas fa-thumbs-up text-lg"></i>
-                                </button>
-                                <span class="mr-5">{{ $comment->likes()->count() }} Suka</span>
+                                <form
+                                    data-like-id="{{ optional($comment->likes->where('user_id', auth()->id())->first())->id }}">
+                                    <input type="hidden" name="comment_id" id="comment_id" value="{{ $comment->id }}">
+                                    <button
+                                        class="like-button mr-2 {{ optional($userLikedComment[$comment->id])['userLikedComment'] ? 'clicked' : '' }}"
+                                        onclick="togleLike(event, this)">
+                                        <i class="fas fa-thumbs-up text-lg"></i>
+                                    </button>
+                                </form>
+                                <span class="mr-5 total-like-{{ $comment->id }}">{{ $comment->likes()->count() }}
+                                    Suka</span>
 
                             </div>
                             <!-- Tombol Balas -->
-                            <button class="text-gray-600 reply-comment" data-comment-id="{{ $comment->id }}"
-                                onclick="prepareReply(this)">
+                            <button class="text-gray-600"
+                                onclick="prepareReply('{{ $comment->user->full_name }}', '{{ $comment->id }}')">
                                 Balas
                             </button>
                         </div>
@@ -140,9 +151,11 @@
                         </div>
 
                         <!-- Tombol Tampilkan/Sembunyikan Komentar -->
-                        <button class="text-gray-600 mt-2" onclick="toggleComments(this)">
-                            Tampilkan Komentar 🡫
-                        </button>
+                        @if ($comment->replies->count() > 0)
+                            <button class="text-gray-600 mt-2" onclick="toggleComments(this)">
+                                Tampilkan Balasan 🡫
+                            </button>
+                        @endif
                     </div>
                 @endif
             @empty
@@ -178,7 +191,7 @@
                         d="M13 5.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0ZM7.565 7.423 4.5 14h11.518l-2.516-3.71L11 13 7.565 7.423Z" />
                 </svg>
                 <span class="sr-only">Upload image</span>
-                <input type="file" id="image-upload" class="hidden" name="images"
+                <input type="file" id="image-upload" class="hidden" name="images" accept="image/*"
                     onchange="displayImagePreview(this)">
             </label>
             <img id="image-preview" class="hidden w-16 h-16 object-cover rounded-lg mr-1" src=""
@@ -194,9 +207,19 @@
                 </svg>
                 <span class="sr-only">Cancel image</span>
             </button>
-            <textarea id="chat" rows="1"
-                class="block mx-4 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-[#CB6A10] focus:border-[#CB6A10] dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#CB6A10] dark:focus:border-[#CB6A10]"
-                name="body" placeholder="Tulis balasan..."></textarea>
+            <div class="w-full flex items-stretch mx-4 border border-gray-300">
+                <div class="bg-gray-300 border-gray-400 py-2 px-4 text-sm items-center justify-center font-bold gap-2 hidden"
+                    id="replyContainer">
+                    <span id="replyLabel"></span>
+                    <button onclick="cancelReply()" type="button">
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                    </button>
+                </div>
+                <textarea id="chat" rows="1"
+                    class="block p-2.5 grow text-sm text-gray-900 bg-white  resize-none border-none focus:ring-[#CB6A10] focus:border-[#CB6A10] dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#CB6A10] dark:focus:border-[#CB6A10]"
+                    name="body" placeholder="Tulis balasan..."></textarea>
+            </div>
+
             <button type="submit"
                 class="inline-flex justify-center p-2 text-white rounded-full cursor-pointer bg-[#CB6A10] hover:bg-[#AD5910] dark:bg-[#CB6A10] dark:hover:bg-[#AD5910]">
                 <svg class="w-5 h-5 rotate-90 rtl:-rotate-90" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -225,10 +248,6 @@
             optionsMenu.classList.toggle('hidden');
         }
 
-        function toggleLike(button) {
-            button.classList.toggle('clicked');
-        }
-
         let commentsVisible = false;
 
         function toggleComments(button) {
@@ -237,10 +256,10 @@
 
             if (commentsVisible) {
                 commentSection.style.display = "block";
-                button.textContent = "Sembunyikan Komentar 🡩";
+                button.textContent = "Sembunyikan Balasan 🡩";
             } else {
                 commentSection.style.display = "none";
-                button.textContent = "Tampilkan Komentar 🡫";
+                button.textContent = "Tampilkan Balasan 🡫";
             }
         }
     </script>
@@ -272,10 +291,104 @@
     </script>
 
     <script>
-        function prepareReply(button) {
-            let commentId = $(button).data('comment-id');
-            console.log(commentId);
+        function prepareReply(commenterName, commentId) {
+            var textarea = document.getElementById('chat');
+            $('#replyContainer').removeClass('hidden')
+            $('#replyContainer').addClass('flex')
+            $('#replyLabel').text(`@ ${commenterName}`)
+            textarea.placeholder = 'Balas kepada ' + commenterName + '...';
             $('#parent_comment_id').val([commentId]);
+        }
+
+        function cancelReply() {
+            var textarea = document.getElementById('chat');
+            $('#replyContainer').removeClass('flex')
+            $('#replyContainer').addClass('hidden')
+            textarea.placeholder = 'Tulis balasan...';
+            $('#parent_comment_id').val(null);
+        }
+
+        function handleReplyOrigin(commentId) {
+            scrollToTargetAdjusted(document.getElementById(commentId))
+            $('.highlight-text').removeClass('highlight-text')
+            $(`#${commentId}`).addClass('highlight-text')
+        }
+
+        function scrollToTargetAdjusted(element) {
+            var headerOffset = 200;
+            var elementPosition = element.getBoundingClientRect().top;
+            var offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: "smooth"
+            });
+        }
+    </script>
+
+    <script>
+        let ajaxQueue = Promise.resolve();
+
+        function togleLike(event, button) {
+            event.preventDefault();
+
+            const form = $(button).closest('form');
+            const like_comment = form.data('like-id');
+            const isClicked = button.classList.toggle('clicked');
+
+
+            const ajaxRequest = () => {
+                return new Promise((resolve, reject) => {
+                    if (isClicked) {
+                        $.ajax({
+                            type: "post",
+                            url: "{{ route('like_comment.store') }}",
+                            data: new FormData(form[0]),
+                            processData: false,
+                            contentType: false,
+                            headers: {
+                                'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                            },
+                            success: function(response) {
+                                const commentId = response.data.comment_id;
+                                const totalLikeId = `.total-like-${commentId}`
+                                form.data('like-id', response.data.id);
+                                $(totalLikeId).text(response.data.totalLikes + ' Suka');
+                                resolve(); // Resolve the promise to indicate successful completion
+                            },
+                            error: function(error) {
+                                console.error('Error:', error);
+                                reject(error); // Reject the promise on error
+                            }
+                        });
+                    } else {
+                        $.ajax({
+                            type: "DELETE",
+                            url: "{{ route('like_comment.destroy', ['like_comment' => ':like_comment']) }}"
+                                .replace(':like_comment', like_comment),
+                            data: new FormData(form[0]),
+                            processData: false,
+                            contentType: false,
+                            headers: {
+                                'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                            },
+                            success: function(response) {
+                                const commentId = form.find('input[name="comment_id"]').val();
+                                const totalLikeId = `.total-like-${commentId}`;
+                                $(totalLikeId).text(response.data.totalLikes + ' Suka');
+                                form.removeData('like-id');
+                                resolve(); // Resolve the promise to indicate successful completion
+                            },
+                            error: function(error) {
+                                console.error('Error:', error);
+                                reject(error); // Reject the promise on error
+                            }
+                        });
+                    }
+                });
+            };
+
+            ajaxQueue = ajaxQueue.then(ajaxRequest).catch((error) => console.error('Error in AJAX request:', error));
         }
     </script>
 @endpush
