@@ -10,3 +10,16 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/venobox/2.0.9/venobox.min.js"
     integrity="sha512-uLe5mbCw7v62Mzid8/z9alKnxzqxRjKgludy8jdnp6zcHei0Ihrss3CtxpkiX6CSaAyaMVkTpFBeet9EYgGkjA=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script>
+    function scrollToTarget(element, offset = 200) {
+        var headerOffset = offset;
+        var elementPosition = element.getBoundingClientRect().top;
+        var offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+        window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth",
+        });
+    }
+</script>

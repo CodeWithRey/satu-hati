@@ -15,7 +15,7 @@
         </div>
     </div>
 
-    <section class="bg-white py-8 mx-auto">
+    <section class="bg-white py-8 mx-auto" id="forumSection">
         <div class="w-11/12 mx-auto">
             <!-- Tombol New Post -->
             <!-- Tombol New Post dengan modal toggle -->
@@ -164,12 +164,18 @@
 
             <!-- Tombol Kategori -->
             <div class="flex space-x-4 mb-4">
-                <button class="bg-[#d6d6d6] text-white py-1 px-2 rounded-full flex items-center text-xs">
-                    <i class="fas fa-fire-alt text-sm mr-1"></i> Populer
-                </button>
-                <button class="bg-[#d6d6d6] text-white py-1 px-2 rounded-full flex items-center text-xs">
-                    <i class="fas fa-clock text-sm mr-1"></i> Terbaru
-                </button>
+                <form action="{{ route('forum') }}" method="GET">
+                    <input type="hidden" name="sort_by" value="popular">
+                    <button class="bg-[#d6d6d6] text-white py-1 px-2 rounded-full flex items-center text-xs" id="popularFilter">
+                        <i class="fas fa-fire-alt text-sm mr-1"></i> Populer
+                    </button>
+                </form>
+                <form action="{{ route('forum') }}" method="GET">
+                    <input type="hidden" name="sort_by" value="latest">
+                    <button class="bg-[#d6d6d6] text-white py-1 px-2 rounded-full flex items-center text-xs" id="latestFilter">
+                        <i class="fas fa-clock text-sm mr-1"></i> Terbaru
+                    </button>
+                </form>
             </div>
 
 
@@ -205,15 +211,22 @@
 
                         <!-- Tombol Like dan Jumlah Like -->
                         <div class="flex items-center text-gray-500 mb-2">
-                            <form
-                                data-like-id="{{ optional($post->likes->where('user_id', auth()->id())->first())->id }}">
-                                <input type="hidden" name="post_id" id="post_id" value="{{ $post->id }}">
-                                <button
-                                    class="like-button mr-2 {{ optional($userLikedPost[$post->id])['userLikedPost'] ? 'clicked' : '' }}"
-                                    onclick="toggleLike(event, this)">
+                            @guest
+                                <a href="{{ route('login') }}" class="like-button mr-2">
                                     <i class="fas fa-thumbs-up"></i>
-                                </button>
-                            </form>
+                                </a>
+                            @endguest
+                            @auth
+                                <form
+                                    data-like-id="{{ optional($post->likes->where('user_id', auth()->id())->first())->id }}">
+                                    <input type="hidden" name="post_id" id="post_id" value="{{ $post->id }}">
+                                    <button
+                                        class="like-button mr-2 {{ optional($userLikedPost[$post->id])['userLikedPost'] ? 'clicked' : '' }}"
+                                        onclick="toggleLike(event, this)">
+                                        <i class="fas fa-thumbs-up"></i>
+                                    </button>
+                                </form>
+                            @endauth
                             <span class="mr-5 total-like-{{ $post->id }}">{{ $post->likes()->count() }}
                                 Suka</span>
                             <span class="mr-5"><i class="fas fa-comment"></i> {{ $post->comments()->count() }}
@@ -258,6 +271,9 @@
                 @endforelse
             </div>
         </div>
+        <div class="w-11/12 mx-auto mt-4">
+            {!! $posts->links() !!}
+        </div>
     </section>
 @endsection
 
@@ -270,7 +286,7 @@
         });
     </script>
 
-    <script>
+    <script defer>
         let ajaxQueue = Promise.resolve();
 
         function toggleLike(event, button) {
@@ -334,5 +350,17 @@
 
             ajaxQueue = ajaxQueue.then(ajaxRequest).catch((error) => console.error('Error in AJAX request:', error));
         }
+
+        $(document).ready(function() {
+            let params = (new URL(document.location)).searchParams;
+            let searchParams = new URLSearchParams(params);
+            if (searchParams.has("page") === true)
+                scrollToTarget(document.getElementById('forumSection', 0))
+            if(searchParams.has('sort_by') && searchParams.get('sort_by') === 'latest'){
+                $('#latestFilter').addClass('bg-dy')
+            } else {
+                $('#popularFilter').addClass('bg-dy')
+            }
+        });
     </script>
 @endpush

@@ -17,7 +17,7 @@
                         class="inline-flex font- gap-2 justify-center items-center py-3 px-5 text-base font-bold text-center text-white rounded-lg bg-dy hover:bg-dy-dark focus:ring-4 focus:ring-orange-300 dark:focus:ring-dy transition duration-300">
                         Forum Diskusi<i class="fa-solid fa-comments"></i>
                     </a>
-                    <a href="#"
+                    <a href="{{ route('pengaduan') }}"
                         class="inline-flex font- gap-2 justify-center hover:text-white hover:bg-dy items-center py-3 px-5 sm:ms-4 text-base font-bold text-center text-dy rounded-lg border-2 border-dy focus:ring-4 focus:ring-orange-300 transition duration-300">
                         Pengaduan <i class="fa-solid fa-phone-volume"></i>
                     </a>
@@ -46,7 +46,8 @@
         <div class="grid md:grid-cols-2 grid-cols-1 p-4 place-items-stretch">
             <div class="flex flex-col gap-6 p-16 place-content-center">
                 <h2 class="md:text-start text-center text-3xl font-bold text-black place-content-center">Pelecehan Seksual
-                    <span class="text-3xl font-bold text-[#CB6A10]">Secara Verbal</span></h2>
+                    <span class="text-3xl font-bold text-[#CB6A10]">Secara Verbal</span>
+                </h2>
                 <img class="md:hidden object-contain block w-96 mx-auto" src="{{ asset('assets/images/verbal.png') }}"
                     alt="">
                 <p class="text-start text-gray-600 text-xl ">Melibatkan penggunaan kata-kata atau komunikasi lisan
@@ -61,7 +62,8 @@
                 src="{{ asset('assets/images/fisik.png') }}" alt="">
             <div class="flex flex-col gap-6 p-16 place-content-center">
                 <h2 class="md:text-start text-center text-3xl font-bold text-black place-content-center">Pelecehan Seksual
-                    <span class="text-3xl font-bold text-[#CB6A10]">Secara Fisik</span></h2>
+                    <span class="text-3xl font-bold text-[#CB6A10]">Secara Fisik</span>
+                </h2>
                 <img class="md:hidden object-contain block w-72 mx-auto" src="{{ asset('assets/images/fisik.png') }}"
                     alt="">
                 <p class="text-start text-gray-600 text-xl">Melibatkan kontak fisik yang tidak diinginkan dan bersifat
@@ -75,7 +77,8 @@
         <div class="grid md:grid-cols-2 grid-cols-1 p-4 place-items-stretch">
             <div class="flex flex-col gap-6 p-16 place-content-center">
                 <h2 class="md:text-start text-center text-3xl font-bold text-black place-content-center">Pelecehan Seksual
-                    <span class="text-3xl font-bold text-[#CB6A10]">Secara Non Fisik</span></h2>
+                    <span class="text-3xl font-bold text-[#CB6A10]">Secara Non Fisik</span>
+                </h2>
                 <img class="md:hidden object-contain block w-96 mx-auto" src="{{ asset('assets/images/non-fisik.png') }}"
                     alt="">
                 <p class="text-start text-gray-600 text-xl ">Melibatkan aspek-aspek non-fisik, seperti kata-kata, gambar,
@@ -95,7 +98,8 @@
                 src="{{ asset('assets/images/daring.png') }}" alt="">
             <div class="flex flex-col gap-6 p-16 place-content-center">
                 <h2 class="md:text-start text-center text-3xl font-bold text-black place-content-center">Pelecehan Seksual
-                    <span class="text-3xl font-bold text-[#CB6A10]">Secara Daring</span></h2>
+                    <span class="text-3xl font-bold text-[#CB6A10]">Secara Daring</span>
+                </h2>
                 <img class="md:hidden object-contain block w-96 mx-auto" src="{{ asset('assets/images/daring.png') }}"
                     alt="">
                 <p class="text-start text-gray-600 text-xl">Melibatkan penggunaan platform online untuk menyampaikan pesan,

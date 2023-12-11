@@ -6,6 +6,7 @@ use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Traits\ImageHandling;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
@@ -13,15 +14,25 @@ class PostController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $posts =
+        $sort_by = $request->input('sort_by');
+        $postsQuery =
             Post::with('user')
             ->with('comments')
             ->with('postImages')
             ->with('likes')
-            ->orderBy('created_at', 'desc')
-            ->get();
+            ->withCount(['likes', 'comments']);
+
+
+
+
+        if ($sort_by) {
+            if ($sort_by === 'popular') {
+                $postsQuery->orderByDesc('likes_count');
+            }
+        }
+        $posts = $postsQuery->paginate(10)->withQueryString();
 
         $userLikedPost = $posts->mapWithKeys(function ($post) {
             return [
