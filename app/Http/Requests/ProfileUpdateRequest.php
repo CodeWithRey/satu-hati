@@ -23,4 +23,13 @@ class ProfileUpdateRequest extends FormRequest
             'profile_picture' => ['nullable', 'image'],
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'full_name.required' => ':Attribute wajib diisi.',
+            'birthday.before' => ':Attribute minimal harus 12 tahun.',
+            'profile_picture.image' => ':Attribute harus berupa gambar (png, jpeg, svg dan sejenisnya).'
+        ];
+    }
 }

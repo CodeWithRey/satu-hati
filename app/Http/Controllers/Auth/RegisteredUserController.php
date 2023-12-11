@@ -36,16 +36,21 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'full_name' => ['required', 'string', 'max:255'],
-            'age' => ['numeric'],
-            'birthday' => ['date'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'gender' => ['required']
+        ], [
+            'full_name.required' => ':Attribute wajib diisi.',
+            'email.required' => ':Attribute wajib diisi.',
+            'email.lowercase' => ':Attribute harus menggunakan huruf kecil.',
+            'email.unique' => ':Attribute sudah digunakan.',
+            'password.required' => ':Attribute wajib diisi.',
+            'password.confirmed' => 'kata sandi tidak sesuai silahkan periksa kembali.',
+            'gender.required' => ':Attribute wajib diisi.',
         ]);
 
         $user = User::create([
             'full_name' => $request->full_name,
-            'age' => $request->age,
             'birthday' => $request->birthday,
             'gender_id' => $request->gender,
             'profile_picture_path' => $request->profile_picture_path,
