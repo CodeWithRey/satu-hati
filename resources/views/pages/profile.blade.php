@@ -65,11 +65,15 @@
                             {{ $user->comments->count() }} Komentar
                         </span>
                     </div>
-                    <button type="button"
-                        class="absolute top-4 right-4 text-white hover:text-yellow transition duration-300"
-                        data-dropdown-toggle="edit-dropdown" data-dropdown-placement="bottom-end">
-                        <i class="fa fa-edit text-xl" aria-hidden="true"></i>
-                    </button>
+
+                    @if (auth()->user()->id == $user->id)
+                        <button type="button"
+                            class="absolute top-4 right-4 text-white hover:text-yellow transition duration-300"
+                            data-dropdown-toggle="edit-dropdown" data-dropdown-placement="bottom-end">
+                            <i class="fa fa-edit text-xl" aria-hidden="true"></i>
+                        </button>
+                    @endif
+
                     <div id="edit-dropdown"
                         class="z-50 hidden my-4 w-[200px] text-start list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600">
                         <ul>
