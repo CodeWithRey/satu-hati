@@ -207,16 +207,16 @@
                 </svg>
                 <span class="sr-only">Cancel image</span>
             </button>
-            <div class="w-full flex items-stretch mx-4 border border-gray-300">
-                <div class="bg-gray-300 border-gray-400 py-2 px-4 text-sm items-center justify-center font-bold gap-2 hidden"
+            <div class="w-full flex md:flex-row flex-col items-stretch mx-4 border border-gray-300">
+                <div class="bg-gray-300 w-auto border-gray-400 py-2 px-4 text-sm items-center justify-center font-bold gap-2 hidden"
                     id="replyContainer">
-                    <span id="replyLabel"></span>
+                    <span id="replyLabel" class=" text-ellipsis overflow-hidden whitespace-nowrap"></span>
                     <button onclick="cancelReply()" type="button">
                         <i class="fa fa-times" aria-hidden="true"></i>
                     </button>
                 </div>
-                <textarea id="chat" rows="1"
-                    class="block p-2.5 grow text-sm text-gray-900 bg-white  resize-none border-none focus:ring-[#CB6A10] focus:border-[#CB6A10] dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#CB6A10] dark:focus:border-[#CB6A10]"
+                <textarea id="chat"
+                    class="block p-2.5 text-sm text-gray-900 md:h-10 h-16 bg-white  resize-none border-transparent w-full focus:ring-[#CB6A10] focus:border-[#CB6A10] dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#CB6A10] dark:focus:border-[#CB6A10]"
                     name="body" placeholder="Tulis balasan..."></textarea>
             </div>
 
