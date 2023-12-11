@@ -62,6 +62,11 @@ class PostController extends Controller
             'description' => 'required',
             'images.*' => 'sometimes|image|max:2048',
             'user_id' => 'required',
+        ], [
+            'title.required' => 'Judul wajib diisi.',
+            'description.required' => 'Deskripsi wajib diisi.',
+            'images.*.max' => 'Ukuran gambar maximal 2 mb.',
+            'images.*.image' => 'File harus berupa gambar (png, jpeg, svg dan sejenisnya).',
         ]);
 
 
@@ -78,7 +83,7 @@ class PostController extends Controller
         }
 
 
-        return redirect()->back()->with('success', 'Post has been created successfully !');
+        return redirect()->back()->with('success', 'Diskusi berhasil dibuat !');
     }
 
     /**
@@ -130,6 +135,6 @@ class PostController extends Controller
 
         $post->delete();
 
-        return redirect()->route('post.index')->with('success', 'Post has been deleted successfully');
+        return redirect()->route('post.index')->with('success', 'Diskusi berhasil dihapus !');
     }
 }

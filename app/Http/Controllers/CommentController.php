@@ -52,6 +52,10 @@ class CommentController extends Controller
             'user_id' => 'required',
             'images' => 'sometimes|image|max:2048',
             'parent_comment_id.*' => 'nullable|exists:comments,id'
+        ], [
+            'body.required' => 'Balasan wajib diisi.',
+            'images.*.max' => 'Ukuran gambar maximal 2 mb.',
+            'images.*.image' => 'File harus berupa gambar (png, jpeg, svg dan sejenisnya).'
         ]);
 
 
@@ -77,7 +81,7 @@ class CommentController extends Controller
             ]);
         }
 
-        return redirect()->back()->with('success', 'Comment has been created successfully !');
+        return redirect()->back()->with('success', 'Comment berhasil dibuat !');
     }
 
     /**
@@ -110,6 +114,6 @@ class CommentController extends Controller
         });
 
         $comment->delete();
-        return redirect()->back()->with('success', 'Comment has been deleted successfully');
+        return redirect()->back()->with('success', 'Comment berhasil dihapus !');
     }
 }
