@@ -81,7 +81,7 @@ class CommentController extends Controller
             ]);
         }
 
-        return redirect()->back()->with('success', 'Comment has been created successfully !');
+        return redirect()->back()->with('success', 'Comment berhasil dibuat !');
     }
 
     /**
