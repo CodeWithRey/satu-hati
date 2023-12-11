@@ -52,6 +52,10 @@ class CommentController extends Controller
             'user_id' => 'required',
             'images' => 'sometimes|image|max:2048',
             'parent_comment_id.*' => 'nullable|exists:comments,id'
+        ], [
+            'body.required' => 'Balasan wajib diisi.',
+            'images.*.max' => 'Ukuran gambar maximal 2 mb.',
+            'images.*.image' => 'File harus berupa gambar (png, jpeg, svg dan sejenisnya).'
         ]);
 
 
