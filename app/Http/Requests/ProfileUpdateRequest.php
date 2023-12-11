@@ -27,9 +27,9 @@ class ProfileUpdateRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'full_name.required' => ':Attribute wajib diisi.',
+            'full_name.required' => 'Nama wajib diisi.',
             'birthday.before' => 'Umur minimal harus 12 tahun.',
-            'profile_picture.image' => ':Attribute harus berupa gambar (png, jpeg, svg dan sejenisnya).'
+            'profile_picture.image' => 'File harus berupa gambar (png, jpeg, svg dan sejenisnya).'
         ];
     }
 }
