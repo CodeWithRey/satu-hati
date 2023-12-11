@@ -165,15 +165,17 @@
             <!-- Tombol Kategori -->
             <div class="flex space-x-4 mb-4">
                 <form action="{{ route('forum') }}" method="GET">
-                    <input type="hidden" name="sort_by" value="popular">
-                    <button class="bg-[#d6d6d6] text-white py-1 px-2 rounded-full flex items-center text-xs" id="popularFilter">
-                        <i class="fas fa-fire-alt text-sm mr-1"></i> Populer
+                    <input type="hidden" name="sort_by" value="latest">
+                    <button class="bg-[#d6d6d6] text-white py-1 px-2 rounded-full flex items-center text-xs"
+                        id="latestFilter">
+                        <i class="fas fa-clock text-sm mr-1"></i> Terbaru
                     </button>
                 </form>
                 <form action="{{ route('forum') }}" method="GET">
-                    <input type="hidden" name="sort_by" value="latest">
-                    <button class="bg-[#d6d6d6] text-white py-1 px-2 rounded-full flex items-center text-xs" id="latestFilter">
-                        <i class="fas fa-clock text-sm mr-1"></i> Terbaru
+                    <input type="hidden" name="sort_by" value="popular">
+                    <button class="bg-[#d6d6d6] text-white py-1 px-2 rounded-full flex items-center text-xs"
+                        id="popularFilter">
+                        <i class="fas fa-fire-alt text-sm mr-1"></i> Populer
                     </button>
                 </form>
             </div>
@@ -356,10 +358,10 @@
             let searchParams = new URLSearchParams(params);
             if (searchParams.has("page") === true)
                 scrollToTarget(document.getElementById('forumSection', 0))
-            if(searchParams.has('sort_by') && searchParams.get('sort_by') === 'latest'){
-                $('#latestFilter').addClass('bg-dy')
-            } else {
+            if (searchParams.has('sort_by') && searchParams.get('sort_by') === 'popular') {
                 $('#popularFilter').addClass('bg-dy')
+            } else {
+                $('#latestFilter').addClass('bg-dy')
             }
         });
     </script>

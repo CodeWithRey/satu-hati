@@ -25,13 +25,19 @@ class PostController extends Controller
             ->withCount(['likes', 'comments']);
 
 
-
-
-        if ($sort_by) {
-            if ($sort_by === 'popular') {
-                $postsQuery->orderByDesc('likes_count');
-            }
+        if ($sort_by === 'popular') {
+            $postsQuery->orderBy(function ($query) {
+                $query->select(DB::raw('COUNT(DISTINCT like_posts.id) + COUNT(DISTINCT comments.id)'))
+                    ->from('like_posts')
+                    ->leftJoin('comments', 'like_posts.post_id', '=', 'comments.post_id')
+                    ->whereColumn('like_posts.post_id', 'posts.id')
+                    ->groupBy('like_posts.post_id');
+            }, 'desc');
+        } else {
+            $postsQuery->orderByDesc('created_at');
         }
+
+
         $posts = $postsQuery->paginate(10)->withQueryString();
 
         $userLikedPost = $posts->mapWithKeys(function ($post) {
