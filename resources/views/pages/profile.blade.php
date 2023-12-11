@@ -16,7 +16,23 @@
                     <img src="{{ $user->profile_picture_path ?? asset('assets/images/user_placeholder.png') }}"
                         class="w-44 h-44 rounded-full object-cover border-2 mx-auto">
                     <div class="flex flex-col items-start mx-auto gap-3">
-                        <span class="font-bold mb-3 mx-auto">{{ $user->full_name }}</span>
+                        <span class="font-bold mb-3 mx-auto flex items-center gap-3">
+                            {{ $user->full_name }}
+                            @if ($user->role->name === 'Expert')
+                                <div class="group relative font-normal">
+                                    <span
+                                        class='bg-white w-6 h-6 text-dy flex items-center justify-center rounded-full text-sm cursor-pointer'>
+                                        <i class="fa fa-check" aria-hidden="true"></i>
+                                    </span>
+                                    <div
+                                        class="bg-white text-dy absolute w-60 rounded py-4 shadow-lg mt-2 -translate-x-full ml-4 hidden group-hover:block">
+                                        <i class="fa fa-info-circle mr-2" aria-hidden="true"></i> Pengguna Terverifikasi
+                                    </div>
+                                </div>
+                            @endif
+                        </span>
+
+
                         <span class="flex items-center gap-4">
                             <i class="fa fa-envelope" aria-hidden="true"></i>
                             {{ $user->email }}
@@ -124,7 +140,8 @@
                                 <span class="text-red">{{ $message }}</span>
                             @enderror
                         </div>
-                        <button type="submit" class="bg-yellow w-full mt-6 text-black p-3 rounded-md font-bold mb-10">Ubah
+                        <button type="submit"
+                            class="bg-yellow w-full mt-6 text-black p-3 rounded-md font-bold mb-10">Ubah
                             Profil</button>
                     </div>
 

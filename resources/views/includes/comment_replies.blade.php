@@ -8,7 +8,7 @@
                         <img src="{{ $reply->user->profile_picture_path ? $reply->user->profile_picture_path : asset('assets/images/user_placeholder.png') }}"
                             alt="Profile Picture" class="w-8 h-8 rounded-full mr-2">
                         <div class="flex flex-col ">
-                            <span class="text-black font-semibold capitalize flex self-start"
+                            <span class="text-black font-semibold capitalize self-start"
                                 id="{{ $reply->id }}">{{ $reply->user->full_name }}</span>
                     </a>
                     <span class="text-slate-400 font-medium">Diposting pada
