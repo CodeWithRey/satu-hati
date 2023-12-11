@@ -5,6 +5,7 @@
 {{-- area konten yang ada pada layout default --}}
 @section('content')
     <section class="py-16">
+        
         <div class="grid md:grid-cols-2 grid-cols-1 p-4 place-items-stretch pt-10">
             <img class=" md:block hidden object-contain w-96 mx-auto place-items-center"
                 src="{{ asset('assets/images/about.png') }}" alt="">
