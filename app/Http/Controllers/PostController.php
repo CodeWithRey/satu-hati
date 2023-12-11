@@ -21,8 +21,7 @@ class PostController extends Controller
             Post::with('user')
             ->with('comments')
             ->with('postImages')
-            ->with('likes')
-            ->withCount(['likes', 'comments']);
+            ->with('likes');
 
 
         if ($sort_by === 'popular') {
