@@ -28,7 +28,7 @@ class ProfileUpdateRequest extends FormRequest
     {
         return [
             'full_name.required' => ':Attribute wajib diisi.',
-            'birthday.before' => ':Attribute minimal harus 12 tahun.',
+            'birthday.before' => 'Umur minimal harus 12 tahun.',
             'profile_picture.image' => ':Attribute harus berupa gambar (png, jpeg, svg dan sejenisnya).'
         ];
     }
