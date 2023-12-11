@@ -114,6 +114,6 @@ class CommentController extends Controller
         });
 
         $comment->delete();
-        return redirect()->back()->with('success', 'Comment has been deleted successfully');
+        return redirect()->back()->with('success', 'Comment berhasil dihapus !');
     }
 }
