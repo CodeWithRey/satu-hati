@@ -63,6 +63,6 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('post.index');
+        return redirect()->route('post.index')->with('toast_success', 'Berhasil untuk mendaftar akun.');
     }
 }
