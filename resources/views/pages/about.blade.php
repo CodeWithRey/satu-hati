@@ -5,13 +5,13 @@
 {{-- area konten yang ada pada layout default --}}
 @section('content')
     <section class="py-16">
-        <div class="grid md:grid-cols-2 grid-cols-1 p-4 place-items-stretch pt-24">
+        <div class="grid md:grid-cols-2 grid-cols-1 p-4 place-items-stretch pt-10">
             <img class=" md:block hidden object-contain w-96 mx-auto place-items-center"
                 src="{{ asset('assets/images/about.png') }}" alt="">
-            <div class="flex flex-col gap-6 p-16 place-content-center">
-                <h2 class="text-start text-3xl font-bold text-dy place-content-center">Tentang Kami</h2>
-                <img class="md:hidden object-contain block w-96" src="{{ asset('assets/images/about.png') }}" alt="">
-                <p class="text-start text-gray-600 text-xl font-semibold">Selamat Datang di SatuHati!</p>
+            <div class="flex flex-col gap-4 w-11/12 mx-auto place-content-center">
+                <h2 class="text-center md:text-start text-3xl font-bold text-dy items-center">Tentang Kami</h2>
+                <img class="md:hidden object-contain w-96 place-items-center mx-auto" src="{{ asset('assets/images/about.png') }}" alt="">
+                <p class="text-start text-gray-600 text-xl font-semibold ">Selamat Datang di SatuHati!</p>
                 <p class="text-start text-gray-600 text-xl">
                     Kami tim yang berkomitmen mengatasi perbedaan sosial dan stigma dalam penanganan pelecehan seksual di
                     Indonesia. Fokus pada edukasi dan diskusi, SatuHati bertujuan meningkatkan kesadaran, menghilangkan
@@ -22,11 +22,11 @@
     </section>
     </section>
     <section class="p-16 bg-[#FFEAB3]">
-        <div class="flex flex-col items-center justify-center h-full pb-4">
+        <div class="flex flex-col items-center justify-center h-full pb-4 ">
             <h1 class="font-extrabold tracking-tight leading-none text-black text-4xl md:text-4xl text-left ">Tim Kami</h1>
         </div>
-        <div class=" grid xl:grid-cols-5 md:grid-cols-3 grid-cols-1 gap-3">
-            <div class="flex flex-col justify-start max-w-sm bg-transparant ">
+        <div class=" grid xl:grid-cols-5 md:grid-cols-3 grid-cols-1 gap-4 place-items-center w-11/12 mx-auto">
+            <div class="flex flex-col justify-start max-w-sm bg-transparant place-content-center">
                 <a href="https://www.linkedin.com/in/marcellinojg/">
                     <img class="rounded-t-lg h-48 w-auto mx-auto " src="{{ asset('assets/images/marcel2.png') }}"
                         alt="" />
@@ -37,12 +37,10 @@
                         <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">Marcellino Julian
                             Gozal</h5>
                     </a>
-
-
                 </div>
             </div>
 
-            <div class="flex flex-col justify-start max-w-sm bg-transparant">
+            <div class="flex flex-col justify-start max-w-sm bg-transparant place-content-center">
                 <a href="https://www.linkedin.com/in/junia-vitasari-1918a8252/">
                     <img class="rounded-t-lg h-48 w-auto mx-auto " src="{{ asset('assets/images/jun2.png') }}"
                         alt="" />
@@ -57,7 +55,7 @@
                 </div>
             </div>
 
-            <div class="flex flex-col justify-start max-w-sm bg-transparant ">
+            <div class="flex flex-col justify-start max-w-sm bg-transparant place-content-center ">
                 <a href="https://www.linkedin.com/in/reynaldi-rizky-pratama/">
                     <img class="rounded-t-lg h-48 w-auto mx-auto " src="{{ asset('assets/images/masrey.png') }}"
                         alt="" />
@@ -73,7 +71,7 @@
                 </div>
             </div>
 
-            <div class="flex flex-col justify-start max-w-sm bg-transparant ">
+            <div class="flex flex-col justify-start max-w-sm bg-transparant place-content-center">
                 <a href="https://www.linkedin.com/in/vicka-rizqia-b4505a222/">
                     <img class="rounded-t-lg h-48 w-auto mx-auto " src="{{ asset('assets/images/vicqa.png') }}"
                         alt="" />
@@ -83,12 +81,10 @@
                     <a href="#">
                         <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">Vicka Rizqia</h5>
                     </a>
-
-
                 </div>
             </div>
 
-            <div class="flex flex-col justify-start max-w-sm bg-transparant ">
+            <div class="flex flex-col justify-start max-w-sm bg-transparant place-content-center">
                 <a href="https://www.linkedin.com/in/arfan-astaraja-8b1b54221">
                     <img class="rounded-t-lg h-48 w-auto mx-auto " src="{{ asset('assets/images/arfan.png') }}"
                         alt="" />
@@ -98,8 +94,6 @@
                     <a href="#">
                         <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">Arfan Astaraja</h5>
                     </a>
-
-
                 </div>
             </div>
 
