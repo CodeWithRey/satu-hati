@@ -23,18 +23,33 @@ class CommentController extends Controller
 
         $post = Post::find($postId);
 
-        $comments = Comment::with('user')
+        $commentsQuery = $post
+            ->comments()
+            ->with('user')
             ->with('commentImages')
-            ->orderBy('created_at', 'desc')
-            ->get();
+            ->orderBy('created_at', 'desc');
 
-        $userLikedComment = $comments->mapWithKeys(function ($comment) {
+        $userLikedComment = $commentsQuery->get()->mapWithKeys(function ($comment) {
             return [
                 $comment->id => [
                     'userLikedComment' => $comment->likes->where('user_id', auth()->check() ? auth()->user()->id : null)->isNotEmpty(),
                 ],
             ];
         });
+
+        $userComments = $post
+            ->comments()
+            ->with('user')
+            ->with('commentImages')
+            ->orderBy('created_at', 'desc')->whereRelation('user', 'role_id', '=', 1)->get();
+
+        $expertComments = $post
+            ->comments()
+            ->with('user')
+            ->with('commentImages')
+            ->orderBy('created_at', 'desc')->whereRelation('user', 'role_id', '=', 2)->get();
+
+        $comments = $expertComments->merge($userComments);
 
         return view('pages.detailforum', compact('post', 'comments', 'userLikedComment'));
     }
@@ -52,6 +67,10 @@ class CommentController extends Controller
             'user_id' => 'required',
             'images' => 'sometimes|image|max:2048',
             'parent_comment_id.*' => 'nullable|exists:comments,id'
+        ], [
+            'body.required' => 'Balasan wajib diisi.',
+            'images.*.max' => 'Ukuran gambar maximal 2 mb.',
+            'images.*.image' => 'File harus berupa gambar (png, jpeg, svg dan sejenisnya).'
         ]);
 
 
@@ -77,7 +96,7 @@ class CommentController extends Controller
             ]);
         }
 
-        return redirect()->back()->with('success', 'Comment has been created successfully !');
+        return redirect()->back()->with('success', 'Comment berhasil dibuat !');
     }
 
     /**
@@ -110,6 +129,6 @@ class CommentController extends Controller
         });
 
         $comment->delete();
-        return redirect()->back()->with('success', 'Comment has been deleted successfully');
+        return redirect()->back()->with('success', 'Comment berhasil dihapus !');
     }
 }
