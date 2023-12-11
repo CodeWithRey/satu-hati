@@ -77,9 +77,9 @@
     <section class="bg-white mb-5 mt-8 w-11/12 mx-auto">
         <h2 class="text-[#CB6A10] text-2xl text-center font-bold mb-8">───※ Balasan Para User ※───</h2>
         <!-- Container -->
-        <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-4">
+        <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-4 pb-24">
             <!-- Card Komentar 3-->
-            @forelse ($post->comments as $comment)
+            @forelse ($comments as $comment)
                 @if ($comment->parent_comment_id === null)
                     <div class="bg-white p-4 rounded-lg border w-full">
                         <!-- Foto Profile dan Nickname Komentator -->
@@ -88,8 +88,22 @@
                                 <img src="{{ $comment->user->profile_picture_path ? $comment->user->profile_picture_path : asset('assets/images/user_placeholder.png') }}"
                                     alt="Profile Picture" class="w-8 h-8 rounded-full mr-2">
                                 <div class="flex flex-col ">
-                                    <span class="text-black font-semibold capitalize flex self-start"
-                                        id="{{ $comment->id }}">{{ $comment->user->full_name }}</span>
+                                    <span class="text-black font-semibold capitalize flex self-start items-center gap-2"
+                                        id="{{ $comment->id }}">{{ $comment->user->full_name }}
+                                        @if ($comment->user->role->name === 'Expert')
+                                            <div class="group relative font-normal">
+                                                <span
+                                                    class='bg-dy w-5 h-5 text-white flex items-center justify-center rounded-full text-[10px] cursor-pointer'>
+                                                    <i class="fa fa-check" aria-hidden="true"></i>
+                                                </span>
+                                                <div
+                                                    class="bg-white text-dy absolute w-60 rounded py-4 shadow-lg mt-2 -translate-x-full ml-4 hidden group-hover:flex items-center justify-center">
+                                                    <i class="fa fa-info-circle mr-2" aria-hidden="true"></i> Pengguna
+                                                    Terverifikasi
+                                                </div>
+                                            </div>
+                                        @endif
+                                    </span>
                                     <span class="text-slate-400 font-medium">Diposting pada
                                         {{ $comment->created_at->diffForHumans() }}</span>
                                 </div>
@@ -167,7 +181,7 @@
 
 
     <!-- Form Chatroom -->
-    <form action="{{ route('comment.store') }}" method="POST" class="sticky bottom-0 inset-x-0 bg-white"
+    <form action="{{ route('comment.store') }}" method="POST" class="fixed w-full bottom-0 inset-x-0 bg-white"
         enctype="multipart/form-data">
         @csrf
 
@@ -208,7 +222,7 @@
                 <span class="sr-only">Cancel image</span>
             </button>
             <div class="w-full flex md:flex-row flex-col items-stretch mx-4 border border-gray-300">
-                <div class="bg-gray-300 w-auto border-gray-400 py-2 px-4 text-sm items-center justify-center font-bold gap-2 hidden"
+                <div class="bg-gray-200 w-auto border-gray-400 py-2 px-4 text-sm items-center justify-center font-bold gap-2 hidden"
                     id="replyContainer">
                     <span id="replyLabel" class=" text-ellipsis overflow-hidden whitespace-nowrap"></span>
                     <button onclick="cancelReply()" type="button">
@@ -216,7 +230,7 @@
                     </button>
                 </div>
                 <textarea id="chat"
-                    class="block p-2.5 text-sm text-gray-900 md:h-10 h-16 bg-white  resize-none border-transparent w-full focus:ring-[#CB6A10] focus:border-[#CB6A10] dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#CB6A10] dark:focus:border-[#CB6A10]"
+                    class="block p-2.5 text-sm text-gray-900 grow bg-white border-transparent resize-none focus:ring-[#CB6A10] focus:border-[#CB6A10] dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#CB6A10] dark:focus:border-[#CB6A10]"
                     name="body" placeholder="Tulis balasan..."></textarea>
             </div>
 
@@ -313,8 +327,6 @@
             $('.highlight-text').removeClass('highlight-text')
             $(`#${commentId}`).addClass('highlight-text')
         }
-
-
     </script>
 
     <script>

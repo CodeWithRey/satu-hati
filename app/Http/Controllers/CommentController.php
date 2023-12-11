@@ -23,18 +23,33 @@ class CommentController extends Controller
 
         $post = Post::find($postId);
 
-        $comments = Comment::with('user')
+        $commentsQuery = $post
+            ->comments()
+            ->with('user')
             ->with('commentImages')
-            ->orderBy('created_at', 'desc')
-            ->get();
+            ->orderBy('created_at', 'desc');
 
-        $userLikedComment = $comments->mapWithKeys(function ($comment) {
+        $userLikedComment = $commentsQuery->get()->mapWithKeys(function ($comment) {
             return [
                 $comment->id => [
                     'userLikedComment' => $comment->likes->where('user_id', auth()->check() ? auth()->user()->id : null)->isNotEmpty(),
                 ],
             ];
         });
+
+        $userComments = $post
+            ->comments()
+            ->with('user')
+            ->with('commentImages')
+            ->orderBy('created_at', 'desc')->whereRelation('user', 'role_id', '=', 1)->get();
+
+        $expertComments = $post
+            ->comments()
+            ->with('user')
+            ->with('commentImages')
+            ->orderBy('created_at', 'desc')->whereRelation('user', 'role_id', '=', 2)->get();
+
+        $comments = $expertComments->merge($userComments);
 
         return view('pages.detailforum', compact('post', 'comments', 'userLikedComment'));
     }
