@@ -19,11 +19,11 @@ class PostController extends Controller
         $sort_by = $request->input('sort_by');
         $postsQuery =
             Post::with('user')
-                ->with('comments')
-                ->with('postImages')
-                ->with('likes')
-                ->withCount(['likes', 'comments'])
-                ->orderByDesc('created_at');
+            ->with('comments')
+            ->with('postImages')
+            ->with('likes')
+            ->withCount(['likes', 'comments']);
+
 
 
 
