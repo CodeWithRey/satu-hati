@@ -166,13 +166,15 @@
             <div class="flex space-x-4 mb-4">
                 <form action="{{ route('forum') }}" method="GET">
                     <input type="hidden" name="sort_by" value="popular">
-                    <button class="bg-[#d6d6d6] text-white py-1 px-2 rounded-full flex items-center text-xs" id="popularFilter">
+                    <button class="bg-[#d6d6d6] text-white py-1 px-2 rounded-full flex items-center text-xs"
+                        id="popularFilter">
                         <i class="fas fa-fire-alt text-sm mr-1"></i> Populer
                     </button>
                 </form>
                 <form action="{{ route('forum') }}" method="GET">
                     <input type="hidden" name="sort_by" value="latest">
-                    <button class="bg-[#d6d6d6] text-white py-1 px-2 rounded-full flex items-center text-xs" id="latestFilter">
+                    <button class="bg-[#d6d6d6] text-white py-1 px-2 rounded-full flex items-center text-xs"
+                        id="latestFilter">
                         <i class="fas fa-clock text-sm mr-1"></i> Terbaru
                     </button>
                 </form>
@@ -186,90 +188,93 @@
                     <div class="bg-white p-4 rounded-md shadow-md w-full">
                         <!-- Foto Profile dan Nickname -->
                         <div class="flex items-center mb-4">
-                            <img src="{{ $post->user->profile_picture_path && !$post->is_anonymous ? $post->user->profile_picture_path : asset('assets/images/user_placeholder.png') }}"
-                                alt="Profile Picture" class="w-8 h-8 rounded-full mr-2">
-                            <div class="flex flex-col ">
-                                <span
-                                    class="text-black font-semibold capitalize {{ $post->is_anonymous == 1 ? 'italic' : '' }}">{{ $post->is_anonymous === 0 ? $post->user->full_name : 'Pengguna Anonim' }}</span>
-                                <span class="text-slate-400 font-medium">Diposting pada
-                                    {{ $post->created_at->diffForHumans() }}</span>
-                            </div>
+                            <a href="{{ route('profile.show', $post->user->id) }}" class="flex items-center">
+                                <img src="{{ $post->user->profile_picture_path && !$post->is_anonymous ? $post->user->profile_picture_path : asset('assets/images/user_placeholder.png') }}"
+                                    alt="Profile Picture" class="w-8 h-8 rounded-full mr-2">
+                                <div class="flex flex-col">
+                                    <span
+                                        class="text-black font-semibold capitalize {{ $post->is_anonymous == 1 ? 'italic' : '' }}">{{ $post->is_anonymous === 0 ? $post->user->full_name : 'Pengguna Anonim' }}</span>
+                            </a>
+                            <span class="text-slate-400 font-medium">Diposting pada
+                                {{ $post->created_at->diffForHumans() }}</span>
                         </div>
-                        <!-- Judul Postingan -->
-                        <h2 class="text-lg font-semibold mb-2">{{ $post->title }}</h2>
-                        <!-- Deskripsi Postingan -->
-                        <p class="text-gray-600 mb-4 whitespace-pre-wrap">{{ $post->description }}</p>
-
-                        <div class="flex flex-wrap items-center justify-start gap-8 mb-4">
-                            @foreach ($post->postImages as $image)
-                                <a class="my-image-links" data-maxwidth="800px" href="{{ asset($image->path) }}">
-                                    <img src="{{ asset($image->path) }}" class="object-cover" width="100px"
-                                        alt="">
-                                </a>
-                            @endforeach
-                        </div>
-
-                        <!-- Tombol Like dan Jumlah Like -->
-                        <div class="flex items-center text-gray-500 mb-2">
-                            @guest
-                                <a href="{{ route('login') }}" class="like-button mr-2">
-                                    <i class="fas fa-thumbs-up"></i>
-                                </a>
-                            @endguest
-                            @auth
-                                <form
-                                    data-like-id="{{ optional($post->likes->where('user_id', auth()->id())->first())->id }}">
-                                    <input type="hidden" name="post_id" id="post_id" value="{{ $post->id }}">
-                                    <button
-                                        class="like-button mr-2 {{ optional($userLikedPost[$post->id])['userLikedPost'] ? 'clicked' : '' }}"
-                                        onclick="toggleLike(event, this)">
-                                        <i class="fas fa-thumbs-up"></i>
-                                    </button>
-                                </form>
-                            @endauth
-                            <span class="mr-5 total-like-{{ $post->id }}">{{ $post->likes()->count() }}
-                                Suka</span>
-                            <span class="mr-5"><i class="fas fa-comment"></i> {{ $post->comments()->count() }}
-                                Komentar</span>
-                        </div>
-
-                        <!-- Tombol Like dan Jumlah Like -->
-                        <style>
-                            .like-button {
-                                transition: color 0.2s ease;
-                                /* Efek transisi untuk perubahan warna */
-                            }
-
-                            .like-button.clicked {
-                                color: #CB6A10;
-                                /* Warna yang diinginkan saat tombol diklik */
-                            }
-                        </style>
-
-
-
-                        <!-- Tombol Balas -->
-                        @auth
-                            <button class="text-gray-600">
-                                <a href="{{ route('reply.comment', $post->id) }}" class="w-full h-full">
-                                    Balas
-                                </a>
-                            </button>
-                        @endauth
-
-                        @guest
-                            <button class="text-gray-600">
-                                <a href="{{ route('login') }}" class="w-full h-full">
-                                    Balas
-                                </a>
-                            </button>
-                        @endguest
 
                     </div>
-                @empty
-                    @include('includes.no_content_forum')
-                @endforelse
+
+                    <!-- Judul Postingan -->
+                    <h2 class="text-lg font-semibold mb-2">{{ $post->title }}</h2>
+                    <!-- Deskripsi Postingan -->
+                    <p class="text-gray-600 mb-4 whitespace-pre-wrap">{{ $post->description }}</p>
+
+                    <div class="flex flex-wrap items-center justify-start gap-8 mb-4">
+                        @foreach ($post->postImages as $image)
+                            <a class="my-image-links" data-maxwidth="800px" href="{{ asset($image->path) }}">
+                                <img src="{{ asset($image->path) }}" class="object-cover" width="100px"
+                                    alt="">
+                            </a>
+                        @endforeach
+                    </div>
+
+                    <!-- Tombol Like dan Jumlah Like -->
+                    <div class="flex items-center text-gray-500 mb-2">
+                        @guest
+                            <a href="{{ route('login') }}" class="like-button mr-2">
+                                <i class="fas fa-thumbs-up"></i>
+                            </a>
+                        @endguest
+                        @auth
+                            <form data-like-id="{{ optional($post->likes->where('user_id', auth()->id())->first())->id }}">
+                                <input type="hidden" name="post_id" id="post_id" value="{{ $post->id }}">
+                                <button
+                                    class="like-button mr-2 {{ optional($userLikedPost[$post->id])['userLikedPost'] ? 'clicked' : '' }}"
+                                    onclick="toggleLike(event, this)">
+                                    <i class="fas fa-thumbs-up"></i>
+                                </button>
+                            </form>
+                        @endauth
+                        <span class="mr-5 total-like-{{ $post->id }}">{{ $post->likes()->count() }}
+                            Suka</span>
+                        <span class="mr-5"><i class="fas fa-comment"></i> {{ $post->comments()->count() }}
+                            Komentar</span>
+                    </div>
+
+                    <!-- Tombol Like dan Jumlah Like -->
+                    <style>
+                        .like-button {
+                            transition: color 0.2s ease;
+                            /* Efek transisi untuk perubahan warna */
+                        }
+
+                        .like-button.clicked {
+                            color: #CB6A10;
+                            /* Warna yang diinginkan saat tombol diklik */
+                        }
+                    </style>
+
+
+
+                    <!-- Tombol Balas -->
+                    @auth
+                        <button class="text-gray-600">
+                            <a href="{{ route('reply.comment', $post->id) }}" class="w-full h-full">
+                                Balas
+                            </a>
+                        </button>
+                    @endauth
+
+                    @guest
+                        <button class="text-gray-600">
+                            <a href="{{ route('login') }}" class="w-full h-full">
+                                Balas
+                            </a>
+                        </button>
+                    @endguest
+
             </div>
+        @empty
+            @include('includes.no_content_forum')
+            @endforelse
+        </div>
         </div>
         <div class="w-11/12 mx-auto mt-4">
             {!! $posts->links() !!}
@@ -356,7 +361,7 @@
             let searchParams = new URLSearchParams(params);
             if (searchParams.has("page") === true)
                 scrollToTarget(document.getElementById('forumSection', 0))
-            if(searchParams.has('sort_by') && searchParams.get('sort_by') === 'latest'){
+            if (searchParams.has('sort_by') && searchParams.get('sort_by') === 'latest') {
                 $('#latestFilter').addClass('bg-dy')
             } else {
                 $('#popularFilter').addClass('bg-dy')
