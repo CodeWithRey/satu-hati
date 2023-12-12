@@ -6,19 +6,32 @@
 
     <!-- Postingan Utama -->
     <section class="w-11/12 py-5 mx-auto mt-20">
+        <h2 class="text-[#CB6A10] text-2xl text-start font-bold mb-4">Postingan Utama</h2>
         <div class="bg-white p-4 rounded-lg shadow-md">
             <!-- Foto Profile dan Nickname -->
             <div class="flex items-center justify-between mb-2">
                 <div class="flex items-center">
-                    <a href="{{ route('profile.show', $post->user->id) }}" class="flex items-center">
-                        <img src="{{ $post->user->profile_picture_path ? $post->user->profile_picture_path : asset('assets/images/user_placeholder.png') }}"
-                            alt="Profile Picture" class="w-8 h-8 rounded-full mr-2">
-                        <div class="flex flex-col">
-                            <span
-                                class="text-black font-semibold capitalize {{ $post->is_anonymous == 1 ? 'italic' : '' }}">
-                                {{ $post->is_anonymous === 0 ? $post->user->full_name : 'Pengguna Anonim' }}
-                            </span>
-                    </a>
+                    @if ($post->is_anonymous === 0)
+                        <a href="{{ route('profile.show', $post->user->id) }}" class="flex items-center">
+                            <img src="{{ $post->user->profile_picture_path ? $post->user->profile_picture_path : asset('assets/images/user_placeholder.png') }}"
+                                alt="Profile Picture" class="w-8 h-8 rounded-full mr-2">
+                            <div class="flex flex-col">
+                                <span
+                                    class="text-black font-semibold capitalize {{ $post->is_anonymous == 1 ? 'italic' : '' }}">
+                                    {{ $post->is_anonymous === 0 ? $post->user->full_name : 'Pengguna Anonim' }}
+                                </span>
+                        </a>
+                    @else
+                        <span class="flex items-center">
+                            <img src="{{ $post->user->profile_picture_path ? $post->user->profile_picture_path : asset('assets/images/user_placeholder.png') }}"
+                                alt="Profile Picture" class="w-8 h-8 rounded-full mr-2">
+                            <div class="flex flex-col">
+                                <span
+                                    class="text-black font-semibold capitalize {{ $post->is_anonymous == 1 ? 'italic' : '' }}">
+                                    {{ $post->is_anonymous === 0 ? $post->user->full_name : 'Pengguna Anonim' }}
+                                </span>
+                        </span>
+                    @endif
                     <span class="text-slate-400 font-medium">Diposting pada
                         {{ $post->created_at->diffForHumans() }}
                     </span>
@@ -71,10 +84,14 @@
         </style>
 
         <div class="flex items-center text-gray-500 mb-2 mt-4">
-            <button class="like-button mr-2" onclick="toggleLike(this)">
-                <i class="fas fa-thumbs-up text-xl"></i>
-            </button>
-            <span class="mr-5 ">{{ $post->likes()->count() }} Suka</span>
+            <form data-like-id="{{ optional($post->likes->where('user_id', auth()->id())->first())->id }}">
+                <input type="hidden" name="post_id" id="post_id" value="{{ $post->id }}">
+                <button class="like-button mr-2 {{ $userLikedPost ? 'clicked' : '' }}"
+                    onclick="togleLikePost(event, this)">
+                    <i class="fas fa-thumbs-up"></i>
+                </button>
+            </form>
+            <span class="mr-5 total-like-{{ $post->id }}">{{ $post->likes()->count() }} Suka</span>
             <span class="mr-5"><i class="fas fa-comment text-xl"></i> {{ $post->comments()->count() }}
                 Komentar</span>
         </div>
@@ -82,7 +99,7 @@
     </section>
 
     <section class="bg-white mb-5 mt-8 w-11/12 mx-auto">
-        <h2 class="text-[#CB6A10] text-2xl text-center font-bold mb-8">───※ Balasan Para User ※───</h2>
+        <h2 class="text-[#CB6A10] text-2xl text-start font-bold mb-4">Balasan Para User</h2>
         <!-- Container -->
         <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-4 pb-24">
             <!-- Card Komentar 3-->
@@ -99,21 +116,21 @@
                                         <span class="text-black font-semibold capitalize flex self-start items-center gap-2"
                                             id="{{ $comment->id }}">
                                             {{ $comment->user->full_name }}
-                                        
-                                        @if ($comment->user->role->name === 'Expert')
-                                            <div class="group relative font-normal">
-                                                <span
-                                                    class='bg-dy w-5 h-5 text-white flex items-center justify-center rounded-full text-[10px] cursor-pointer'>
-                                                    <i class="fa fa-check" aria-hidden="true"></i>
-                                                </span>
-                                                <div
-                                                    class="bg-white text-dy absolute w-60 rounded py-4 shadow-lg mt-2 -translate-x-full ml-4 hidden group-hover:flex items-center justify-center">
-                                                    <i class="fa fa-info-circle mr-2" aria-hidden="true"></i> Pengguna
-                                                    Terverifikasi
+
+                                            @if ($comment->user->role->name === 'Expert')
+                                                <div class="group relative font-normal">
+                                                    <span
+                                                        class='bg-dy w-5 h-5 text-white flex items-center justify-center rounded-full text-[10px] cursor-pointer'>
+                                                        <i class="fa fa-check" aria-hidden="true"></i>
+                                                    </span>
+                                                    <div
+                                                        class="bg-white text-dy absolute w-72 rounded py-4 shadow-lg mt-2 -translate-x-full ml-4 hidden group-hover:flex items-center justify-center">
+                                                        <i class="fa fa-info-circle mr-2" aria-hidden="true"></i> Spesialis
+                                                        Berpengalaman
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        @endif
-                                    </span>
+                                            @endif
+                                        </span>
                                 </a>
                                 <span class="text-slate-400 font-medium">Diposting pada
                                     {{ $comment->created_at->diffForHumans() }}
@@ -158,7 +175,7 @@
                                 <input type="hidden" name="comment_id" id="comment_id" value="{{ $comment->id }}">
                                 <button
                                     class="like-button mr-2 {{ optional($userLikedComment[$comment->id])['userLikedComment'] ? 'clicked' : '' }}"
-                                    onclick="togleLike(event, this)">
+                                    onclick="togleLikeComment(event, this)">
                                     <i class="fas fa-thumbs-up text-lg"></i>
                                 </button>
                             </form>
@@ -346,7 +363,7 @@
     <script>
         let ajaxQueue = Promise.resolve();
 
-        function togleLike(event, button) {
+        function togleLikeComment(event, button) {
             event.preventDefault();
 
             const form = $(button).closest('form');
@@ -392,6 +409,68 @@
                             success: function(response) {
                                 const commentId = form.find('input[name="comment_id"]').val();
                                 const totalLikeId = `.total-like-${commentId}`;
+                                $(totalLikeId).text(response.data.totalLikes + ' Suka');
+                                form.removeData('like-id');
+                                resolve(); // Resolve the promise to indicate successful completion
+                            },
+                            error: function(error) {
+                                console.error('Error:', error);
+                                reject(error); // Reject the promise on error
+                            }
+                        });
+                    }
+                });
+            };
+
+            ajaxQueue = ajaxQueue.then(ajaxRequest).catch((error) => console.error('Error in AJAX request:', error));
+        }
+
+        function togleLikePost(event, button) {
+            event.preventDefault();
+
+            const form = $(button).closest('form');
+            const like_post = form.data('like-id');
+            const isClicked = button.classList.toggle('clicked');
+
+
+            const ajaxRequest = () => {
+                return new Promise((resolve, reject) => {
+                    if (isClicked) {
+                        $.ajax({
+                            type: "post",
+                            url: "{{ route('like_post.store') }}",
+                            data: new FormData(form[0]),
+                            processData: false,
+                            contentType: false,
+                            headers: {
+                                'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                            },
+                            success: function(response) {
+                                const postId = response.data.post_id;
+                                const totalLikeId = `.total-like-${postId}`
+                                form.data('like-id', response.data.id);
+                                $(totalLikeId).text(response.data.totalLikes + ' Suka');
+                                resolve(); // Resolve the promise to indicate successful completion
+                            },
+                            error: function(error) {
+                                console.error('Error:', error);
+                                reject(error); // Reject the promise on error
+                            }
+                        });
+                    } else {
+                        $.ajax({
+                            type: "DELETE",
+                            url: "{{ route('like_post.destroy', ['like_post' => ':like_post']) }}"
+                                .replace(':like_post', like_post),
+                            data: new FormData(form[0]),
+                            processData: false,
+                            contentType: false,
+                            headers: {
+                                'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                            },
+                            success: function(response) {
+                                const postId = form.find('input[name="post_id"]').val();
+                                const totalLikeId = `.total-like-${postId}`;
                                 $(totalLikeId).text(response.data.totalLikes + ' Suka');
                                 form.removeData('like-id');
                                 resolve(); // Resolve the promise to indicate successful completion

@@ -29,6 +29,8 @@ class CommentController extends Controller
             ->with('commentImages')
             ->orderBy('created_at', 'desc');
 
+        $userLikedPost = $post->likes->where('user_id', auth()->check() ? auth()->user()->id : null)->isNotEmpty();
+
         $userLikedComment = $commentsQuery->get()->mapWithKeys(function ($comment) {
             return [
                 $comment->id => [
@@ -51,7 +53,7 @@ class CommentController extends Controller
 
         $comments = $expertComments->merge($userComments);
 
-        return view('pages.detailforum', compact('post', 'comments', 'userLikedComment'));
+        return view('pages.detailforum', compact('post', 'comments', 'userLikedComment', 'userLikedPost'));
     }
 
 

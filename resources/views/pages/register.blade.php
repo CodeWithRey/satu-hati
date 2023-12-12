@@ -42,10 +42,10 @@
 
 
                 <div class="flex flex-col gap-2 mb-4">
-                    <label for="gender" class="block text-sm font-semibold text-gray-600">Jenis Kelamin</label>
+                    <label for="gender" class="block text-sm font-semibold text-gray-600">Gender</label>
                     <select id="gender" name="gender"
                         class=" text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                        <option value="" selected>Pilih Jenis Kelamin...</option>
+                        <option value="" selected>Pilih Gender...</option>
                         @foreach ($genders as $gender)
                             <option value="{{ $gender->id }}">{{ $gender->name }}</option>
                         @endforeach
@@ -107,21 +107,5 @@
 @endsection
 
 @push('scripts')
-<script>
-    $(document).ready(function() {
-        $(".show-password").on("click", function() {
-            const inputField = $(this).siblings("input").eq(0);
-            const icon = $(this).children().eq(0);
-            if (inputField.attr("type") === "password") {
-                inputField.attr("type", "text");
-                icon.removeClass("fa-eye-slash");
-                icon.addClass("fa-eye");
-            } else {
-                inputField.attr("type", "password");
-                icon.removeClass("fa-eye");
-                icon.addClass("fa-eye-slash");
-            }
-        });
-    });
-</script>
+
 @endpush

@@ -25,8 +25,8 @@
                                         <i class="fa fa-check" aria-hidden="true"></i>
                                     </span>
                                     <div
-                                        class="bg-white text-dy absolute w-60 rounded py-4 shadow-lg mt-2 -translate-x-full ml-4 hidden group-hover:block">
-                                        <i class="fa fa-info-circle mr-2" aria-hidden="true"></i> Pengguna Terverifikasi
+                                        class="bg-white text-dy absolute w-72 rounded py-4 px-4 shadow-lg mt-2 -translate-x-full ml-4 hidden group-hover:block">
+                                        <i class="fa fa-info-circle mr-2" aria-hidden="true"></i> Spesialis Berpengalaman
                                     </div>
                                 </div>
                             @endif
@@ -112,7 +112,7 @@
                             @enderror
                         </div>
                         <div class="flex flex-col gap-2">
-                            <label for="gender">Jenis Kelamin <span class="text-white font-bold">*</span></label>
+                            <label for="gender">Gender <span class="text-white font-bold">*</span></label>
                             <select id="gender" name="gender_id" class="w-full px-4 py-2 border rounded-md text-black">
                                 @foreach ($genders as $gender)
                                     <option value="{{ $gender->id }}"

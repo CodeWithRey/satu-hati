@@ -188,13 +188,23 @@
                     <div class="bg-white p-4 rounded-md shadow-md w-full">
                         <!-- Foto Profile dan Nickname -->
                         <div class="flex items-center mb-4">
-                            <a href="{{ route('profile.show', $post->user->id) }}" class="flex items-center">
-                                <img src="{{ $post->user->profile_picture_path && !$post->is_anonymous ? $post->user->profile_picture_path : asset('assets/images/user_placeholder.png') }}"
-                                    alt="Profile Picture" class="w-8 h-8 rounded-full mr-2">
-                                <div class="flex flex-col">
-                                    <span
-                                        class="text-black font-semibold capitalize {{ $post->is_anonymous == 1 ? 'italic' : '' }}">{{ $post->is_anonymous === 0 ? $post->user->full_name : 'Pengguna Anonim' }}</span>
-                            </a>
+                            @if ($post->is_anonymous === 0)
+                                <a href="{{ route('profile.show', $post->user->id) }}" class="flex items-center">
+                                    <img src="{{ $post->user->profile_picture_path && !$post->is_anonymous ? $post->user->profile_picture_path : asset('assets/images/user_placeholder.png') }}"
+                                        alt="Profile Picture" class="w-8 h-8 rounded-full mr-2">
+                                    <div class="flex flex-col">
+                                        <span
+                                            class="text-black font-semibold capitalize {{ $post->is_anonymous == 1 ? 'italic' : '' }}">{{ $post->is_anonymous === 0 ? $post->user->full_name : 'Pengguna Anonim' }}</span>
+                                </a>
+                            @else
+                                <span class="flex items-center">
+                                    <img src="{{ $post->user->profile_picture_path && !$post->is_anonymous ? $post->user->profile_picture_path : asset('assets/images/user_placeholder.png') }}"
+                                        alt="Profile Picture" class="w-8 h-8 rounded-full mr-2">
+                                    <div class="flex flex-col">
+                                        <span
+                                            class="text-black font-semibold capitalize {{ $post->is_anonymous == 1 ? 'italic' : '' }}">{{ $post->is_anonymous === 0 ? $post->user->full_name : 'Pengguna Anonim' }}</span>
+                                </span>
+                            @endif
                             <span class="text-slate-400 font-medium">Diposting pada
                                 {{ $post->created_at->diffForHumans() }}</span>
                         </div>

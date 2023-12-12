@@ -140,6 +140,6 @@ class PostController extends Controller
 
         $post->delete();
 
-        return redirect()->route('post.index')->with('success', 'Diskusi berhasil dihapus !');
+        return redirect()->route('forum')->with('success', 'Diskusi berhasil dihapus !');
     }
 }
