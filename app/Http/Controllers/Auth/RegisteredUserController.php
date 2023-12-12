@@ -46,6 +46,7 @@ class RegisteredUserController extends Controller
             'email.unique' => ':Attribute sudah digunakan.',
             'password.required' => ':Attribute wajib diisi.',
             'password.confirmed' => 'kata sandi tidak sesuai silahkan periksa kembali.',
+            'password.min' => 'Kata sandi minimal harus 8 karakter.',
             'gender.required' => ':Attribute wajib diisi.',
         ]);
 

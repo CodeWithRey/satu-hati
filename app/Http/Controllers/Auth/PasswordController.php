@@ -21,8 +21,9 @@ class PasswordController extends Controller
         ], [
             'current_password.current_password' => 'Kata sandi lama anda tidak sesuai.',
             'current_password.required' => 'Kata sandi lama wajib diisi.',
-            'password.required' => ':Attribute wajib diisi.',
-            'password.confirmed' => 'kata sandi tidak sesuai silahkan periksa kembali.',
+            'password.required' => 'Kata sandi wajib diisi.',
+            'password.confirmed' => 'Kata sandi tidak sesuai silahkan periksa kembali.',
+            'password.min' => 'Kata sandi minimal harus 8 karakter.',
         ]);
 
         $request->user()->update([
