@@ -6,7 +6,7 @@
     <section
         class="bg-center bg-no-repeat min-h-[100vh] bg-cover bg-landing bg-blend-multiply relative flex items-center justify-center">
         <div class=" px-4 mx-auto max-w-screen-xl text-center grid md:grid-cols-2 grid-cols-1 place-items-center h-full">
-            <div class="">
+            <div class="md:ml-4">
                 <h1
                     class="py-1 mb-4 text-4xl font-extrabold tracking-tight leading-none text-[#CB6A10] md:text-5xl lg:text-6xl text-left">
                     SatuHati</h1>
@@ -14,23 +14,23 @@
                     Suara Perubahan dan Cahaya Keadilan”</p>
                 <div class="py-7 flex flex-col space-y-4 sm:flex-row sm:justify-left sm:space-y-0">
                     <a href="{{ route('forum') }}"
-                        class="inline-flex font- gap-2 justify-center items-center py-3 px-5 text-base font-bold text-center text-white rounded-lg bg-dy hover:bg-dy-dark focus:ring-4 focus:ring-orange-300 dark:focus:ring-dy transition duration-300">
+                        class="inline-flex gap-2 justify-center items-center py-3 px-5 text-base font-bold text-center text-white rounded-lg bg-dy hover:bg-dy-dark focus:ring-4 focus:ring-orange-300 dark:focus:ring-dy transition duration-300">
                         Forum Diskusi<i class="fa-solid fa-comments"></i>
                     </a>
                     <a href="{{ route('pengaduan') }}"
-                        class="inline-flex font- gap-2 justify-center hover:text-white hover:bg-dy items-center py-3 px-5 sm:ms-4 text-base font-bold text-center text-dy rounded-lg border-2 border-dy focus:ring-4 focus:ring-orange-300 transition duration-300">
+                        class="inline-flex gap-2 justify-center hover:text-white hover:bg-dy items-center py-3 px-5 sm:ms-4 text-base font-bold text-center text-dy rounded-lg border-2 border-dy focus:ring-4 focus:ring-orange-300 transition duration-300">
                         Pengaduan <i class="fa-solid fa-phone-volume"></i>
                     </a>
                 </div>
             </div>
             <img src="{{ asset('assets/images/tangan.png') }}" alt=""
-                class="md:block hidden absolute right-0 h-full top-0">
+                class="lg:block hidden absolute right-0 h-full top-0">
             <img src="{{ asset('assets/images/orang.png') }}" alt="" class="md:block hidden">
         </div>
     </section>
     <section>
-        <div class="flex items-center justify-center text-center p-16">
-            <blockquote class="text-xl italic font-semibold text-gray-900 dark:text-white w-1/2">
+        <div class="flex items-center justify-center text-center lg:p-16 py-10 px-4">
+            <blockquote class="text-xl italic font-semibold text-gray-900 dark:text-white lg:w-1/2 w-11/12">
                 <svg class="w-8 h-8 text-gray-400 dark:text-gray-600 mb-4" aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 14">
                     <path
@@ -43,8 +43,8 @@
         </div>
     </section>
     <section class="pb-24">
-        <div class="grid md:grid-cols-2 grid-cols-1 p-4 place-items-stretch">
-            <div class="flex flex-col gap-6 p-16 place-content-center">
+        <div class="grid md:grid-cols-2 grid-cols-1 p-4 place-items-stretch lg:w-10/12 w-11/12 mx-auto">
+            <div class="flex flex-col gap-6 place-content-center">
                 <h2 class="md:text-start text-center text-3xl font-bold text-black place-content-center">Pelecehan Seksual
                     <span class="text-3xl font-bold text-[#CB6A10]">Secara Verbal</span>
                 </h2>
@@ -57,10 +57,10 @@
             <img class=" md:block hidden object-contain w-96 mx-auto place-items-center"
                 src="{{ asset('assets/images/verbal.png') }}" alt="">
         </div>
-        <div class="grid md:grid-cols-2 grid-cols-1 p-4 place-items-stretch">
+        <div class="grid md:grid-cols-2 grid-cols-1 p-4 place-items-stretch lg:w-10/12 w-11/12 mx-auto">
             <img class=" md:block hidden object-contain w-72 mx-auto place-items-center"
                 src="{{ asset('assets/images/fisik.png') }}" alt="">
-            <div class="flex flex-col gap-6 p-16 place-content-center">
+            <div class="flex flex-col gap-6 place-content-center">
                 <h2 class="md:text-start text-center text-3xl font-bold text-black place-content-center">Pelecehan Seksual
                     <span class="text-3xl font-bold text-[#CB6A10]">Secara Fisik</span>
                 </h2>
@@ -74,8 +74,8 @@
             </div>
         </div>
 
-        <div class="grid md:grid-cols-2 grid-cols-1 p-4 place-items-stretch">
-            <div class="flex flex-col gap-6 p-16 place-content-center">
+        <div class="grid md:grid-cols-2 grid-cols-1 p-4 place-items-stretch lg:w-10/12 w-11/12 mx-auto">
+            <div class="flex flex-col gap-6 place-content-center">
                 <h2 class="md:text-start text-center text-3xl font-bold text-black place-content-center">Pelecehan Seksual
                     <span class="text-3xl font-bold text-[#CB6A10]">Secara Non Fisik</span>
                 </h2>
@@ -93,10 +93,10 @@
         </div>
 
 
-        <div class="grid md:grid-cols-2 grid-cols-1 p-4 place-items-stretch">
+        <div class="grid md:grid-cols-2 grid-cols-1 p-4 place-items-stretch lg:w-10/12 w-11/12 mx-auto">
             <img class=" md:block hidden object-contain w-96 mx-auto place-items-center"
                 src="{{ asset('assets/images/daring.png') }}" alt="">
-            <div class="flex flex-col gap-6 p-16 place-content-center">
+            <div class="flex flex-col gap-6 place-content-center">
                 <h2 class="md:text-start text-center text-3xl font-bold text-black place-content-center">Pelecehan Seksual
                     <span class="text-3xl font-bold text-[#CB6A10]">Secara Daring</span>
                 </h2>

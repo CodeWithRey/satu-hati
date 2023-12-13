@@ -10,7 +10,7 @@
             <img src="{{ asset('assets/images/logo satu hati.png') }}" alt="logo-satuhati" class="w-3/4">
         </div>
 
-        <div class="bg-yellow lg:p-10 rounded shadow-md flex flex-col justify-center ">
+        <div class="bg-yellow lg:p-10 rounded shadow-md flex flex-col justify-center py-10">
 
             <span class="mx-auto"></span>
 
@@ -59,7 +59,7 @@
                     <label for="password" class="block text-sm font-semibold text-gray-600">Kata Sandi</label>
                     <div class="w-full relative">
                         <input type="password" placeholder="Masukkan kata sandi anda..." id="password" name="password"
-                            class="w-full px-4 py-2 border rounded-md">
+                            class="w-full pl-4 pr-12 py-2 border rounded-md">
                         <button type="button" tabindex="-1"
                             class="show-password absolute top-1/2 -translate-y-1/2 right-4 text-gray-400 hover:text-gray-500">
                             <i class="fa fa-eye-slash" aria-hidden="true"></i>
@@ -75,7 +75,7 @@
                         Kata Sandi</label>
                     <div class="w-full relative">
                         <input type="password" placeholder="Masukkan ulang kata sandi anda..." id="password_confirmation"
-                            name="password_confirmation" class="w-full px-4 py-2 border rounded-md">
+                            name="password_confirmation" class="w-full pl-4 pr-12 py-2 border rounded-md">
                         <button type="button" tabindex="-1"
                             class="show-password absolute top-1/2 -translate-y-1/2 right-4 text-gray-400 hover:text-gray-500">
                             <i class="fa fa-eye-slash" aria-hidden="true"></i>

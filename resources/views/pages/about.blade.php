@@ -4,19 +4,27 @@
 
 {{-- area konten yang ada pada layout default --}}
 @section('content')
-    <section class="py-16">
+    <section class="min-h-[100vh] flex items-center justify-center py-16">
         <div class="grid md:grid-cols-2 grid-cols-1 p-4 place-items-stretch pt-10">
-            <img class=" md:block hidden object-contain w-96 mx-auto place-items-center"
+            <img class=" md:block hidden object-contain h-full mx-auto place-items-center"
                 src="{{ asset('assets/images/about.png') }}" alt="">
             <div class="flex flex-col gap-4 w-11/12 mx-auto place-content-center">
                 <h2 class="text-center md:text-start text-3xl font-bold text-dy items-center">Tentang Kami</h2>
-                <img class="md:hidden object-contain w-96 place-items-center mx-auto" src="{{ asset('assets/images/about.png') }}" alt="">
-                <p class="text-start text-gray-600 text-xl font-semibold ">Selamat Datang di SatuHati!</p>
+                <img class="md:hidden object-contain w-96 place-items-center mx-auto"
+                    src="{{ asset('assets/images/about.png') }}" alt="">
+                <p class="text-start text-gray-600 text-xl font-semibold md:mt-0 mt-6">Selamat Datang di SatuHati!</p>
                 <p class="text-start text-gray-600 text-xl">
                     Kami tim yang berkomitmen mengatasi perbedaan sosial dan stigma dalam penanganan pelecehan seksual di
                     Indonesia. Fokus pada edukasi dan diskusi, SatuHati bertujuan meningkatkan kesadaran, menghilangkan
                     stigma, dan memberikan dukungan kepada korban. Bergabunglah dalam membangun komunitas yang kuat,
-                    menciptakan lingkungan yang aman. <br> <span class="font-bold pt-2">SatuHati - Bersama Lawan Pelecehan Seksual!</span> </p>
+                    menciptakan lingkungan yang aman.
+                </p>
+                <span class="font-bold text-2xl flex items-center">
+                    <span class="text-dy flex items-center gap-2">
+                        <img class="w-12" src="{{ asset('assets/images/logo-no-text.png') }}" alt="">
+                        SatuHati
+                    </span>
+                    - Bersama Lawan Pelecehan Seksual!</span>
             </div>
         </div>
     </section>
