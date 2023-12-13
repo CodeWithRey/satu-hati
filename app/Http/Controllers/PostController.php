@@ -21,17 +21,22 @@ class PostController extends Controller
             Post::with('user')
             ->with('comments')
             ->with('postImages')
-            ->with('likes')
-            ->withCount(['likes', 'comments']);
+            ->with('likes');
 
 
-
-
-        if ($sort_by) {
-            if ($sort_by === 'popular') {
-                $postsQuery->orderByDesc('likes_count');
-            }
+        if ($sort_by === 'popular') {
+            $postsQuery->orderBy(function ($query) {
+                $query->select(DB::raw('COUNT(DISTINCT like_posts.id) + COUNT(DISTINCT comments.id)'))
+                    ->from('like_posts')
+                    ->leftJoin('comments', 'like_posts.post_id', '=', 'comments.post_id')
+                    ->whereColumn('like_posts.post_id', 'posts.id')
+                    ->groupBy('like_posts.post_id');
+            }, 'desc');
+        } else {
+            $postsQuery->orderByDesc('created_at');
         }
+
+
         $posts = $postsQuery->paginate(10)->withQueryString();
 
         $userLikedPost = $posts->mapWithKeys(function ($post) {
@@ -62,6 +67,11 @@ class PostController extends Controller
             'description' => 'required',
             'images.*' => 'sometimes|image|max:2048',
             'user_id' => 'required',
+        ], [
+            'title.required' => 'Judul wajib diisi.',
+            'description.required' => 'Deskripsi wajib diisi.',
+            'images.*.max' => 'Ukuran gambar maximal 2 mb.',
+            'images.*.image' => 'File harus berupa gambar (png, jpeg, svg dan sejenisnya).',
         ]);
 
 
@@ -78,7 +88,7 @@ class PostController extends Controller
         }
 
 
-        return redirect()->back()->with('success', 'Post has been created successfully !');
+        return redirect()->back()->with('success', 'Diskusi berhasil dibuat !');
     }
 
     /**
@@ -130,6 +140,6 @@ class PostController extends Controller
 
         $post->delete();
 
-        return redirect()->route('post.index')->with('success', 'Post has been deleted successfully');
+        return redirect()->route('forum')->with('success', 'Diskusi berhasil dihapus !');
     }
 }

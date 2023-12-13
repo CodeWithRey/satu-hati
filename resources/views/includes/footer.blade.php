@@ -24,7 +24,7 @@
                         <a href="{{ route('forum') }}" class="">Forum Diskusi</a>
                     </li>
                     <li class="mb-2">
-                        <a href="{{ route('forum') }}" class="">Pengaduan</a>
+                        <a href="{{ route('pengaduan') }}" class="">Pengaduan</a>
                     </li>
                     <li>
                         <a href="{{ route('about') }}" class="">Tentang</a>
