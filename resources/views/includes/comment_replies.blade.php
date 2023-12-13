@@ -4,12 +4,25 @@
             <!-- Foto Profile dan Nickname Penjawab -->
             <div class="flex items-center justify-between mb-2">
                 <div class="flex items-center">
-                    <a href="{{ route('profile.show', $comment->user->id) }}" class="flex items-center">
+                    <a href="{{ route('profile.show', $reply->user->id) }}" class="flex items-center">
                         <img src="{{ $reply->user->profile_picture_path ? $reply->user->profile_picture_path : asset('assets/images/user_placeholder.png') }}"
                             alt="Profile Picture" class="w-8 h-8 rounded-full mr-2">
                         <div class="flex flex-col ">
-                            <span class="text-black font-semibold capitalize self-start"
+                            <span class="text-black font-semibold capitalize self-start mr-2"
                                 id="{{ $reply->id }}">{{ $reply->user->full_name }}</span>
+                            @if ($reply->user->role->id == 2)
+                                <div class="group relative font-normal">
+                                    <span
+                                        class='bg-dy w-5 h-5 text-white flex items-center justify-center rounded-full text-[10px] cursor-pointer'>
+                                        <i class="fa fa-check" aria-hidden="true"></i>
+                                    </span>
+                                    <div
+                                        class="bg-white text-dy absolute w-72 rounded py-4 shadow-lg mt-2 -left-14 md:left-0 hidden group-hover:flex items-center justify-center">
+                                        <i class="fa fa-info-circle mr-2" aria-hidden="true"></i> Spesialis
+                                        Berpengalaman
+                                    </div>
+                                </div>
+                            @endif
                     </a>
                     <span class="text-slate-400 font-medium">Diposting pada
                         {{ $reply->created_at->diffForHumans() }}</span>

@@ -1045,6 +1045,9 @@ input:checked + .toggle-bg {
     left: 0;
     right: 0;
 }
+.-left-14 {
+    left: -3.5rem;
+}
 .bottom-0 {
     bottom: 0;
 }
@@ -2963,6 +2966,9 @@ input:checked + .toggle-bg {
         top: 0;
         right: 0;
         bottom: 0;
+        left: 0;
+    }
+    .md\:left-0 {
         left: 0;
     }
     .md\:order-1 {

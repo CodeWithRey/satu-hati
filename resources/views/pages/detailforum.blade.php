@@ -17,9 +17,23 @@
                                 alt="Profile Picture" class="w-8 h-8 rounded-full mr-2">
                             <div class="flex flex-col">
                                 <span
-                                    class="text-black font-semibold capitalize {{ $post->is_anonymous == 1 ? 'italic' : '' }}">
+                                    class="text-black font-semibold capitalize mr-2 {{ $post->is_anonymous == 1 ? 'italic' : '' }}">
                                     {{ $post->is_anonymous === 0 ? $post->user->full_name : 'Pengguna Anonim' }}
                                 </span>
+                                @if ($post->user->role->id == 2)
+                                    <div class="group relative font-normal">
+                                        <span
+                                            class='bg-dy w-5 h-5 text-white flex items-center justify-center rounded-full text-[10px] cursor-pointer'>
+                                            <i class="fa fa-check" aria-hidden="true"></i>
+                                        </span>
+                                        <div
+                                            class="bg-white text-dy absolute w-72 rounded py-4 shadow-lg mt-2 -left-14 md:left-0 hidden group-hover:flex items-center justify-center">
+                                            <i class="fa fa-info-circle mr-2" aria-hidden="true"></i> Spesialis
+                                            Berpengalaman
+                                        </div>
+                                    </div>
+                                @endif
+
                         </a>
                     @else
                         <span class="flex items-center">
@@ -30,8 +44,11 @@
                                     class="text-black font-semibold capitalize {{ $post->is_anonymous == 1 ? 'italic' : '' }}">
                                     {{ $post->is_anonymous === 0 ? $post->user->full_name : 'Pengguna Anonim' }}
                                 </span>
+
+
                         </span>
                     @endif
+                    {{-- centang --}}
                     <span class="text-slate-400 font-medium">Diposting pada
                         {{ $post->created_at->diffForHumans() }}
                     </span>
@@ -117,14 +134,14 @@
                                             id="{{ $comment->id }}">
                                             {{ $comment->user->full_name }}
 
-                                            @if ($comment->user->role->name === 'Expert')
+                                            @if ($comment->user->role->id == 2)
                                                 <div class="group relative font-normal">
                                                     <span
                                                         class='bg-dy w-5 h-5 text-white flex items-center justify-center rounded-full text-[10px] cursor-pointer'>
                                                         <i class="fa fa-check" aria-hidden="true"></i>
                                                     </span>
                                                     <div
-                                                        class="bg-white text-dy absolute w-72 rounded py-4 shadow-lg mt-2 -translate-x-full ml-4 hidden group-hover:flex items-center justify-center">
+                                                        class="bg-white text-dy absolute w-72 rounded py-4 shadow-lg mt-2 -left-14 md:left-0 hidden group-hover:flex items-center justify-center">
                                                         <i class="fa fa-info-circle mr-2" aria-hidden="true"></i> Spesialis
                                                         Berpengalaman
                                                     </div>
