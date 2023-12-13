@@ -165,7 +165,7 @@
                                         class="text-white font-bold">*</span></label>
                                 <div class="w-full relative">
                                     <input id="current_password" type="password" name="current_password"
-                                        class="w-full px-4 py-2 border rounded-md text-black"
+                                        class="w-full pl-4 pr-12 py-2 border rounded-md text-black"
                                         placeholder="Masukkan kata sandi lama...">
                                     <button type="button" tabindex="-1"
                                         class="show-password absolute top-1/2 -translate-y-1/2 right-4 text-gray-400 hover:text-gray-500">
@@ -181,7 +181,7 @@
                                 <label for="password">Kata Sandi Baru <span class="text-white font-bold">*</span></label>
                                 <div class="w-full relative">
                                     <input id="password" type="password" name="password"
-                                        class="w-full px-4 py-2 border rounded-md text-black"
+                                        class="w-full pl-4 pr-12 py-2 border rounded-md text-black"
                                         placeholder="Masukkan kata sandi baru...">
                                     <button type="button" tabindex="-1"
                                         class="show-password absolute top-1/2 -translate-y-1/2 right-4 text-gray-400 hover:text-gray-500">
@@ -198,7 +198,7 @@
                                         class="text-white font-bold">*</span></label>
                                 <div class="w-full relative">
                                     <input id="password_confirmation" type="password" name="password_confirmation"
-                                        class="w-full px-4 py-2 border rounded-md text-black"
+                                        class="w-full pl-4 pr-12 py-2 border rounded-md text-black"
                                         placeholder="Masukkan kata sandi baru...">
                                     <button type="button" tabindex="-1"
                                         class="show-password absolute top-1/2 -translate-y-1/2 right-4 text-gray-400 hover:text-gray-500">

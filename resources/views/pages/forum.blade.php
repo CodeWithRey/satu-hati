@@ -6,9 +6,9 @@
     <div class="bg-landing-forum min-h-[80vh] min-w-screen flex flex-col items-center justify-center py-12">
         <img src="{{ asset('assets/images/vec.png') }}" class="w-[400px]" alt="">
         <div class="flex flex-col gap-4 mt-4">
-            <h1 class="mx-auto font-bold text-5xl">Forum <span class="text-[#CB6A10]">Diskusi</span>
+            <h1 class="mx-auto font-bold md:text-5xl text-4xl">Forum <span class="text-[#CB6A10]">Diskusi</span>
             </h1>
-            <p class="text-xl text-center mb-0 px-20">Selamat Datang di Forum Diskusi SatuHati!
+            <p class="md:text-xl text-lg text-center mb-0 md:px-20 px-6"> <b>Selamat Datang di Forum Diskusi SatuHati!</b>
                 <br>Mari bersama-sama membangun ruang aman untuk berdiskusi, mendukung satu sama lain, dan menciptakan
                 perubahan positif.
             </p>
