@@ -34,14 +34,14 @@
     }
 
     .navbar-link-inactive {
-        @apply text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-dy md:p-0 transition duration-300  ;
+        @apply text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-dy md:p-0 transition duration-300;
     }
 
     .floating-shadow-lg {
         @apply shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px];
     }
 
-    .highlight-text{
-        @apply bg-yellow
+    .highlight-text {
+        @apply bg-yellow;
     }
 }
