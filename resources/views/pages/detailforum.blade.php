@@ -229,7 +229,7 @@
 
 
     <!-- Form Chatroom -->
-    <form action="{{ route('comment.store') }}" method="POST" class="fixed w-full bottom-0 inset-x-0 bg-white"
+    <form action="{{ route('comment.store') }}" method="POST" class="fixed w-full bottom-0 inset-x-0 bg-white overflow-auto"
         enctype="multipart/form-data">
         @csrf
 
