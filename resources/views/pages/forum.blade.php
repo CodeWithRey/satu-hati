@@ -190,8 +190,8 @@
                         <div class="flex items-center mb-4">
                             @if ($post->is_anonymous === 0)
                                 <a href="{{ route('profile.show', $post->user->id) }}" class="flex items-center">
-                                    <img src="{{ $post->user->profile_picture_path && !$post->is_anonymous ? $post->user->profile_picture_path : asset('assets/images/user_placeholder.png') }}"
-                                        alt="Profile Picture" class="w-8 h-8 rounded-full mr-2">
+                                    <img src="{{ $post->user->profile_picture_path }}" alt="Profile Picture"
+                                        class="w-8 h-8 rounded-full mr-2">
                                     <div class="flex flex-col">
                                         <span
                                             class="text-black font-semibold capitalize mr-2 {{ $post->is_anonymous == 1 ? 'italic' : '' }}">{{ $post->is_anonymous === 0 ? $post->user->full_name : 'Pengguna Anonim' }}</span>
@@ -212,8 +212,8 @@
                                 </a>
                             @else
                                 <span class="flex items-center">
-                                    <img src="{{ $post->user->profile_picture_path && !$post->is_anonymous ? $post->user->profile_picture_path : asset('assets/images/user_placeholder.png') }}"
-                                        alt="Profile Picture" class="w-8 h-8 rounded-full mr-2">
+                                    <img src="{{ asset('assets/images/user_placeholder.png') }}" alt="Profile Picture"
+                                        class="w-8 h-8 rounded-full mr-2">
                                     <div class="flex flex-col">
                                         <span
                                             class="text-black font-semibold capitalize {{ $post->is_anonymous == 1 ? 'italic' : '' }}">{{ $post->is_anonymous === 0 ? $post->user->full_name : 'Pengguna Anonim' }}</span>

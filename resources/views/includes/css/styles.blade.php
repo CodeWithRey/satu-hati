@@ -1,5 +1,5 @@
 {{-- @vite('resources/css/app.css') --}}
-<link rel="stylesheet" href="{{ asset('build/assets/app-2516d6a7.css') }}">
+<link rel="stylesheet" href="{{ asset('build/assets/app-94abfee7.css') }}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/venobox/2.0.9/venobox.css"
     integrity="sha512-DdJCxSEliAOOcwNXGOzXyBJIZ/K6KAv4OkrH46eBd7nOIbkOHoQPYrS6bbT53nsFWAYqE3/jNGGWH/3ELRgCnQ=="
