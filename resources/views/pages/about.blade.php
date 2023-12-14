@@ -19,9 +19,8 @@
                     stigma, dan memberikan dukungan kepada korban. Bergabunglah dalam membangun komunitas yang kuat,
                     menciptakan lingkungan yang aman.
                 </p>
-                <span class="font-bold lg:text-2xl text-xl flex lg:flex-row flex-col lg:items-center lg">
+                <span class="font-bold text-xl flex lg:flex-row flex-col lg:items-center">
                     <span class="text-dy flex items-center gap-2">
-                        <img class="w-12" src="{{ asset('assets/images/logo-no-text.png') }}" alt="">
                         SatuHati
                     </span>
                     <span class="lg:block hidden mx-2">-</span>
