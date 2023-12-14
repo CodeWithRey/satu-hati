@@ -42,7 +42,7 @@
 
 
                 <div class="flex flex-col gap-2 mb-4">
-                    <label for="gender" class="block text-sm font-semibold text-gray-600">Gender</label>
+                    <label for="gender" class="block text-sm font-semibold text-gray-600">Jenis Kelamin</label>
                     <select id="gender" name="gender"
                         class=" text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         <option value="" selected>Pilih Gender...</option>
@@ -107,5 +107,4 @@
 @endsection
 
 @push('scripts')
-
 @endpush

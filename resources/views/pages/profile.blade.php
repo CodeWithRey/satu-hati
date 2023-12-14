@@ -4,6 +4,7 @@
 @section('showFooter', 'hidden')
 
 
+
 {{-- area konten yang ada pada layout default --}}
 @section('content')
     <div class="min-w-screen min-h-screen flex items-center justify-center">
@@ -112,11 +113,11 @@
                             @enderror
                         </div>
                         <div class="flex flex-col gap-2">
-                            <label for="gender">Gender <span class="text-white font-bold">*</span></label>
+                            <label for="gender">Jenis Kelamin<span class="text-white font-bold">*</span></label>
                             <select id="gender" name="gender_id" class="w-full px-4 py-2 border rounded-md text-black">
                                 @foreach ($genders as $gender)
                                     <option value="{{ $gender->id }}"
-                                        {{ $gender->id === $user->gender->id ?? 'selected' }}>
+                                        {{ $user->gender->id == $gender->id ? 'selected' : '' }}>
                                         {{ $gender->name }}</option>
                                 @endforeach
                             </select>
