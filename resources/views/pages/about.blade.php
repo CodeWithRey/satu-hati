@@ -19,11 +19,11 @@
                     stigma, dan memberikan dukungan kepada korban. Bergabunglah dalam membangun komunitas yang kuat,
                     menciptakan lingkungan yang aman.
                 </p>
-                <span class="font-bold text-xl flex lg:flex-row flex-col lg:items-center">
+                <span class="font-bold text-xl flex xl:flex-row flex-col xl:items-center">
                     <span class="text-dy flex items-center gap-2">
                         SatuHati
                     </span>
-                    <span class="lg:block hidden mx-2">-</span>
+                    <span class="xl:block hidden mx-2">-</span>
                     Bersama Lawan Pelecehan Seksual!</span>
             </div>
         </div>
