@@ -37,15 +37,13 @@
                         </a>
                     @else
                         <span class="flex items-center">
-                            <img src="{{ $post->user->profile_picture_path ? $post->user->profile_picture_path : asset('assets/images/user_placeholder.png') }}"
-                                alt="Profile Picture" class="w-8 h-8 rounded-full mr-2">
+                            <img src="{{ asset('assets/images/user_placeholder.png') }}" alt="Profile Picture"
+                                class="w-8 h-8 rounded-full mr-2">
                             <div class="flex flex-col">
                                 <span
                                     class="text-black font-semibold capitalize {{ $post->is_anonymous == 1 ? 'italic' : '' }}">
                                     {{ $post->is_anonymous === 0 ? $post->user->full_name : 'Pengguna Anonim' }}
                                 </span>
-
-
                         </span>
                     @endif
                     {{-- centang --}}
@@ -229,8 +227,8 @@
 
 
     <!-- Form Chatroom -->
-    <form action="{{ route('comment.store') }}" method="POST" class="fixed w-full bottom-0 inset-x-0 bg-white overflow-auto"
-        enctype="multipart/form-data">
+    <form action="{{ route('comment.store') }}" method="POST"
+        class="fixed w-full bottom-0 inset-x-0 bg-white overflow-auto" enctype="multipart/form-data">
         @csrf
 
         <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
