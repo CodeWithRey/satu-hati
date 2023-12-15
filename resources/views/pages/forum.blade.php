@@ -190,7 +190,7 @@
                         <div class="flex items-center mb-4">
                             @if ($post->is_anonymous === 0)
                                 <a href="{{ route('profile.show', $post->user->id) }}" class="flex items-center">
-                                    <img src="{{ $post->user->profile_picture_path }}" alt="Profile Picture"
+                                    <img src="{{ $post->user->profile_picture_path ??  asset('assets/images/user_placeholder.png') }}" alt="Profile Picture"
                                         class="w-8 h-8 rounded-full mr-2">
                                     <div class="flex flex-col">
                                         <span
