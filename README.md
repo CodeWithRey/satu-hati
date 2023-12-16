@@ -1,66 +1,61 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<p align="center"><a href="https://www.satuhati.site" target="_blank"><img src="https://raw.githubusercontent.com/CodeWithRey/satu-hati/master/public/assets/images/logo-no-text.png" width="400" alt="Satu Hati Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+<h1 align="center"><b>Satu Hati - Bersama Lawan Pelecehan Seksual</b></h1>
 
-## About Laravel
+Proyek SatuHati merupakan sebuah platform website yang bertujuan untuk mengatasi perbedaan perlakuan dan stigma yang sering muncul dalam penanganan pelecehan seksual, baik terhadap perempuan maupun laki-laki. Dengan fokus pada peningkatan kesadaran masyarakat, tujuan utama kami adalah menghilangkan stigma terkait sanksi sosial yang cenderung lebih berdampak kepada perempuan.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Tim C523-PS026
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- S103YB442 – [Reynaldi Rizky Pratama](https://github.com/CodeWithRey) - Universitas Dinamika
+- F244YB063 – [Marcellino Julian Gozal](https://github.com/marcellinojg) - Universitas Kristen Petra
+- F129XB116 – [Junia Vitasari](https://github.com/Junia0806) - Politeknik Negeri Jember
+- F129YB126 – [Arfan Astaraja](https://github.com/arfan0509) - Politeknik Negeri Jember
+- F525XB312 – [Vicka Rizqia](https://github.com/fikaakif31) - Politeknik Negeri Banyuwangi
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Dokumen
+- [Project Brief](https://drive.google.com/file/d/10cG5AGD0HxkLZ_tnxqQfyGSXos70uuWW/view?usp=sharing)
+- [Working Doc](https://docs.google.com/document/d/1yoLhm5aWCRcNhTVl3EtTIR7lssv51m0g81M9T2mQo_A)
+- [User Guide](https://drive.google.com/file/d/18hm3B0_AvFsl3RpuRLiHuImNf5BiyKUq/view)
+- [Slide Presentasi](https://www.canva.com/design/DAF2xqg-uyM/raYMYC651Q5XHpfHW3S1rg/edit)
+- [Video Presentasi](https://www.youtube.com/watch?v=EAymPVOEpuM)
+- [Video Demo Aplikasi](https://www.youtube.com/watch?v=oVFswb0BQKM)
 
-## Learning Laravel
+## Resources
+<span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/768px-HTML5_logo_and_wordmark.svg.png" width="150" alt="Logo HTML"></span>
+<span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/1200px-Unofficial_JavaScript_logo_2.svg.png" width="150" alt="Logo Javascript"></span>
+<a href="https://www.php.net/" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/PHP-logo.svg/2560px-PHP-logo.svg.png" width="150" alt="Logo PHP"></a>
+<a href="https://laravel.com/" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Laravel.svg/1969px-Laravel.svg.png" width="150" alt="Logo Laravel"></a>
+<a href="https://tailwindcss.com/" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Tailwind_CSS_Logo.svg/512px-Tailwind_CSS_Logo.svg.png?20230715030042" width="200" alt="Logo TailwindCSS"></a>
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Instalasi / Cara menjalankan di lokal
+1. Clone proyek
+```bash
+  git clone https://github.com/CodeWithRey/satu-hati.git
+```
+2. Jalankan composer update
+```bash
+  composer update
+```
+3. Instal library menggunakan npm
+```bash
+  npm install
+```
+4. Setup database mySQL di local
+5. Konfigurasi `DB_DATABASE` `DB_USERNAME` `DB_PASSWORD` di file .env
+6. Jalankan seeder database
+```bash
+  php artisan migrate:fresh --seed
+```
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+7. Buat link storage ke public directory
+```bash
+  php artisan storage:link
+```
+8. Jalankan node runtime
+```bash
+  npm run dev
+```
+9. Jalankan proyek Laravel
+```bash
+  php artisan serve
+```
