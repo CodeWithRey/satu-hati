@@ -42,11 +42,14 @@ Proyek SatuHati merupakan sebuah platform website yang bertujuan untuk mengatasi
 ```
 4. Setup database mySQL di local
 5. Konfigurasi `DB_DATABASE` `DB_USERNAME` `DB_PASSWORD` di file .env
-6. Jalankan seeder database
+6. Generate `APP_KEY` pada file .env dengan
+```bash
+  php artisan key:generate
+```
+8. Jalankan seeder database
 ```bash
   php artisan migrate:fresh --seed
 ```
-
 7. Buat link storage ke public directory
 ```bash
   php artisan storage:link
