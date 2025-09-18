@@ -14,7 +14,7 @@
                 {{-- Read Mode --}}
                 <div class="lg:col-span-1 pt-10 bg-dy flex flex-col justify-between gap-8 rounded-l text-center text-white relative"
                     id="readProfile">
-                    <img src="{{ $user->profile_picture_path ?? asset('assets/images/user_placeholder.png') }}"
+                    <img src="{{ $user->profile_picture_path ? url($user->profile_picture_path) : asset('assets/images/user_placeholder.png') }}"
                         class="w-44 h-44 rounded-full object-cover border-2 mx-auto">
                     <div class="flex flex-col items-start mx-auto gap-3">
                         <span class="font-bold mb-3 mx-auto flex items-center gap-3">
@@ -98,7 +98,7 @@
                     @csrf
                     @method('PUT')
                     <label for="profilePicture" class="cursor-pointer mx-auto pb-8">
-                        <img src="{{ $user->profile_picture_path ?? asset('assets/images/user_placeholder.png') }}"
+                        <img src="{{ $user->profile_picture_path ? url($user->profile_picture_path) : asset('assets/images/user_placeholder.png') }}"
                             class="w-44 h-44 rounded-full object-cover border-2 mx-auto" alt=""
                             id="previewProfilePicture">
                     </label>
@@ -153,7 +153,7 @@
                 </form>
                 {{-- Edit Password --}}
                 <div class="lg:col-span-1 pt-10 bg-dy rounded-l text-center text-white relative hidden" id="editPassword">
-                    <img src="{{ $user->profile_picture_path ?? asset('assets/images/user_placeholder.png') }}"
+                    <img src="{{ $user->profile_picture_path ? url($user->profile_picture_path) : asset('assets/images/user_placeholder.png') }}"
                         class="w-44 h-44 rounded-full object-cover border-2 mx-auto mb-8">
                     <span class="font-bold mx-auto">{{ $user->full_name }}</span>
                     <form method="POST" action="{{ route('password.update') }}"
@@ -239,7 +239,7 @@
                                 <div class="bg-white p-4 rounded-md shadow-md w-full">
                                     <div class="flex w-full items-center justify-between">
                                         <div class="flex items-center mb-4">
-                                            <img src="{{ $top_post->user->profile_picture_path ? $top_post->user->profile_picture_path : asset('assets/images/user_placeholder.png') }}"
+                                            <img src="{{ $top_post->user->profile_picture_path ? url($top_post->user->profile_picture_path) : asset('assets/images/user_placeholder.png') }}"
                                                 alt="Profile Picture" class="w-8 h-8 rounded-full mr-2 ">
                                             <span
                                                 class="text-black font-semibold">{{ $top_post->is_anonymous === 0 ? $top_post->user->full_name : 'Anonymous' }}</span>
@@ -255,8 +255,8 @@
                                     <div class="flex flex-wrap items-center justify-start gap-8 mb-4">
                                         @foreach ($top_post->postImages as $image)
                                             <a class="my-image-links" data-maxwidth="800px"
-                                                href="{{ asset($image->path) }}">
-                                                <img src="{{ asset($image->path) }}" class="object-cover" width="100px"
+                                                href="{{ url($image->path) }}">
+                                                <img src="{{ url($image->path) }}" class="object-cover" width="100px"
                                                     alt="">
                                             </a>
                                         @endforeach

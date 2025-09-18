@@ -13,7 +13,7 @@
                 <div class="flex items-center">
                     @if ($post->is_anonymous === 0)
                         <a href="{{ route('profile.show', $post->user->id) }}" class="flex items-center">
-                            <img src="{{ $post->user->profile_picture_path ? $post->user->profile_picture_path : asset('assets/images/user_placeholder.png') }}"
+                            <img src="{{ $post->user->profile_picture_path ? url($post->user->profile_picture_path) : asset('assets/images/user_placeholder.png') }}"
                                 alt="Profile Picture" class="w-8 h-8 rounded-full mr-2">
                             <div class="flex flex-col">
                                 <span
@@ -81,8 +81,8 @@
         </p>
         <!-- Gambar Postingan -->
         @foreach ($post->postImages as $image)
-            <a class="my-image-links" data-maxwidth="800px" href="{{ asset($image->path) }}">
-                <img src="{{ asset($image->path) }}" alt="Posting Image" class="w-96 h-auto rounded-md">
+            <a class="my-image-links" data-maxwidth="800px" href="{{ url($image->path) }}">
+                <img src="{{ url($image->path) }}" alt="Posting Image" class="w-96 h-auto rounded-md">
             </a>
         @endforeach
         <!-- Tombol Like dan Jumlah Like -->
@@ -125,7 +125,7 @@
                         <div class="flex items-center justify-between mb-2">
                             <div class="flex items-center">
                                 <a href="{{ route('profile.show', $comment->user->id) }}" class="flex items-center">
-                                    <img src="{{ $comment->user->profile_picture_path ? $comment->user->profile_picture_path : asset('assets/images/user_placeholder.png') }}"
+                                    <img src="{{ $comment->user->profile_picture_path ? url($comment->user->profile_picture_path) : asset('assets/images/user_placeholder.png') }}"
                                         alt="Profile Picture" class="w-8 h-8 rounded-full mr-2">
                                     <div class="flex flex-col">
                                         <span class="text-black font-semibold capitalize flex self-start items-center gap-2"
@@ -177,8 +177,8 @@
                     <p class="text-gray-600 mb-2">{{ $comment->body }}</p>
                     <!-- Gambar Postingan -->
                     @foreach ($comment->commentImages as $image)
-                        <a class="my-image-links" data-maxwidth="800px" href="{{ asset($image->path) }}">
-                            <img src="{{ asset($image->path) }}" alt="Posting Image" class="w-80 h-auto rounded-md">
+                        <a class="my-image-links" data-maxwidth="800px" href="{{ url($image->path) }}">
+                            <img src="{{ url($image->path) }}" alt="Posting Image" class="w-80 h-auto rounded-md">
                         </a>
                     @endforeach
                     <!-- Tombol Like dan Jumlah Like untuk Komentar -->

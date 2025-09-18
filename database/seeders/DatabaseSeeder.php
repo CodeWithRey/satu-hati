@@ -23,9 +23,18 @@ class DatabaseSeeder extends Seeder
         $this->call([
             RoleSeeder::class,
             GenderSeeder::class,
-            // UserSeeder::class,
-            // PostSeeder::class,
-            // CommentSeeder::class,
+            UserSeeder::class,
+            PostSeeder::class,
+            CommentSeeder::class,
+            FeaturedContentSeeder::class,
+            SupportiveDiscussionSeeder::class,
+            // Image and interaction seeders
+            ImageDirectorySeeder::class,
+            PostImageSeeder::class,
+            CommentImageSeeder::class,
+            LikePostSeeder::class,
+            LikeCommentSeeder::class,
+            InteractiveContentSeeder::class, // Add highly interactive content last
         ]);
     }
 }

@@ -5,7 +5,7 @@
             <div class="flex items-center justify-between mb-2">
                 <div class="flex items-center">
                     <a href="{{ route('profile.show', $reply->user->id) }}" class="flex items-center">
-                        <img src="{{ $reply->user->profile_picture_path ? $reply->user->profile_picture_path : asset('assets/images/user_placeholder.png') }}"
+                        <img src="{{ $reply->user->profile_picture_path ? url($reply->user->profile_picture_path) : asset('assets/images/user_placeholder.png') }}"
                             alt="Profile Picture" class="w-8 h-8 rounded-full mr-2">
                         <div class="flex flex-col ">
                             <span class="text-black font-semibold capitalize self-start mr-2"
@@ -56,8 +56,8 @@
 
         <!-- Gambar Postingan -->
         @foreach ($reply->commentImages as $image)
-            <a class="my-image-links" data-maxwidth="800px" href="{{ asset($image->path) }}">
-                <img src="{{ asset($image->path) }}" alt="Posting Image" class="w-32 h-auto rounded-md">
+            <a class="my-image-links" data-maxwidth="800px" href="{{ url($image->path) }}">
+                <img src="{{ url($image->path) }}" alt="Posting Image" class="w-32 h-auto rounded-md">
             </a>
         @endforeach
         <!-- Tombol Like dan Jumlah Like untuk Komentar -->

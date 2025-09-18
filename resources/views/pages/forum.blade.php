@@ -190,8 +190,8 @@
                         <div class="flex items-center mb-4">
                             @if ($post->is_anonymous === 0)
                                 <a href="{{ route('profile.show', $post->user->id) }}" class="flex items-center">
-                                    <img src="{{ $post->user->profile_picture_path ??  asset('assets/images/user_placeholder.png') }}" alt="Profile Picture"
-                                        class="w-8 h-8 rounded-full mr-2">
+                                    <img src="{{ $post->user->profile_picture_path ? url($post->user->profile_picture_path) : asset('assets/images/user_placeholder.png') }}"
+                                        alt="Profile Picture" class="w-8 h-8 rounded-full mr-2">
                                     <div class="flex flex-col">
                                         <span
                                             class="text-black font-semibold capitalize mr-2 {{ $post->is_anonymous == 1 ? 'italic' : '' }}">{{ $post->is_anonymous === 0 ? $post->user->full_name : 'Pengguna Anonim' }}</span>
@@ -232,9 +232,9 @@
 
                     <div class="flex flex-wrap items-center justify-start gap-8 mb-4">
                         @foreach ($post->postImages as $image)
-                            <a class="my-image-links" data-maxwidth="800px" href="{{ asset($image->path) }}">
-                                <img src="{{ asset($image->path) }}" class="object-cover" width="100px"
-                                    alt="">
+                            <a class="my-image-links" data-maxwidth="800px" href="{{ url($image->path) }}">
+                                <img src="{{ url($image->path) }}" class="object-cover" width="100px"
+                                    alt="image post">
                             </a>
                         @endforeach
                     </div>
