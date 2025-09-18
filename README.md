@@ -41,24 +41,25 @@ Proyek SatuHati merupakan sebuah platform website yang bertujuan untuk mengatasi
   npm install
 ```
 4. Setup database mySQL di local
-5. Konfigurasi `DB_DATABASE` `DB_USERNAME` `DB_PASSWORD` di file .env
+5. Copy + Paste .env.example lalu rename menjadi .env
 6. Generate `APP_KEY` pada file .env dengan
 ```bash
   php artisan key:generate
 ```
-8. Jalankan seeder database
+8. Konfigurasi `DB_DATABASE` `DB_USERNAME` `DB_PASSWORD` di file .env
+9. Jalankan seeder database
 ```bash
   php artisan migrate:fresh --seed
 ```
-7. Buat link storage ke public directory
+9. Buat link storage ke public directory
 ```bash
   php artisan storage:link
 ```
-8. Jalankan node runtime
+10. Jalankan node runtime
 ```bash
   npm run dev
 ```
-9. Jalankan proyek Laravel
+11. Jalankan proyek Laravel
 ```bash
   php artisan serve
 ```
